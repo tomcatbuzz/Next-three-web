@@ -1,0 +1,29 @@
+.curve {
+  svg, .background {
+    width: 100%;
+    height: calc(100% + 600px);
+    top: 0;
+    left: 0;
+    // position: fixed;
+    position: absolute;
+    pointer-events: none;
+    path {
+      fill: black;
+    }
+    z-index: 2;
+  }
+  .background {
+    background-color: black;
+    transition: opacity 0s linear 0.1s;
+  }
+  .route {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    color: white;
+    font-size: 46px;
+    z-index: 3;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+}
