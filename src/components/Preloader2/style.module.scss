@@ -1,17 +1,21 @@
-.loading-container {
+.loadingContainer {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  background-color: #141516;
+  // background-color: #f0f0f0;
+  z-index: 99;
 }
 
-.letters-container {
+.lettersContainer {
   display: flex;
   gap: 10px;
 }
 
-.letter-box {
+.letterBox {
   display: flex;
   justify-content: center;
   align-items: center;

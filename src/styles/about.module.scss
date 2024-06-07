@@ -1,10 +1,11 @@
-.about_container {
+.aboutContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+  padding-top: 10%;
 }
 
 // .imageStyle {
@@ -17,8 +18,9 @@
 //   }
 // }
 
-.p {
+.paragraphText {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 80%;
 }

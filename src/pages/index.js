@@ -19,12 +19,15 @@ export default function Home() {
           width={200} height={100}
         /><ScrambleText text="World" />
         </div> */}
-        
+        <motion.h1 className="home_text"
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+        >Home</motion.h1>
       </div>
       
-      {/* <div className="background_text">creative developer</div> */}
+      <div className="background_text">creative developer</div>
       
-      {/* <motion.h1
+      {/* <motion.h1 className="home_text"
       whileHover={{ scale: 1.2 }}
       whileTap={{ scale: 0.8 }}
       >Home</motion.h1> */}

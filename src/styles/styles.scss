@@ -219,6 +219,19 @@ html, body {
   opacity: 0.8;
 }
 
+.home_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  // position: absolute;
+  // top: 60%;
+  // left: 50%;
+  // transform: translate(-60%, -50%);
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

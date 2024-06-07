@@ -1,3 +1,4 @@
+import styles from './style.module.scss'
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -30,16 +31,16 @@ const Loading = () => {
   };
 
   return (
-    <div className="loading-container">
+    <div className={styles.loadingContainer}>
       <motion.div
-        className="letters-container"
+        className={styles.lettersContainer}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {letters.map((letter, index) => (
           <motion.div
-            className="letter-box"
+            className={styles.letterBox}
             key={index}
             variants={letterVariants}
           >
