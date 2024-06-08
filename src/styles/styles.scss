@@ -232,6 +232,10 @@ html, body {
   font-weight: 300;
 }
 
+canvas {
+  cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
