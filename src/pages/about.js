@@ -44,6 +44,10 @@ export default function About() {
   //   // objectFit: 'cover'
   //   display: 'block'
   // }
+
+  const imageLoader = ({ src, width, quality }) => {
+    return `${src}?w=${width}&q=${quality || 75}`
+  }
   
   return (
     <Page>
@@ -63,6 +67,7 @@ export default function About() {
         <div style={{ width: "80%", margin: "0 auto", height: "1000px" }}>
           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             <Image
+              loader={imageLoader}
               priority
               // ref={imageRef}
               src={lady}

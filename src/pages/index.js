@@ -79,7 +79,7 @@ export default function Home() {
           whileTap={{ scale: 0.8 }}
         >Home</motion.h1>
         {/* <Canvas camera={{ position: [0, 0, 2], fov: 50}}> */}
-        <Canvas camera={{ position: [0, 0, 2], fov: 20}}>
+      <Canvas camera={{ position: [0, 0, 2], fov: 20}}>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <FadingImage />
