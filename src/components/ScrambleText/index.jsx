@@ -62,15 +62,9 @@ export default function ShuffleAnimation({text}) {
 
   return (
     <div>
-      {/* Your HTML structure with class names */}
-      {/* Ensure that elements with the class "item" and "word" exist */}
-      {/* Replace 'div' with the appropriate HTML elements */}
-      <motion.div className="item" whileHover={{ scale: 1.1 }}>
-        <span className={styles.word}>{text}</span>
-        {/* <span className="word">{text}</span> */}
-        {/* Add more words as needed */}
+      <motion.div className={`item ${styles.item}`} whileHover={{ scale: 1.1 }}>
+        <span className={`word ${styles.word}`}>{text}</span>
       </motion.div>
-      {/* Add more items as needed */}
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import Page from "@/components/page";
-import AnimatedTextWord from "@/components/AnimatedTextWord";
 import { motion } from "framer-motion";
 import Image from 'next/image'
 import testImage from '../../public/next.svg'
@@ -7,7 +6,7 @@ import AnimatedTextCharacter from "@/components/AnimatedTextCharacter";
 import ScrambleText from "@/components/ScrambleText";
 import * as THREE from 'three';
 import { Canvas, extend, useFrame} from '@react-three/fiber';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { useTexture, shaderMaterial } from '@react-three/drei';
 
 export const ImageFadeMaterial = shaderMaterial(
@@ -48,7 +47,15 @@ extend({ ImageFadeMaterial })
 
 function FadingImage() {
   const ref = useRef()
+  // testing so I commented this
   const [texture1, texture2, dispTexture] = useTexture(["/img1.jpg", "/img2.jpg", "/disp1.jpg"])
+
+  // this is broken, can't use useTexture in callback, but useMemo for performance if needed
+  // const textures = useMemo(() => {
+  //   return useTexture(["/img1.jpg", "/img2.jpg", "/disp1.jpg"]);
+  // }, []);
+  // const [texture1, texture2, dispTexture] = textures;
+
   const [hovered, setHover] = useState(false)
   useFrame(() => {
     ref.current.dispFactor = THREE.MathUtils.lerp(ref.current.dispFactor, hovered ? 1 : 0, 0.075)
@@ -61,7 +68,7 @@ function FadingImage() {
   )
 }
 
-export default function Home() {
+export default function Home({isCanvasVisible}) {
   return (
     <Page>
       {/* <div className="home_container">
@@ -69,30 +76,33 @@ export default function Home() {
       </div> */}
       <div className="home_container">
         <AnimatedTextCharacter  text="Tomcatbuzz" />
-        {/* <div>
-        <ScrambleText text="Hello" /><Image className="test_image" src={testImage} alt="Test Image"
-          width={200} height={100}
-        /><ScrambleText text="World" />
-        </div> */}
+        
+        <div>
+        <ScrambleText text="Hello" />
+        <ScrambleText text="World" />
+        </div>
         <motion.h1 className="home_text"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}
         >Home</motion.h1>
-        {/* <Canvas camera={{ position: [0, 0, 2], fov: 50}}> */}
-      <Canvas camera={{ position: [0, 0, 2], fov: 20}}>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <FadingImage />
-      </Canvas>
-      </div>
-      
-      <div className="background_text">creative developer</div>
-
-      {/* <Canvas camera={{ position: [0, 0, 2], fov: 50}}>
+        <ScrambleText text="Big words right" />
+        {isCanvasVisible && (
+          <Canvas camera={{ position: [0, 0, 2], fov: 20 }}>
+            <ambientLight />
+            <pointLight position={[10, 10, 10]} />
+            <FadingImage />
+          </Canvas>
+        )}
+      {/* <Canvas camera={{ position: [0, 0, 2], fov: 20}}>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <FadingImage />
       </Canvas> */}
+      </div>
+      
+      <div className="background_text"><ScrambleText text="creative developer" /></div>
+
+    
     </Page>
   )
 }

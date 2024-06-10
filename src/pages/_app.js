@@ -14,7 +14,10 @@ import { useState, useEffect } from "react";
 import { opacity, expand } from "@/components/Grid/anim";
 
 const App = ({ Component, pageProps}) => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true)
+  const [isCanvasVisible, setCanvasVisible] = useState(false);
+  // original working
   useEffect(() => {
     (
       async () => {
@@ -24,6 +27,7 @@ const App = ({ Component, pageProps}) => {
 
           setTimeout( () => {
             setIsLoading(false);
+            setCanvasVisible(true)
             document.body.style.cursor = 'default'
             window.scrollTo(0,0);
           }, 2000)
@@ -31,7 +35,30 @@ const App = ({ Component, pageProps}) => {
     )()
   }, [])
 
-  const router = useRouter();
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      
+      setCanvasVisible(false);
+    };
+
+    const handleRouteChangeComplete = () => {
+      setTimeout(() => {
+        
+        setCanvasVisible(true);
+       
+      }, 1500); // Adjust delay as needed
+    };
+
+    router.events.on('routeChangeStart', handleRouteChangeStart);
+    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChangeStart);
+      router.events.off('routeChangeComplete', handleRouteChangeComplete);
+    };
+  }, [router.events]);
+
+  // const router = useRouter();
   const nbOfSquares = 5
   const anim = (variants, custom=null) => {
     return {
@@ -48,7 +75,7 @@ const App = ({ Component, pageProps}) => {
       <AnimatePresence>{isLoading && <Preloader />}</AnimatePresence>
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={router.pathname}>
-          <Component {...pageProps} />
+          <Component {...pageProps} isCanvasVisible={isCanvasVisible} />
 
           {/* <motion.div 
     className="slide-in"
