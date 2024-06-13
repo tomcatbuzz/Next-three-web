@@ -37,15 +37,12 @@ const App = ({ Component, pageProps}) => {
 
   useEffect(() => {
     const handleRouteChangeStart = () => {
-      
       setCanvasVisible(false);
     };
 
     const handleRouteChangeComplete = () => {
       setTimeout(() => {
-        
         setCanvasVisible(true);
-       
       }, 1500); // Adjust delay as needed
     };
 
