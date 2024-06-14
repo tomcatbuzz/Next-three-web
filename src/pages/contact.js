@@ -7,7 +7,7 @@ import { OrbitControls } from '@react-three/drei';
 import Cube from '@/components/Cube';
 
 
-export default function Contact() {
+export default function Contact({isCanvasVisible}) {
   
     const cubes = [];
     const cubeSize = 0.5;
@@ -40,14 +40,16 @@ export default function Contact() {
       <h1 className={styles.contactTag}>Contact page</h1>
       </motion.div> */}
       <Suspense fallback={null}>
+      {isCanvasVisible && 
         <Canvas
           camera={{ position: [0, 0, 20] }}
-          style={{ width: '100vw', height: '100vh' }}>
+          style={{ width: '100vw', height: '100vh', zIndex: -1 }}>
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <OrbitControls />
           {cubes}
         </Canvas>
+      }
       </Suspense>
     </Page>
   )
