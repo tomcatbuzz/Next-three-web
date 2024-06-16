@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from '@react-three/drei';
 import Cube from '@/components/Cube';
+import CubeScene from "@/components/CubeScene";
 
 
 export default function Contact({isCanvasVisible}) {
@@ -40,7 +41,8 @@ export default function Contact({isCanvasVisible}) {
       <h1 className={styles.contactTag}>Contact page</h1>
       </motion.div> */}
       <Suspense fallback={null}>
-      {isCanvasVisible && 
+      <CubeScene />
+      {/* {isCanvasVisible && 
         <Canvas
           camera={{ position: [0, 0, 20] }}
           style={{ width: '100vw', height: '100vh', zIndex: -1 }}>
@@ -49,7 +51,7 @@ export default function Contact({isCanvasVisible}) {
           <OrbitControls />
           {cubes}
         </Canvas>
-      }
+      } */}
       </Suspense>
     </Page>
   )
