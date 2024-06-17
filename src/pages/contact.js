@@ -5,7 +5,8 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from '@react-three/drei';
 import Cube from '@/components/Cube';
-import CubeScene from "@/components/CubeScene";
+// import CubeScene from "@/components/CubeScene";
+import CubeScene from "@/components/CubeScene2";
 
 
 export default function Contact({isCanvasVisible}) {
