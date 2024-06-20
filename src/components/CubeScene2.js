@@ -41,7 +41,7 @@ const Cube = ({ position, color }) => {
   );
 };
 
-const CubeInstances = ({ count = 500, gap = 2, mouseX, mouseY }) => {
+const CubeInstances = ({ count = 512, gap = 2, mouseX, mouseY }) => {
   const cubes = useMemo(() => {
     const size = Math.ceil(Math.pow(count, 1/3));
     const halfSize = (size * gap) / 2;
@@ -97,7 +97,7 @@ const CubeScene = () => {
           enableZoom={false}
           enablePan={false}
         />
-        <CubeInstances count={500} gap={3} mouseX={mouseX} mouseY={mouseY} />
+        <CubeInstances count={512} gap={3} mouseX={mouseX} mouseY={mouseY} />
       </Canvas>
     </div>
   );
