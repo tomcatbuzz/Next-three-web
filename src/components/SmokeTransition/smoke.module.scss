@@ -1,0 +1,11 @@
+.smokeTransitionCanvas {
+    // was absolute, changed to fixed for it to work with scroll content
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // added index for testing
+    z-index: 5;
+    pointer-events: none;
+}
