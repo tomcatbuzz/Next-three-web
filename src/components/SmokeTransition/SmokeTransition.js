@@ -8,7 +8,9 @@ const SmokeTransition = ({ isEntering, isLeaving, onAnimationComplete }) => {
 
   useEffect(() => {
     if (!containerRef.current) return;
+    console.log(containerRef, "container in smoke.js")
     if (isEntering) {
+      console.log("entering")
       enterAnimation(containerRef.current, onAnimationComplete);
     } else if (isLeaving) {
       leaveAnimation(containerRef.current, onAnimationComplete);

@@ -65,8 +65,9 @@ export function useSmoke(duration = 2000, enterDuration = duration / 4) {
 
 function createCanvas(el) {
     const canvas = document.createElement('canvas');
+    console.log(canvas, "is this being created")
     // canvas.className = 'smoke-transition-canvas';
-    canvas.className = '.smokeTransitionCanvas';
+    canvas.className = '.smokeTransition';
     el.insertAdjacentElement('afterend', canvas);
     return canvas;
 }

@@ -1,4 +1,9 @@
-.preLoader {
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding: 3em;
+}
+.pre-loader {
   width: 200%;
   height: 100%;
   padding: 2em;
@@ -10,33 +15,38 @@
   align-items: flex-end;
   gap: 0.5em;
   overflow: hidden;
-  z-index: 2;
+  z-index: 5;
+  background-color: #000;
 }
 
-.preLoader p {
+.pre-loader p {
   width: max-content;
   text-transform: uppercase;
-  font-family: "Timmons NY";
+  font-family: "Timmons NY", sans-serif;
   font-size: 60px;
   line-height: 60px;
+  color: white;
 }
 
 .counter {
   height: 100px;
   display: flex;
-  font-family: "Timmons NY";
+  font-family: "Timmons NY", sans-serif;
   font-size: 100px;
   font-weight: 400;
   line-height: 150px;
   clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
+  color: white;
 }
 
-.digit1,
-.digit2,
-.digit3,
-.digit4 {
+.digit-1,
+.digit-2,
+.digit-3,
+.digit-4 {
   position: relative;
   top: -15px;
+  height: 100px;
+  overflow: hidden;
 }
 
 .offset {
@@ -44,10 +54,14 @@
   right: -7.5px;
 }
 
-.progressBar {
+.progress-bar {
   position: relative;
   top: -15px;
-  width: 0%;
   height: 4px;
-  background: #000;
+  // background: #000;
+  background: white;
+}
+
+.num {
+  height: 100px;
 }

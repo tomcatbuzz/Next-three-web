@@ -42,17 +42,18 @@ export default function Contact({isCanvasVisible}) {
       <h1 className={styles.contactTag}>Contact page</h1>
       </motion.div> */}
       <Suspense fallback={null}>
-      <CubeScene />
-      {/* {isCanvasVisible && 
+      {/* <CubeScene /> */}
+      {isCanvasVisible && 
         <Canvas
           camera={{ position: [0, 0, 20] }}
           style={{ width: '100vw', height: '100vh', zIndex: -1 }}>
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          <OrbitControls />
+          
           {cubes}
+          <OrbitControls />
         </Canvas>
-      } */}
+      }
       </Suspense>
     </Page>
   )
