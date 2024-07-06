@@ -5,6 +5,9 @@ import Button from "../Button";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Nav from '../Nav';
+import useMediaQuery from '../../hooks/mediaQuery'
+
+
 
 const menu = {
   open: {
@@ -28,12 +31,12 @@ export default function Header() {
 // const Header = () => {
   const router = useRouter()
   const [isActive, setIsActive] = useState(false)
+  const isMobile = useMediaQuery('(max-width: 799px)');
+  const isDesktop = useMediaQuery('(min-width: 800px)');
 
   return (
     <div className={styles.header}>
-      {/* <div className={`${styles.headerItems} ${styles.logo}`}>
-        <Link href="/">Tomcatbuzz</Link>
-      </div> */}
+      {isDesktop && 
       <div className={styles.headerItems}>
       <div className={styles.logo}>
         <Link href="/">Tomcatbuzz</Link>
@@ -60,9 +63,10 @@ export default function Header() {
         >
           <Link href="/contact">Contact</Link>
         </div>
-        
       </div>
+    }
 
+      {isMobile && 
       <div className={styles.headerItem}>
       <motion.div
         className={styles.menu}
@@ -74,6 +78,7 @@ export default function Header() {
           {isActive && <Nav />}
         </AnimatePresence>
       </motion.div>
+      
       <Button
           isActive={isActive}
           toggleMenu={() => {
@@ -81,6 +86,7 @@ export default function Header() {
           }}
       />
       </div>
+    }
     </div>
   );
 }

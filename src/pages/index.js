@@ -98,9 +98,10 @@ export default function Home({isCanvasVisible}) {
         <pointLight position={[10, 10, 10]} />
         <FadingImage />
       </Canvas> */}
+      <div className="background_text"><ScrambleText text="creative developer" /></div>
       </div>
       
-      <div className="background_text"><ScrambleText text="creative developer" /></div>
+      
 
     
     </Page>
