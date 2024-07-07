@@ -39,27 +39,26 @@ export default function Header() {
       {isDesktop && 
       <div className={styles.headerItems}>
       <div className={styles.logo}>
-        <Link href="/">Tomcatbuzz</Link>
+        {/* <Link href="/">Tomcatbuzz</Link> */}
+        <button type="button" onClick={() => router.push('/')}>
+          Tomcatbuzz
+        </button>
       </div>
-        {/* <div className={`${router.pathname == "/" ? "active" : ""} header-item`}> */}
         <div
           className={`${router.pathname == "/" ? styles.active : ""} ${
-            styles.headerItem
-          }`}
+            styles.headerItem} ${styles.hover}`}
         >
           <Link href="/">Home</Link>
         </div>
         <div
           className={`${router.pathname == "/about" ? styles.active : ""} ${
-            styles.headerItem
-          }`}
+            styles.headerItem} ${styles.hover}`}
         >
           <Link href="/about">About</Link>
         </div>
         <div
           className={`${router.pathname == "/contact" ? styles.active : ""} ${
-            styles.headerItem
-          }`}
+            styles.headerItem} ${styles.hover}`}
         >
           <Link href="/contact">Contact</Link>
         </div>

@@ -9,17 +9,44 @@
 
   .headerItems {
     display: flex;
+    flex-direction: row;
 
-    .headerItem,
-    .logo {
+    .headerItem { 
+      display: flex;
+      flex-direction: row;
       padding: 1em 2em;
+      align-items: flex-end;
     }
+    // .logo button {
+    //   padding: 1em 2em;
+    //   background: none;
+    //   border: none;
+    //   margin: 0;
+    //   // padding: 0;
+    //   cursor: pointer;
+    //   text-transform: uppercase;
+    //   font-family: 'Neue Montreal';
+    //   align-self: flex-start;
+    // }
     // .headerItem {
     //   padding: 1em 2em;
     // }
-    // &:nth-last-child(even) {
-    //   margin-right: 30px;
-    // }
+    .headerItems:nth-child(2), :nth-child(3), :nth-child(4) {
+      align-items: flex-end;
+    }
+
+    .logo button {
+      padding: 1em 2em;
+      background: none;
+      border: none;
+      margin: 0;
+      // padding: 0;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-family: 'Neue Montreal';
+      align-self: flex-start;
+    }
+
   }
   
   @media screen and (min-width: 600px)  {
@@ -27,8 +54,33 @@
       margin-right: auto;
     }
   }
-  
 
+  // .hover:hover {
+  //   color: red;
+  // }
+
+  // .hover:before {
+  //   left: 0;
+  //   bottom: 0;
+  //   width: 100%;
+  //   height: 2px;
+  //   background: #492059;
+  //   transform: scaleX(0);
+  // }
+
+  // .hover:hover::before {
+  //   transform: scaleX(1);
+  // }
+
+  a:after {
+    display: block;
+    content: '';
+    border-bottom: solid 3px black;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  a:hover:after { transform: scaleX(1); }
+  
   .active {
     text-decoration: underline;
   }
@@ -44,6 +96,8 @@
 .menu {
   width: 480px;
   height: 650px;
+  // width: 100vw;
+  // height: 100vh;
   background-color: #c9fd74;
   border-radius: 25px;
   position: absolute;
