@@ -35,15 +35,18 @@ export default function Header() {
   const isDesktop = useMediaQuery('(min-width: 800px)');
 
   return (
+    
     <div className={styles.header}>
       {isDesktop && 
-      <div className={styles.headerItems}>
-      <div className={styles.logo}>
+        <>
+        <div className={styles.logo}>
         {/* <Link href="/">Tomcatbuzz</Link> */}
         <button type="button" onClick={() => router.push('/')}>
           Tomcatbuzz
         </button>
       </div>
+      <div className={styles.headerItems}>
+      
         <div
           className={`${router.pathname == "/" ? styles.active : ""} ${
             styles.headerItem} ${styles.hover}`}
@@ -63,6 +66,7 @@ export default function Header() {
           <Link href="/contact">Contact</Link>
         </div>
       </div>
+      </>
     }
 
       {isMobile && 
@@ -87,6 +91,7 @@ export default function Header() {
       </div>
     }
     </div>
+    
   );
 }
 

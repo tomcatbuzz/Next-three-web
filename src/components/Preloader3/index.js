@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import styles from './style.module.scss'
+import Counter from '../Counter';
 
 const Preloader = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [animationState, setAnimationState] = useState('initial');
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setAnimationState('digits'), 100);
+    // const timer1 = setTimeout(() => setAnimationState('digits'), 100);
     const timer2 = setTimeout(() => setAnimationState('progress30'), 7000);
     const timer3 = setTimeout(() => setAnimationState('progress100'), 9000);
     const timer4 = setTimeout(() => setIsVisible(false), 11000);
 
     return () => {
-      clearTimeout(timer1);
+      // clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
       clearTimeout(timer4);
@@ -42,10 +43,11 @@ const Preloader = () => {
     >
       <p>Loading</p>
       <div className={styles.counter}>
-        <Digit numbers={[0, 1]} duration={2} delay={5} animate={animationState === 'digits'} />
+      <Counter />
+        {/* <Digit numbers={[0, 1]} duration={2} delay={5} animate={animationState === 'digits'} />
         <Digit numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]} duration={6} animate={animationState === 'digits'} />
         <Digit numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]} duration={5} animate={animationState === 'digits'} />
-        <div className={styles['digit-4']}>%</div>
+        <div className={styles['digit-4']}>%</div> */}
       </div>
       <motion.div 
         className={styles['progress-bar']}
