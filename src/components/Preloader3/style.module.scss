@@ -28,16 +28,19 @@
   color: white;
 }
 
-.counter {
-  height: 100px;
-  display: flex;
-  font-family: "Timmons NY", sans-serif;
-  font-size: 100px;
-  font-weight: 400;
-  line-height: 150px;
-  clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
-  color: white;
+.counterWrapper {
+  margin-bottom: 20px;
 }
+// .counter {
+//   height: 100px;
+//   display: flex;
+//   font-family: "Timmons NY", sans-serif;
+//   font-size: 100px;
+//   font-weight: 400;
+//   line-height: 150px;
+//   clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
+//   color: white;
+// }
 
 .digit-1,
 .digit-2,
@@ -64,4 +67,25 @@
 
 .num {
   height: 100px;
+}
+
+@media (max-width: 900px) {
+  .pre-loader {
+    padding: 1em;
+    gap: 0.5em;
+  }
+
+  // .counter {
+  //   font-size: 70px;
+  // }
+
+  .pre-loader p {
+    font-size: 40px;
+    line-height: 64px;
+  }
+
+  // .offset {
+  //   position: relative;
+  //   right: -5px;
+  // }
 }

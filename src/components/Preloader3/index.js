@@ -9,9 +9,10 @@ const Preloader = () => {
 
   useEffect(() => {
     // const timer1 = setTimeout(() => setAnimationState('digits'), 100);
-    const timer2 = setTimeout(() => setAnimationState('progress30'), 7000);
-    const timer3 = setTimeout(() => setAnimationState('progress100'), 9000);
-    const timer4 = setTimeout(() => setIsVisible(false), 11000);
+    // const timer2 = setTimeout(() => setAnimationState('progress30'), 7000);
+    const timer2 = setTimeout(() => setAnimationState('progress30'), 3500);
+    const timer3 = setTimeout(() => setAnimationState('progress100'), 6500);
+    const timer4 = setTimeout(() => setIsVisible(false), 6700);
 
     return () => {
       // clearTimeout(timer1);
@@ -42,7 +43,7 @@ const Preloader = () => {
       animate={isVisible ? "visible" : "hidden"}
     >
       <p>Loading</p>
-      <div className={styles.counter}>
+      <div className={styles.counterWrapper}>
       <Counter />
         {/* <Digit numbers={[0, 1]} duration={2} delay={5} animate={animationState === 'digits'} />
         <Digit numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]} duration={6} animate={animationState === 'digits'} />
@@ -61,31 +62,31 @@ const Preloader = () => {
   );
 };
 
-const Digit = ({ numbers, duration, delay = 1, animate }) => {
-  const totalDistance = -(numbers.length - 1) * 100;
+// const Digit = ({ numbers, duration, delay = 1, animate }) => {
+//   const totalDistance = -(numbers.length - 1) * 100;
 
-  const digitVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: totalDistance,
-      transition: { duration, delay, ease: 'easeInOut' }
-    }
-  };
+//   const digitVariants = {
+//     initial: { y: 0 },
+//     animate: {
+//       y: totalDistance,
+//       transition: { duration, delay, ease: 'easeInOut' }
+//     }
+//   };
 
-  return (
-    <motion.div 
-      className={styles[`digit-${numbers.length <= 2 ? '1' : '2'}`]}
-      variants={digitVariants}
-      initial="initial"
-      animate={animate ? "animate" : "initial"}
-    >
-      {numbers.map((num, index) => (
-        <div key={index} className={`${styles.num} ${index === 1 ? styles.offset : ''}`}>
-          {num}
-        </div>
-      ))}
-    </motion.div>
-  );
-};
+//   return (
+//     <motion.div 
+//       className={styles[`digit-${numbers.length <= 2 ? '1' : '2'}`]}
+//       variants={digitVariants}
+//       initial="initial"
+//       animate={animate ? "animate" : "initial"}
+//     >
+//       {numbers.map((num, index) => (
+//         <div key={index} className={`${styles.num} ${index === 1 ? styles.offset : ''}`}>
+//           {num}
+//         </div>
+//       ))}
+//     </motion.div>
+//   );
+// };
 
 export default Preloader;

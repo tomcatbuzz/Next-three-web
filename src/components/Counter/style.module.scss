@@ -1,0 +1,16 @@
+.counter {
+  height: 100px;
+  display: flex;
+  font-family: "Timmons NY", sans-serif;
+  font-size: 100px;
+  font-weight: 400;
+  line-height: 150px;
+  // clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .counter {
+    font-size: 70px;
+  }
+}

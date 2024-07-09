@@ -8,7 +8,6 @@ import * as THREE from 'three';
 import { Canvas, extend, useFrame} from '@react-three/fiber';
 import { useRef, useState, useEffect, useMemo } from 'react';
 import { useTexture, shaderMaterial } from '@react-three/drei';
-import Counter from '@/components/Counter'
 
 export const ImageFadeMaterial = shaderMaterial(
   {
@@ -77,12 +76,10 @@ export default function Home({isCanvasVisible}) {
       </div> */}
       <div className="home_container">
         <AnimatedTextCharacter  text="Tomcatbuzz" />
-        
         <div>
         <ScrambleText text="Hello" />
         <ScrambleText text="World" />
         </div>
-        <div><Counter /></div>
         <motion.h1 className="home_text"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}

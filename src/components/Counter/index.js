@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { opacity } from './anim';
+import styles from './style.module.scss';
 
 const Digit = ({ value }) => {
   return (
@@ -54,7 +55,7 @@ const Counter = () => {
       } else {
         clearInterval(interval);
       }
-    }, 10); // Adjust the interval duration as needed (in milliseconds)
+    }, 50); // Adjust the interval duration as needed (in milliseconds)
 
     return () => clearInterval(interval);
   }, [counter]);
@@ -66,7 +67,7 @@ const Counter = () => {
     //   ))}
     // </div>
 
-    <motion.p variants={opacity} initial="initial" animate="enter">{counter}%</motion.p>
+    <motion.div className={styles.counter} variants={opacity} initial="initial" animate="enter">{counter}%</motion.div>
   );
 };
 
