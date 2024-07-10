@@ -10,22 +10,22 @@ const Preloader = () => {
   useEffect(() => {
     // const timer1 = setTimeout(() => setAnimationState('digits'), 100);
     // const timer2 = setTimeout(() => setAnimationState('progress30'), 7000);
-    const timer2 = setTimeout(() => setAnimationState('progress30'), 3500);
-    const timer3 = setTimeout(() => setAnimationState('progress100'), 6500);
-    const timer4 = setTimeout(() => setIsVisible(false), 6700);
+    const timer2 = setTimeout(() => setAnimationState('progress30'), 2500);
+    const timer3 = setTimeout(() => setAnimationState('progress100'), 5500);
+    // const timer4 = setTimeout(() => setIsVisible(false), 6700);
 
     return () => {
       // clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
-      clearTimeout(timer4);
+      // clearTimeout(timer4);
     };
   }, []);
 
-  const containerVariants = {
-    visible: { opacity: 1, display: 'flex' },
-    hidden: { opacity: 0, display: 'none', transition: { duration: 2.5 } },
-  };
+  // const containerVariants = {
+  //   visible: { opacity: 1, display: 'flex' },
+  //   hidden: { opacity: 0, display: 'none', transition: { duration: 2.5 } },
+  // };
 
   const progressVariants = {
     initial: { width: 0 },
@@ -38,9 +38,9 @@ const Preloader = () => {
     <div className={styles.wrapper}>
     <motion.div 
       className={styles['pre-loader']}
-      variants={containerVariants}
-      initial="visible"
-      animate={isVisible ? "visible" : "hidden"}
+      // variants={containerVariants}
+      // initial="visible"
+      // animate={isVisible ? "visible" : "hidden"}
     >
       <p>Loading</p>
       <div className={styles.counterWrapper}>

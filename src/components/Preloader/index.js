@@ -22,9 +22,9 @@ export default function Index() {
       return () => clearInterval(interval);
     }, [counter]);
 
-    useEffect( () => {
-        setDimension({width: window.innerWidth, height: window.innerHeight})
-    }, [])
+    useEffect(() => {
+      setDimension({ width: window.innerWidth, height: window.innerHeight });
+    }, []);
 
     useEffect( () => {
         if(index == words.length - 1) return;
