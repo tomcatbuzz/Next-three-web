@@ -51,3 +51,25 @@
   height: 4px;
   background: #000;
 }
+
+
+@media (max-width: 900px) {
+  .preLoader {
+    padding: 1em;
+    gap: 0.5em;
+  }
+
+  .counter {
+    font-size: 70px;
+  }
+
+  .preLoader p {
+    font-size: 40px;
+    line-height: 64px;
+  }
+
+  .offset {
+    position: relative;
+    right: -5px;
+  }
+}

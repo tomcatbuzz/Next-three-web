@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import '@/styles/styles.scss'
 import { motion, AnimatePresence } from "framer-motion";
 // import Preloader from "@/components/Preloader";
-// import Preloader from "@/components/Preloader2";
-import Preloader from "@/components/Preloader3";
+import Preloader from "@/components/Preloader2";
+// import Preloader from "@/components/Preloader3";
 import { useState, useEffect } from "react";
 // import Grid from "@/components/Grid";
 import { opacity, expand } from "@/components/Grid/anim";
@@ -80,7 +80,8 @@ const App = ({ Component, pageProps}) => {
 
   return (
     <>
-      <AnimatePresence>{isLoading && <Preloader />}</AnimatePresence>
+      {/* <AnimatePresence>{isLoading && <Preloader />}</AnimatePresence> */}
+      {isLoading && <Preloader />}
       
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={router.pathname}>
