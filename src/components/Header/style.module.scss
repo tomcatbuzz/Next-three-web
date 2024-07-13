@@ -17,6 +17,7 @@
     text-transform: uppercase;
     font-family: 'Neue Montreal';
     font-size: inherit;
+    color: white
   }
 
   .headerItems {
@@ -29,38 +30,10 @@
       padding: 1em 2em;
       align-items: flex-end;
     }
-    // .logo button {
-    //   padding: 1em 2em;
-    //   background: none;
-    //   border: none;
-    //   margin: 0;
-    //   // padding: 0;
-    //   cursor: pointer;
-    //   text-transform: uppercase;
-    //   font-family: 'Neue Montreal';
-    //   align-self: flex-start;
-    // }
-    // .headerItem {
-    //   padding: 1em 2em;
-    // }
+    
     .headerItems:nth-child(2), :nth-child(3), :nth-child(4) {
       align-items: flex-end;
     }
-
-    // .logo button {
-    //   padding: 1em 2em;
-    //   background: none;
-    //   border: none;
-    //   margin: 0;
-    //   // padding: 0;
-    //   cursor: pointer;
-    //   text-transform: uppercase;
-    //   font-family: 'Neue Montreal';
-    //   font-size: inherit;
-    //   align-items: flex-start;
-    //   margin-left: 0;
-    // }
-
   }
   
   @media screen and (min-width: 600px)  {
@@ -89,7 +62,7 @@
   a:after {
     display: block;
     content: '';
-    border-bottom: solid 3px black;  
+    border-bottom: solid 3px white;  
     transform: scaleX(0);  
     transition: transform 250ms ease-in-out;
   }
@@ -101,8 +74,10 @@
 
   a {
     text-decoration: none;
-    color: #000;
+    // color: #000;
+    color: white;
     text-transform: uppercase;
+    letter-spacing: .2rem;
   }
 
 }
@@ -112,7 +87,8 @@
   height: 650px;
   // width: 100vw;
   // height: 100vh;
-  background-color: #c9fd74;
+  // background-color: #c9fd74;
+  background-color: hsla(145, 83%, 74%, 1);
   border-radius: 25px;
   position: absolute;
   margin-right: 10px;

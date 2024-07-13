@@ -1,0 +1,38 @@
+.homeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding-top: 10%;
+  color: white;
+}
+
+.backgroundText {
+  text-transform: uppercase;
+  color: white;
+  mix-blend-mode: luminosity;
+  transform: rotate(-45deg);
+  opacity: 0.8;
+}
+
+.homeText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  // position: absolute;
+  // top: 60%;
+  // left: 50%;
+  // transform: translate(-60%, -50%);
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.canvas {
+  cursor: pointer;
+}

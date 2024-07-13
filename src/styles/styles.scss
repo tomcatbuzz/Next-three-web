@@ -87,20 +87,23 @@ html, body {
   width: 100vw;
   height: 100vh;
   font-family: 'Neue Montreal';
+  // background: linear-gradient(135deg, #003366 0%, #336699 100%);
+  background: #09090B;
+  
 }
 
-// h1 {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   text-align: center;
-//   text-transform: uppercase;
-//   font-weight: 500;
-//   font-size: 100px;
-//   line-height: 90%;
-// }
-
+/* Light White Grid */
+main {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(rgba(68, 130, 121, 0.31)1px, transparent 1px),
+                    linear-gradient(90deg, rgba(68, 130, 121, 0.31) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(68, 130, 121, 1) 1px, transparent 1px);
+  background-size: 100px 100px;
+  overflow: hidden;
+  z-index: 0;
+}
 
 // slide styles from first animation
 .slide-in {
@@ -122,41 +125,6 @@ html, body {
   background: #0f0f0f;
   transform-origin: top;
 }
-
-
-// old GRID style below
-
-// .main {
-//   .header {
-//     display: flex;
-//     gap: 15px;
-//     padding: 40px;
-//     height: 30px;
-//     position: fixed;
-//     left: 0;
-//     top: 0;
-//     // overflow-y: hidden;
-//     a {
-//       text-decoration: none;
-//       color: black;
-//       &:hover {
-//         text-decoration: underline;
-//       }
-//     }
-//   }
-
-//   .page {
-//     padding: 40px;
-//     min-height: calc(100vh - 80px);
-//   }
-//   h1 {
-//     margin-top: 50px;
-//   }
-//   .body {
-//     display: flex;
-//     gap: 40px;
-//   }
-// }
 
 // GRID css
 .grid {
@@ -193,47 +161,6 @@ html, body {
     top: 0;
     left: 0;
   }
-}
-
-.home_container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  // font-size: 100px;
-  // line-height: 90%;
-}
-
-// .about {
-//   transform: rotate(-45deg);
-// }
-
-.background_text {
-  text-transform: uppercase;
-  color: black;
-  mix-blend-mode: luminosity;
-  transform: rotate(-45deg);
-  opacity: 0.8;
-}
-
-.home_text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  // position: absolute;
-  // top: 60%;
-  // left: 50%;
-  // transform: translate(-60%, -50%);
-  text-transform: uppercase;
-  font-weight: 300;
-}
-
-canvas {
-  cursor: pointer;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -17,23 +17,33 @@ const App = ({ Component, pageProps}) => {
   const [isEntering, setIsEntering] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false)
   // original working
-  useEffect(() => {
-    (
-      async () => {
-        // add locomotive//???????????????
-          // const LocomotiveScroll = (await import('locomotive-scroll')).default
-          // const locomotiveScroll = new LocomotiveScroll();
+  // useEffect(() => {
+  //   (
+  //     async () => {
+  //       // add locomotive//???????????????
+  //         // const LocomotiveScroll = (await import('locomotive-scroll')).default
+  //         // const locomotiveScroll = new LocomotiveScroll();
 
-          setTimeout( () => {
-            setIsLoading(false);
-            setIsEntering(true);
-            setCanvasVisible(true)
-            document.body.style.cursor = 'default'
-            window.scrollTo(0,0);
-          }, 20000)
+  //         setTimeout( () => {
+  //           setIsLoading(false);
+  //           setIsEntering(true);
+  //           setCanvasVisible(true)
+  //           document.body.style.cursor = 'default'
+  //           window.scrollTo(0,0);
+  //         }, 20000)
+  //     }
+  //   )()
+  // }, [])
+
+  // useEffect(() => {
+    const handlePreloaderComplete = () => {
+        setIsLoading(false);
+        setIsEntering(true);
+        setCanvasVisible(true)
+        document.body.style.cursor = 'default'
+        window.scrollTo(0,0);
       }
-    )()
-  }, [])
+  // }, [])
 
   useEffect(() => {
     const handleRouteChangeStart = () => {
@@ -58,13 +68,13 @@ const App = ({ Component, pageProps}) => {
     };
   }, [router.events]);
 
-  const handleEnterComplete = () => {
-    setIsEntering(false);
-  };
+  // const handleEnterComplete = () => {
+  //   setLoading(false);
+  // };
 
-  const handleLeaveComplete = () => {
-    setIsLeaving(false);
-  };
+  // const handleLeaveComplete = () => {
+  //   setIsLeaving(false);
+  // };
 
   // const router = useRouter();
   const nbOfSquares = 5
@@ -81,7 +91,7 @@ const App = ({ Component, pageProps}) => {
   return (
     <>
       {/* <AnimatePresence>{isLoading && <Preloader />}</AnimatePresence> */}
-      {isLoading && <Preloader />}
+      {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
       
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={router.pathname}>

@@ -1,5 +1,4 @@
 import { motion, cubicBezier } from "framer-motion";
-import { opacity } from "./Grid/anim";
 
 const AnimatedTextCharacter = ({ text }) => {
   const letters = Array.from(text)

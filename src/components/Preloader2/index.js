@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-const PreLoader = () => {
+const PreLoader = ({ onComplete }) => {
   const preLoaderRef = useRef(null);
   const digit1Ref = useRef(null);
   const digit2Ref = useRef(null);
@@ -46,6 +46,7 @@ const PreLoader = () => {
         gsap.set(preLoaderRef.current, {
           display: "none",
         });
+        onComplete()
       },
     });
   }, []);
