@@ -6,3 +6,137 @@
   text-align: center;
   text-transform: uppercase;
 }
+
+.myDiv {
+  position: absolute;
+  z-index: 10;
+  height: 64px;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
+  animation: move 8s infinite;
+}
+
+.myDiv2 {
+  position: absolute;
+  z-index: 10;
+  top: 384px;
+  left: 31px;
+  width: 1px;
+  height: 64px;
+  // opacity: 0.87713;
+  // transform: translateY(76.2019px) translateZ(0px);
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
+  animation: move 8s infinite;
+  animation-delay: 2s;
+}
+
+.myDiv3 {
+  position: absolute;
+  z-index: 10;
+  top: 96px;
+  left: 95px;
+  // opacity: 0.583513;
+  width: 1px;
+  height:64px;
+  // transform: translateY(39.9297px) translateZ(0px);
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
+  animation: move 8s infinite;
+  animation-delay: 6s;
+}
+
+.myDiv4 {
+  position: absolute;
+  z-index: 10;
+  top: 288px;
+  left: 287px;
+  // opacity: 1;
+  // transform: translateY(256px) translateZ(0px);
+  color: red;
+  width: 1px;
+  height: 64px;
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
+  animation: move 8s infinite;
+  animation-delay: 4s;
+}
+
+.myDiv5 {
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  left: 255px;
+  // opacity: 0;
+  width: 1px;
+  height: 64px;
+  // transform: translateY(256px) translateZ(0px);
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
+  animation: move 8s infinite;
+  animation-delay: 6s;
+}
+
+.myDiv6 {
+  position: absolute;
+  z-index: 10;
+  top: 64px;
+  left: 351px;
+  // opacity: 0;
+  width: 2px;
+  height: 64px;
+  // transform: translateY(256px) translateZ(0px);
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
+  animation: move 8s infinite;
+  animation-delay: 4s;
+  // animation-duration: 4s;
+}
+
+.myDiv7 {
+  position: absolute;
+  z-index: 0;
+  opacity: 1;
+  inset: 0;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.myDiv8 {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(9, 9, 11, 0), rgba(9, 9, 11));
+}
+
+@keyframes move {
+  from {
+    opacity: 1;
+    transform: translateY(0) translateZ(10);
+    // transform: translateZ(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(256px) translateZ(0);
+    // transform: translateZ(0);
+  }
+}
+
+// @keyframes move {
+//   0% {
+//     opacity: 0.2;
+//     transform: translateY(0)
+//   }
+//   30% {
+//     opacity: 0.8;
+//   }
+//   60% {
+//     opacity: 1;
+//   }
+//   80% {
+//     opacity: 1;
+//   }
+//   100% {
+//     opacity: 0;
+//     transform: translateY(256px);
+//   }
+// }

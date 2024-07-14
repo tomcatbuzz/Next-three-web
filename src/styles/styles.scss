@@ -93,17 +93,17 @@ html, body {
 }
 
 /* Light White Grid */
-main {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-image: linear-gradient(rgba(68, 130, 121, 0.31)1px, transparent 1px),
-                    linear-gradient(90deg, rgba(68, 130, 121, 0.31) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(68, 130, 121, 1) 1px, transparent 1px);
-  background-size: 100px 100px;
-  overflow: hidden;
-  z-index: 0;
-}
+// main {
+//   position: absolute;
+//   width: 100vw;
+//   height: 100vh;
+//   background-image: linear-gradient(rgba(68, 130, 121, 0.31)1px, transparent 1px),
+//                     linear-gradient(90deg, rgba(68, 130, 121, 0.31) 1px, transparent 1px),
+//                     linear-gradient(90deg, rgba(68, 130, 121, 1) 1px, transparent 1px);
+//   background-size: 100px 100px;
+//   overflow: hidden;
+//   z-index: 0;
+// }
 
 // slide styles from first animation
 .slide-in {
