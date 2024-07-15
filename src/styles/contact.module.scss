@@ -9,83 +9,100 @@
 
 .myDiv {
   position: absolute;
+  top: 224px;
+  left: 960px;
   z-index: 10;
   height: 64px;
   width: 1px;
   background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s infinite;
+  animation: move 8s linear infinite;
 }
 
 .myDiv2 {
   position: absolute;
   z-index: 10;
-  top: 384px;
-  left: 31px;
+  top: 96px;
+  left: 32px;
   width: 1px;
   height: 64px;
   // opacity: 0.87713;
   // transform: translateY(76.2019px) translateZ(0px);
   background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s infinite;
+  animation: move 8s linear infinite;
   animation-delay: 2s;
 }
 
 .myDiv3 {
   position: absolute;
   z-index: 10;
-  top: 96px;
-  left: 95px;
+  top: 32px;
+  left: 352px;
   // opacity: 0.583513;
   width: 1px;
   height:64px;
   // transform: translateY(39.9297px) translateZ(0px);
   background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s infinite;
+  animation: move 8s linear infinite;
   animation-delay: 6s;
 }
 
 .myDiv4 {
   position: absolute;
   z-index: 10;
-  top: 288px;
-  left: 287px;
+  top: 448px;
+  left: 256px;
   // opacity: 1;
   // transform: translateY(256px) translateZ(0px);
   color: red;
   width: 1px;
   height: 64px;
   background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s infinite;
+  animation: move 8s linear infinite;
   animation-delay: 4s;
 }
 
 .myDiv5 {
   position: absolute;
   z-index: 10;
-  top: 0px;
-  left: 255px;
+  top: 96px;
+  right: 352px;
   // opacity: 0;
   width: 1px;
   height: 64px;
   // transform: translateY(256px) translateZ(0px);
   background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s infinite;
+  animation: move 8s linear infinite;
   animation-delay: 6s;
 }
 
 .myDiv6 {
   position: absolute;
   z-index: 10;
-  top: 64px;
-  left: 351px;
+  top: 608px;
+  right: 192px;
   // opacity: 0;
   width: 2px;
   height: 64px;
   // transform: translateY(256px) translateZ(0px);
   background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s infinite;
+  animation: move 8s linear infinite;
   animation-delay: 4s;
   // animation-duration: 4s;
+}
+
+.myDiv9 {
+  position: absolute;
+  z-index: 10;
+  top: 400px;
+  right: 544px;
+  // opacity: 0;
+  width: 2px;
+  height: 64px;
+  // transform: translateY(256px) translateZ(0px);
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
+  animation: move 8s linear infinite;
+  animation-delay: 4s;
+  animation-duration: 4s;
 }
 
 .myDiv7 {
@@ -111,7 +128,7 @@
 @keyframes move {
   from {
     opacity: 1;
-    transform: translateY(0) translateZ(10);
+    transform: translateY(0);
     // transform: translateZ(1);
   }
   to {

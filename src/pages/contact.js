@@ -8,8 +8,45 @@ import Cube from '@/components/Cube';
 // import CubeScene from "@/components/CubeScene";
 import CubeScene from "@/components/CubeScene2";
 
-
 export default function Contact({isCanvasVisible}) {
+
+  function getRandomSpacing(totalBlocks, totalLines) {
+    let numbers = [];
+    for (let i = 0; i < totalLines - 1; i++) {
+      // Generate a random number between 1 and totalBlocks - sum of already generated numbers - (totalLines - i)
+      numbers[i] = Math.floor(Math.random() * (totalBlocks - numbers.reduce((a, b) => a + b, 0) - (totalLines - i)) + 1);
+    }
+    // The last number is whatever is left from totalBlocks after subtracting the sum of already generated numbers
+    numbers[totalLines - 1] = totalBlocks - numbers.reduce((a, b) => a + b, 0);
+  
+    // Convert block positions to pixel positions
+    let pixelPositions = numbers.map(num => num * 32);
+  
+    return pixelPositions;
+  }
+  
+  let linePositions = getRandomSpacing(60, 7);
+  console.log(linePositions);
+
+  function getRandomStartingValues(numLines, numBlocks, blockSize) {
+    const maxBlockIndex = numBlocks - 1;
+    const startingValues = new Set();
+
+    while (startingValues.size < numLines) {
+        const randomBlockIndex = Math.floor(Math.random() * (maxBlockIndex + 1));
+        startingValues.add(randomBlockIndex * blockSize);
+    }
+
+    return Array.from(startingValues);
+}
+
+const numLines = 7;
+const numBlocks = 29;
+const blockSize = 32;
+
+const randomStartingValues = getRandomStartingValues(numLines, numBlocks, blockSize);
+console.log(randomStartingValues);
+
   
     const cubes = [];
     const cubeSize = 0.5;
@@ -48,6 +85,7 @@ export default function Contact({isCanvasVisible}) {
       <div className={styles.myDiv4}></div>
       <div className={styles.myDiv5}></div>
       <div className={styles.myDiv6}></div>
+      <div className={styles.myDiv9}></div>
       <div className={styles.myDiv7}>
       <div style={{
         backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 32 32\' width=\'32\' height=\'32\' fill=\'none\' stroke-width=\'2\' stroke=\'rgb(30 58 138 / 0.5)\'%3e%3cpath d=\'M0 .5H31.5V32\'/%3e%3c/svg%3e")'

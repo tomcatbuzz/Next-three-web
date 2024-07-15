@@ -52,7 +52,7 @@ export default function About() {
   return (
     <Page>
       <div className={styles.aboutContainer}>
-        <h1 className="about">About Page</h1>
+        <h1 className={styles.about}>About Page</h1>
         <p className={styles.paragraphText}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the standard dummy text ever since the
