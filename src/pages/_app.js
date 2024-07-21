@@ -15,7 +15,8 @@ const App = ({ Component, pageProps}) => {
   const [isLoading, setIsLoading] = useState(true)
   const [isCanvasVisible, setCanvasVisible] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
-  const [isLeaving, setIsLeaving] = useState(false)
+  const [isLeaving, setIsLeaving] = useState(false);
+  const [isNavExiting, setIsNavExiting] = useState(false);
   // original working
   // useEffect(() => {
   //   (
@@ -49,6 +50,7 @@ const App = ({ Component, pageProps}) => {
     const handleRouteChangeStart = () => {
       setCanvasVisible(false);
       setIsLeaving(true);
+      setIsNavExiting(true);
     };
 
     const handleRouteChangeComplete = () => {
@@ -57,6 +59,7 @@ const App = ({ Component, pageProps}) => {
       }, 1500); // Adjust delay as needed
       setIsLeaving(false);
       setIsEntering(true);
+      setIsNavExiting(false);
     };
 
     router.events.on('routeChangeStart', handleRouteChangeStart);
@@ -95,7 +98,7 @@ const App = ({ Component, pageProps}) => {
       
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={router.pathname}>
-          <Component {...pageProps} isCanvasVisible={isCanvasVisible} />
+          <Component {...pageProps} isCanvasVisible={isCanvasVisible} isNavExiting={isNavExiting} />
           {/* <div className="page">
           <SmokeTransition
             isEntering={isEntering}
@@ -104,7 +107,7 @@ const App = ({ Component, pageProps}) => {
           </div> */}
           
           
-          <div className="page grid">
+          <div className="grid">
             <motion.div {...anim(opacity)} className="transition-background" />
             <div className="transition-container">
               {[...Array(nbOfSquares)].map((_, i) => {

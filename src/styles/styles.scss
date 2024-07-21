@@ -129,11 +129,11 @@ html, body {
 // GRID css
 .grid {
   .transition-container {
+    position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     top: 0;
     left: 0;
-    position: fixed;
     display: flex;
     pointer-events: none;
     z-index: 2;
@@ -144,6 +144,7 @@ html, body {
         background: linear-gradient(90deg, hsla(145, 83%, 74%, 1) 0%, hsla(204, 77%, 76%, 1) 100%);
         background: -moz-linear-gradient(90deg, hsla(145, 83%, 74%, 1) 0%, hsla(204, 77%, 76%, 1) 100%);
         background: -webkit-linear-gradient(90deg, hsla(145, 83%, 74%, 1) 0%, hsla(204, 77%, 76%, 1) 100%);
+        // commented width, height for testing?
         height: 100%;
         width: 100%;
         // visibility: hidden;
@@ -162,6 +163,12 @@ html, body {
     left: 0;
   }
 }
+
+// @media (min-width: 600px) {
+//   .transition-containers {
+//     display: block;
+//   }
+// }
 
 @media (prefers-color-scheme: dark) {
   html {

@@ -2,7 +2,7 @@ import styles from './style.module.scss'
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "../Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Nav from '../Nav';
 import useMediaQuery from '../../hooks/mediaQuery'
@@ -33,6 +33,26 @@ export default function Header() {
   const [isActive, setIsActive] = useState(false)
   const isMobile = useMediaQuery('(max-width: 799px)');
   const isDesktop = useMediaQuery('(min-width: 800px)');
+
+  const handleNavClose = () => {
+    setIsActive(false)
+  }
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (isActive) {
+        handleNavClose()
+      }
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  },[router.events, isActive]);
+
+  
 
   return (
     
@@ -77,8 +97,8 @@ export default function Header() {
         animate={isActive ? "open" : "closed"}
         initial="closed"
       >
-        <AnimatePresence>
-          {isActive && <Nav />}
+        <AnimatePresence node="wait">
+          {isActive && <Nav isExiting={!isActive} />}
         </AnimatePresence>
       </motion.div>
       

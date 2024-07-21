@@ -4,7 +4,7 @@ import { links, footerLinks } from './data';
 import { perspective, slideIn } from './anim';
 import Link from 'next/link';
 
-export default function index() {
+export default function index({ isExiting }) {
 	return (
     <div className={styles.nav}>
       <div className={styles.body}>
