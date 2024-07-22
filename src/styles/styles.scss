@@ -136,7 +136,7 @@ html, body {
     left: 0;
     display: flex;
     pointer-events: none;
-    z-index: 2;
+    z-index: 14;
       div {
         position: relative;
         // background: hsla(145, 83%, 74%, 1);
@@ -157,7 +157,7 @@ html, body {
     background: linear-gradient(to right, #859398, #283048);
     // background: linear-gradient(to right, #0ABFBC, #FC354C);
     // background-color: #444;
-    z-index: 1;
+    z-index: 13;
     pointer-events: none;
     top: 0;
     left: 0;

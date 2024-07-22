@@ -7,8 +7,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Nav from '../Nav';
 import useMediaQuery from '../../hooks/mediaQuery'
 
-
-
 const menu = {
   open: {
     width: "480px",
@@ -83,7 +81,9 @@ export default function Header() {
           className={`${router.pathname == "/contact" ? styles.active : ""} ${
             styles.headerItem} ${styles.hover}`}
         >
+          {/* <Link href="/contact">Contact</Link> */}
           <Link href="/contact">Contact</Link>
+          
         </div>
       </div>
       </>
@@ -97,7 +97,7 @@ export default function Header() {
         animate={isActive ? "open" : "closed"}
         initial="closed"
       >
-        <AnimatePresence node="wait">
+        <AnimatePresence mode="wait">
           {isActive && <Nav isExiting={!isActive} />}
         </AnimatePresence>
       </motion.div>

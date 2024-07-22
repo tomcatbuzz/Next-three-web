@@ -1,7 +1,7 @@
 import styles from "@/styles/contact.module.scss";
 import Page from "@/components/page";
 import { motion } from "framer-motion";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from '@react-three/drei';
 import Cube from '@/components/Cube';
@@ -9,6 +9,32 @@ import Cube from '@/components/Cube';
 import CubeScene from "@/components/CubeScene2";
 
 export default function Contact({isCanvasVisible}) {
+
+  const Line = () => {
+    const [style, setStyle] = useState({});
+
+    useEffect(() => {
+      const timer = setInterval(() => {
+        const top = Math.random() * 100;
+        const left = Math.random() * 100;
+        setStyle({
+          top: `${top}vh`,
+          left: `${left}vw`,
+          // position: "absolute",
+          // height: "2px",
+          // width: "10px",
+          // // backgroundColor: "white",
+          // backgroundColor: "#1c7cbb",
+          // animation: "fall 2s linear infinite",
+        });
+      }, Math.random() * 10000);
+
+      return () => clearInterval(timer);
+    }, []);
+
+    return <div className={styles.line} style={style}></div>;
+    
+  }
 
   function getRandomSpacing(totalBlocks, totalLines) {
     let numbers = [];
@@ -79,7 +105,7 @@ console.log(randomStartingValues);
       <h1 className={styles.contactTag}>Contact page</h1>
       </motion.div> */}
       <>
-      <div className={styles.backGround}>
+      {/* <div className={styles.backGround}>
       <div className={styles.myDiv}></div>
       <div className={styles.myDiv2}></div>
       <div className={styles.myDiv3}></div>
@@ -93,6 +119,12 @@ console.log(randomStartingValues);
       }} className={styles.svg}></div>
       <div className={styles.myDiv8}></div>
       </div>
+      </div> */}
+
+      <div className={styles.grid}>
+        {[...Array(6)].map((_, i) => (
+          <Line key={i} />
+        ))}
       </div>
       
       <Suspense fallback={null}>

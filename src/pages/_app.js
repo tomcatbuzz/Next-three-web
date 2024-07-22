@@ -98,16 +98,12 @@ const App = ({ Component, pageProps}) => {
       
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={router.pathname}>
+        {/* kind of working */}
           <Component {...pageProps} isCanvasVisible={isCanvasVisible} isNavExiting={isNavExiting} />
-          {/* <div className="page">
-          <SmokeTransition
-            isEntering={isEntering}
-            isLeaving={isLeaving} 
-            onAnimationComplete={isEntering ? handleEnterComplete : handleLeaveComplete} />
-          </div> */}
+          {/* <Component {...pageProps} isCanvasVisible={isCanvasVisible} /> */}
           
-          
-          <div className="grid">
+          {/* {isNavExiting && ( */}
+          <div className="grid">           
             <motion.div {...anim(opacity)} className="transition-background" />
             <div className="transition-container">
               {[...Array(nbOfSquares)].map((_, i) => {
@@ -117,7 +113,9 @@ const App = ({ Component, pageProps}) => {
               })}
             </div>
           </div>
-        </motion.div>
+          {/* )} */}
+          </motion.div>
+        
       </AnimatePresence>
       
     </>
