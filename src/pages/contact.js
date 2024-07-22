@@ -1,7 +1,7 @@
 import styles from "@/styles/contact.module.scss";
 import Page from "@/components/page";
 import { motion } from "framer-motion";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from '@react-three/drei';
 import Cube from '@/components/Cube';
@@ -33,8 +33,18 @@ export default function Contact({isCanvasVisible}) {
     }, []);
 
     return <div className={styles.line} style={style}></div>;
-    
   }
+
+  const myDivRef = useRef(null);
+  useEffect(() => {
+    if (myDivRef.current) {
+      const width = myDivRef.current.offsetWidth;
+      const gridWidth = 32;
+      const maxDivs = Math.floor(width / gridWidth);
+      const randomPosition = Math.floor(Math.random() * maxDivs) * gridWidth;
+      myDivRef.current.style.left = `${randomPosition}px`;
+    }
+  })
 
   function getRandomSpacing(totalBlocks, totalLines) {
     let numbers = [];
@@ -105,7 +115,7 @@ console.log(randomStartingValues);
       <h1 className={styles.contactTag}>Contact page</h1>
       </motion.div> */}
       <>
-      {/* <div className={styles.backGround}>
+      <div className={styles.backGround} ref={myDivRef}>
       <div className={styles.myDiv}></div>
       <div className={styles.myDiv2}></div>
       <div className={styles.myDiv3}></div>
@@ -119,13 +129,14 @@ console.log(randomStartingValues);
       }} className={styles.svg}></div>
       <div className={styles.myDiv8}></div>
       </div>
-      </div> */}
+      </div>
 
-      <div className={styles.grid}>
+       {/* current grid */}
+      {/* <div className={styles.grid}>
         {[...Array(6)].map((_, i) => (
           <Line key={i} />
         ))}
-      </div>
+      </div> */}
       
       <Suspense fallback={null}>
       {/* <CubeScene /> */}
