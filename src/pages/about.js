@@ -66,7 +66,7 @@ export default function About() {
         </p>
         <div style={{ width: "80%", margin: "0 auto", height: "1000px" }}>
           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-            <Image
+            {/* <Image
               loader={imageLoader}
               priority
               // ref={imageRef}
@@ -78,7 +78,7 @@ export default function About() {
                 objectFit: 'cover', 
                 marginTop: '1em',
                 borderRadius: '10px'}}
-            />
+            /> */}
           </div>
         </div>
       </div>

@@ -133,11 +133,11 @@ console.log(randomStartingValues);
       {/* </div> */}
 
        {/* current grid */}
-      {/* <div className={styles.grid}>
+      <div>
         {[...Array(6)].map((_, i) => (
           <Line key={i} />
         ))}
-      </div> */}
+      </div>
       
       <Suspense fallback={null}>
       {/* <CubeScene /> */}
