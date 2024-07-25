@@ -15,8 +15,12 @@ export default function Contact({isCanvasVisible}) {
 
     useEffect(() => {
       const timer = setInterval(() => {
-        const top = Math.random() * 100;
-        const left = Math.random() * 100;
+        // const top = Math.random() * 100;
+        // const left = Math.random() * 100;
+        // Clamp top value between 0 and 80% of viewport height
+      const top = Math.min(Math.max(Math.random() * 70, 0), 70);
+      // Clamp left value between 0 and 95% of viewport width
+      const left = Math.min(Math.max(Math.random() * 90, 0), 90);
         setStyle({
           top: `${top}vh`,
           left: `${left}vw`,
@@ -43,6 +47,7 @@ export default function Contact({isCanvasVisible}) {
       const maxDivs = Math.floor(width / gridWidth);
       const randomPosition = Math.floor(Math.random() * maxDivs) * gridWidth;
       myDivRef.current.style.left = `${randomPosition}px`;
+      console.log(randomPosition);
     }
   })
 
@@ -115,7 +120,8 @@ console.log(randomStartingValues);
       <h1 className={styles.contactTag}>Contact page</h1>
       </motion.div> */}
       <>
-      <div className={styles.backGround} ref={myDivRef}>
+      {/* <div className={styles.backGround} ref={myDivRef}> */}
+      <div className={styles.backGround}>
       
       {/* <div className={styles.myDiv}></div>
       <div className={styles.myDiv2}></div>

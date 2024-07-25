@@ -56,11 +56,29 @@
 
 .line {
   position: absolute;
-  height: 12px;
-  width: 2px;
+  // height: 12px;
+  // width: 2px;
+  height: 64px;
+  width: 1px;
+  overflow: hidden;
   // backgroundColor: white;
-  background: #1c7cbb;
+  // background: #1c7cbb;
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
+
   animation: move 8s linear infinite;
+}
+
+@keyframes move {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    // transform: translateZ(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(256px) translateZ(0);
+    // transform: translateZ(0);
+  }
 }
 
 @keyframes fall {
