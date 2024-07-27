@@ -7,83 +7,45 @@
   text-transform: uppercase;
 }
 
+.backGroundWrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+// .backGround {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
 .backGround {
-  // NOT SURE IF I NEED any styling here
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.content {
   display: flex;
-  // width: 100%;
-  // height: 100%;
   justify-content: center;
   align-items: center;
-  // position: absolute;
-  // overflow: hidden;
-}
-
-.grid {
+  color: white;
   position: absolute;
-  height: 100vh;
-  width: 100vw;
-  z-index: 10;
-  overflow: hidden;
-  background-image: linear-gradient(#1c7cbb 0.5px, transparent 0.5px, transparent calc(100% - 0.5px), #1c7cbb calc(100% - 0.5px)), linear-gradient(90deg, #1c7cbb 0.5px, transparent 0.5px, transparent calc(100% - 0.5px), #1c7cbb calc(100% - 0.5px));
-  background-size: 0.5% 0.5%;
-  border: 0.5px solid #1c7cbb;
-  opacity: 0.5;
-  // playing around some for effects
-  // animation: resize 10s linear infinite;
-}
-
-// .grid {
-//   display: grid;
-//   grid-template-columns: repeat(32, 1fr);
-//   grid-template-rows: repeat(32, 1fr);
-//   height: 100vh;
-//   width: 100vw;
-//   position: absolute;
-//   z-index: 10;
-// }
-
-// .grid::before {
-//   content: '';
-//   grid-area: 1 / 1 / -1 / -1;
-//   background-image: linear-gradient(0deg, transparent 0%, transparent 98%, blue 98%, blue 100%) 0 0 / 100% 4px repeat,
-//   linear-gradient(90deg, transparent 0%, transparent 98%, blue 98%, blue 100%) 0 0 / 4px 100% repeat;
-// }
-
-@keyframes resize {
-  0% {background-size: 1% 1%;}
-  100% {background-size: 10% 10%}
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  z-index: 1;
 }
 
 .line {
   position: absolute;
-  // height: 12px;
-  // width: 2px;
   height: 64px;
   width: 1px;
   overflow: hidden;
-  // backgroundColor: white;
-  // background: #1c7cbb;
   background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-
   animation: move 8s linear infinite;
-}
-
-@keyframes move {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-    // transform: translateZ(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(256px) translateZ(0);
-    // transform: translateZ(0);
-  }
-}
-
-@keyframes fall {
-  0% { transform: translateY(-100%);}
-  100% { transform: translateY(100%);}
 }
 
 .myDiv {
@@ -95,93 +57,6 @@
   width: 1px;
   background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
   animation: move 8s linear infinite;
-}
-
-.myDiv2 {
-  position: absolute;
-  z-index: 10;
-  top: 96px;
-  left: 32px;
-  width: 1px;
-  height: 64px;
-  // opacity: 0.87713;
-  // transform: translateY(76.2019px) translateZ(0px);
-  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s linear infinite;
-  animation-delay: 2s;
-}
-
-.myDiv3 {
-  position: absolute;
-  z-index: 10;
-  top: 32px;
-  left: 352px;
-  // opacity: 0.583513;
-  width: 1px;
-  height:64px;
-  // transform: translateY(39.9297px) translateZ(0px);
-  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s linear infinite;
-  animation-delay: 6s;
-}
-
-.myDiv4 {
-  position: absolute;
-  z-index: 10;
-  top: 448px;
-  left: 256px;
-  // opacity: 1;
-  // transform: translateY(256px) translateZ(0px);
-  color: red;
-  width: 1px;
-  height: 64px;
-  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s linear infinite;
-  animation-delay: 4s;
-}
-
-.myDiv5 {
-  position: absolute;
-  z-index: 10;
-  top: 96px;
-  right: 352px;
-  // opacity: 0;
-  width: 1px;
-  height: 64px;
-  // transform: translateY(256px) translateZ(0px);
-  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s linear infinite;
-  animation-delay: 6s;
-}
-
-.myDiv6 {
-  position: absolute;
-  z-index: 10;
-  top: 608px;
-  right: 192px;
-  // opacity: 0;
-  width: 2px;
-  height: 64px;
-  // transform: translateY(256px) translateZ(0px);
-  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s linear infinite;
-  animation-delay: 4s;
-  // animation-duration: 4s;
-}
-
-.myDiv9 {
-  position: absolute;
-  z-index: 10;
-  top: 400px;
-  right: 544px;
-  // opacity: 0;
-  width: 2px;
-  height: 64px;
-  // transform: translateY(256px) translateZ(0px);
-  background: linear-gradient(to bottom, rgba(59, 130, 246, 0), rgba(59, 130, 246, 1));
-  animation: move 8s linear infinite;
-  animation-delay: 4s;
-  animation-duration: 4s;
 }
 
 .myDiv7 {
@@ -217,23 +92,3 @@
     // transform: translateZ(0);
   }
 }
-
-// @keyframes move {
-//   0% {
-//     opacity: 0.2;
-//     transform: translateY(0)
-//   }
-//   30% {
-//     opacity: 0.8;
-//   }
-//   60% {
-//     opacity: 1;
-//   }
-//   80% {
-//     opacity: 1;
-//   }
-//   100% {
-//     opacity: 0;
-//     transform: translateY(256px);
-//   }
-// }

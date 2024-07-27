@@ -13,7 +13,13 @@ export default function Home({isCanvasVisible}) {
   return (
     <Page>
       <div className={styles.homeContainer}>
+        <div className={`${styles.heroContainer} ${styles.borderGradient}`}>
+        
+          
         <AnimatedTextCharacter text="Tomcatbuzz" />
+        <p>From Concept to Deployment: Full Stack Solutions for Tomorrow’s Web
+          Innovating Web Development: Where Functionality Meets Creativity.
+          Transforming Ideas into Reality with Full Stack Expertise</p>
         <div>
         <ScrambleText text="Hello" />
         <ScrambleText text="World" />
@@ -23,7 +29,7 @@ export default function Home({isCanvasVisible}) {
           whileTap={{ scale: 0.8 }}
         >Home</motion.h1>
         <ScrambleText text="Big words right" />
-        
+        </div>
         <Suspense fallback={<div>...Loading</div>}>
         {isCanvasVisible && (
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>

@@ -11,8 +11,34 @@
   padding-top: 5%;
   color: white;
   position: absolute;
-  margin-top: 10%;
+  // margin-top: 10%;
 }
+
+.heroContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  border-radius: 25px;
+  // border: 2px solid greenyellow;
+  border: 10px solid;
+  padding: 25px;
+  border-width: 5px;
+  border-image-slice: 1;
+  width: 80%;
+  
+}
+
+.borderGradient {
+  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+  border-radius: 25px;
+}
+
+// .border-gradient {
+//   border: 10px solid;
+//   border-image-slice: 1;
+//   border-width: 5px;
+// }
+
 
 .backgroundText {
   text-transform: uppercase;
@@ -37,4 +63,5 @@
 
 .canvas {
   cursor: pointer;
+  top: 40%;
 }
