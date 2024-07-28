@@ -8,6 +8,7 @@ import ScrambleText from "@/components/ScrambleText";
 import { Canvas } from '@react-three/fiber';
 import { useRef, useState, useEffect, useMemo, Suspense } from 'react';
 import FadingImage from "@/components/HoverImage";
+import Footer from '@/components/Footer';
 
 export default function Home({isCanvasVisible}) {
   return (
@@ -32,6 +33,8 @@ export default function Home({isCanvasVisible}) {
         </div>
         <Suspense fallback={<div>...Loading</div>}>
         {isCanvasVisible && (
+          
+          <motion.div>
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>
             <ambientLight />
             <pointLight position={[10, 10, 10]} />
@@ -39,15 +42,16 @@ export default function Home({isCanvasVisible}) {
             <FadingImage />
             
           </Canvas>
+          </motion.div>
         )}
         </Suspense>
       
       <div className={styles.backgroundText}><ScrambleText text="creative developer" /></div>
+      <div className={styles.footer}>
+      {/* <Footer /> */}
+      </div>
       </div>
       
-      
-
-    
     </Page>
   )
 }

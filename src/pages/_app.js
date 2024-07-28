@@ -56,7 +56,7 @@ const App = ({ Component, pageProps}) => {
     const handleRouteChangeComplete = () => {
       setTimeout(() => {
         setCanvasVisible(true);
-      }, 1500); // Adjust delay as needed
+      }, 500); // Adjust delay as needed
       setIsLeaving(false);
       setIsEntering(true);
       setIsNavExiting(false);

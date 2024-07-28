@@ -18,19 +18,34 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  border-radius: 25px;
+  // border-radius: 25px;
   // border: 2px solid greenyellow;
-  border: 10px solid;
+  // border: 10px solid;
   padding: 25px;
-  border-width: 5px;
-  border-image-slice: 1;
+  
+  // border-image-slice: 1;
   width: 80%;
   
 }
 
 .borderGradient {
-  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+  position: relative;
+}
+
+.borderGradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  // border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+  border: 10px solid transparent;
+  background: linear-gradient(to left, #743ad5, #d53a9d) border-box;
   border-radius: 25px;
+  -webkit-mask: linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 // .border-gradient {
@@ -64,4 +79,10 @@
 .canvas {
   cursor: pointer;
   top: 40%;
+  width: 800px;
+  height: 650px;
+}
+
+.footer {
+  margin-top: auto;
 }
