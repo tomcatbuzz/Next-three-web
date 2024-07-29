@@ -9,13 +9,13 @@ import { useState, useEffect } from "react";
 import { opacity, expand } from "@/components/Grid/anim";
 // import SmokeTransition from "@/components/SmokeTransition/SmokeTransition";
 import SmokeTransition from "@/components/SmokeTransition/smoke2"
+import { Canvas } from "@react-three/fiber";
+import Background from "@/components/Background/index"
 
 const App = ({ Component, pageProps}) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true)
   const [isCanvasVisible, setCanvasVisible] = useState(false);
-  const [isEntering, setIsEntering] = useState(false);
-  const [isLeaving, setIsLeaving] = useState(false);
   const [isNavExiting, setIsNavExiting] = useState(false);
   // original working
   // useEffect(() => {
@@ -39,7 +39,6 @@ const App = ({ Component, pageProps}) => {
   // useEffect(() => {
     const handlePreloaderComplete = () => {
         setIsLoading(false);
-        setIsEntering(true);
         setCanvasVisible(true)
         document.body.style.cursor = 'default'
         window.scrollTo(0,0);
@@ -49,7 +48,6 @@ const App = ({ Component, pageProps}) => {
   useEffect(() => {
     const handleRouteChangeStart = () => {
       setCanvasVisible(false);
-      setIsLeaving(true);
       setIsNavExiting(true);
     };
 
@@ -57,8 +55,6 @@ const App = ({ Component, pageProps}) => {
       setTimeout(() => {
         setCanvasVisible(true);
       }, 500); // Adjust delay as needed
-      setIsLeaving(false);
-      setIsEntering(true);
       setIsNavExiting(false);
     };
 
@@ -99,9 +95,14 @@ const App = ({ Component, pageProps}) => {
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={router.pathname}>
         {/* kind of working */}
+        <div className="backgroundCanvas">
+        <Canvas >
+        <Background />
+        </Canvas>
+        </div>
           <Component {...pageProps} isCanvasVisible={isCanvasVisible} isNavExiting={isNavExiting} />
           {/* <Component {...pageProps} isCanvasVisible={isCanvasVisible} /> */}
-          
+        
           {/* {isNavExiting && ( */}
           <div className="grid">           
             <motion.div {...anim(opacity)} className="transition-background" />
