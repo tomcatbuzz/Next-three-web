@@ -1,36 +1,50 @@
 import { extend, useFrame, useThree} from '@react-three/fiber';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { useTexture, shaderMaterial, Plane } from '@react-three/drei';
 import * as THREE from 'three';
 import vertex from './vertex.glsl';
 import fragment from './fragment.glsl';
 
-export const NoiseMaterial = shaderMaterial(
-  {
-    time: 0,
-    // color: new THREE.Color(0x00ff00)
-    color: new THREE.Color('skyblue')
-  },
+// export const NoiseMaterial = shaderMaterial(
+//   {
+//     time: 0,
+//     // color: new THREE.Color(0x00ff00)
+//     // color: new THREE.Color('skyblue'),
+//     resolution: new THREE.Vector2()
+//   },
 
-  vertex,
-  fragment
-)
+//   vertex,
+//   fragment
+// )
 
-extend({ NoiseMaterial })
+// extend({ NoiseMaterial })
 
 function Background() {
   const materialRef = useRef();
   const meshRef = useRef();
-  const { size, viewport } = useThree();
+  const { width, height } = useThree((state) => state.viewport);
   // const [resolution, setResolution] = useState(() => new THREE.Vector2(size.width, size.height));
 
   // useEffect(() => {
   //   setResolution(new THREE.Vector2(size.width, size.height))
   // }, [size]);
 
-  useFrame(({clock}) => {
-    if (materialRef.current) {
-      materialRef.current.time = clock.getElapsedTime();
+  const uniforms = useMemo(
+    () => ({
+      time: {
+        value: 0.0
+      },
+      colorA: { value: new THREE.Color("#FFE486") },
+      colorB: { value: new THREE.Color("#FEB3D9")},
+      resolution: { value: new THREE.Vector4() },
+    }),
+    []
+  );
+
+  useFrame((state) => {
+    const { clock } = state;
+    if (meshRef.current) {
+      meshRef.current.material.uniforms.time.value = clock.getElapsedTime();
       // materialRef.current.color = setHSL(clock.getElapsedTime() %1, 0.5, 0.5)
     }
     // console.log(materialRef.current, 'ref')
@@ -40,9 +54,15 @@ function Background() {
   });
 
   return (
-    <mesh scale={[viewport.width, viewport.height, 1]} position={[0, 0, -1]}>
+    // <mesh scale={[viewport.width, viewport.height, 1]} position={[0, 0, -1]} >
+    <mesh scale={[width, height, 1]} ref={meshRef}>
       <planeGeometry args={[1, 1]} />
-      <noiseMaterial ref={materialRef} />
+      <shaderMaterial 
+        ref={materialRef}
+        fragmentShader={fragment} 
+        vertexShader={vertex}
+        uniforms={uniforms}
+      />
     </mesh>
     
     // <Plane args={[2, 2]} position={[0, 0, -1]}>
