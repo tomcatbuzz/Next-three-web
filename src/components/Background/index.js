@@ -1,5 +1,5 @@
-import { extend, useFrame, useThree} from '@react-three/fiber';
-import { useRef, useState, useEffect, useMemo } from 'react';
+import { extend, useFrame, useThree, useLoader} from '@react-three/fiber';
+import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
 import { useTexture, shaderMaterial, Plane } from '@react-three/drei';
 import * as THREE from 'three';
 import vertex from './vertex.glsl';
@@ -23,34 +23,48 @@ function Background() {
   const materialRef = useRef();
   const meshRef = useRef();
   const { width, height } = useThree((state) => state.viewport);
-  // const [resolution, setResolution] = useState(() => new THREE.Vector2(size.width, size.height));
+  const mousePosition = useRef({ x: 0, y: 0 });
+  const texture = useLoader(THREE.TextureLoader, '/joel-filipe-k8apfKm-Md4-unsplash.jpg');
 
-  // useEffect(() => {
-  //   setResolution(new THREE.Vector2(size.width, size.height))
-  // }, [size]);
+  const updateMousePosition = useCallback((e) => {
+    mousePosition.current = { x: e.pageX, y: e.pageY};
+  }, []);
 
   const uniforms = useMemo(
     () => ({
-      time: {
+      uTime: {
         value: 0.0
       },
-      colorA: { value: new THREE.Color("#FFE486") },
-      colorB: { value: new THREE.Color("#FEB3D9")},
-      resolution: { value: new THREE.Vector4() },
-    }),
-    []
+      // uncomment when back to work!!!!!
+      uTexture: {
+        value: texture
+      },
+      uMouse: {
+        value: new THREE.Vector2(0, 0)
+      },
+      uBg: {
+        value: new THREE.Color("#A1A3F7")
+      },
+      uColorA: { value: new THREE.Color("#FFE486") },
+      uColorB: { value: new THREE.Color("#FEB3D9")},
+      uResolution: { value: new THREE.Vector4() },
+    }), [texture]
   );
+
+  useEffect(() => {
+    window.addEventListener("mousemove", updateMousePosition, false);
+    return () => window.removeEventListener("mousemove", updateMousePosition, false);
+  }, [updateMousePosition]);
 
   useFrame((state) => {
     const { clock } = state;
     if (meshRef.current) {
-      meshRef.current.material.uniforms.time.value = clock.getElapsedTime();
-      // materialRef.current.color = setHSL(clock.getElapsedTime() %1, 0.5, 0.5)
+      meshRef.current.material.uniforms.uTime.value = clock.getElapsedTime();
+      meshRef.current.material.uniforms.uMouse.value = new THREE.Vector2(
+        mousePosition.current.x,
+        mousePosition.current.y
+      )
     }
-    // console.log(materialRef.current, 'ref')
-    // if (meshRef.current) {
-    //   meshRef.current.scale.set(viewport.width, viewport.height, 1)
-    // }
   });
 
   return (

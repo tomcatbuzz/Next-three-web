@@ -31,7 +31,7 @@ export default function Home({isCanvasVisible}) {
         >Home</motion.h1>
         <ScrambleText text="Big words right" />
         </div>
-        <Suspense fallback={<div>...Loading</div>}>
+        {/* <Suspense fallback={<div>...Loading</div>}>
         {isCanvasVisible && (
           
           <motion.div>
@@ -44,7 +44,7 @@ export default function Home({isCanvasVisible}) {
           </Canvas>
           </motion.div>
         )}
-        </Suspense>
+        </Suspense> */}
       
       <div className={styles.backgroundText}><ScrambleText text="creative developer" /></div>
       <div className={styles.footer}>
