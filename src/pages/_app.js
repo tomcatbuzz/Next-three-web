@@ -10,7 +10,9 @@ import { opacity, expand } from "@/components/Grid/anim";
 // import SmokeTransition from "@/components/SmokeTransition/SmokeTransition";
 import SmokeTransition from "@/components/SmokeTransition/smoke2"
 import { Canvas } from "@react-three/fiber";
-import Background from "@/components/Background/index"
+import { PerspectiveCamera } from "@react-three/drei";
+import Background from "@/components/Background/index";
+import * as THREE from 'three';
 
 const App = ({ Component, pageProps}) => {
   const router = useRouter();
@@ -96,7 +98,12 @@ const App = ({ Component, pageProps}) => {
         <motion.div key={router.pathname}>
         {/* kind of working */}
         <div className="backgroundCanvas">
-        <Canvas >
+        <Canvas 
+          gl={{ 
+            physicallyCorrectLights: true, 
+            outputEncoding: THREE.sRGBEncoding 
+        }}>
+        <PerspectiveCamera makeDefault position={[0, 0, 1.4]} fov={70} near={0.001} far={1000} />
         <Background />
         </Canvas>
         </div>
