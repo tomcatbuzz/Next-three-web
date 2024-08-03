@@ -1,4 +1,5 @@
 import { motion, cubicBezier } from "framer-motion";
+import styles from './style.module.scss'
 
 const AnimatedTextCharacter = ({ text }) => {
   const letters = Array.from(text)
@@ -59,7 +60,8 @@ const AnimatedTextCharacter = ({ text }) => {
   return (
     <motion.div
       // style={{ overflow: "hidden", display: "flex", fontSize: "5em" }}
-      style={{ overflow: "hidden", fontSize: "5em" }}
+      // style={{ overflow: "hidden", fontSize: "5em" }}
+      className={styles.textWrap}
       variants={container}
       initial="hidden"
       animate="visible"

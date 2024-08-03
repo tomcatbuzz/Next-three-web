@@ -1,0 +1,11 @@
+.textWrap {
+  overflow: hidden;
+  font-size: 4em;
+}
+
+@media screen and (max-width: 800px) {
+  .textWrap {
+    overflow: hidden;
+    font-size: 2em;
+  } 
+}

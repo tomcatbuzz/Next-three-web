@@ -3,7 +3,7 @@ import Page from "@/components/page";
 import { motion } from "framer-motion";
 import Image from 'next/image'
 import testImage from '../../public/next.svg'
-import AnimatedTextCharacter from "@/components/AnimatedTextCharacter";
+import AnimatedTextCharacter from "@/components/AnimatedTextCharacter/AnimatedTextCharacter";
 import ScrambleText from "@/components/ScrambleText";
 import { Canvas } from '@react-three/fiber';
 import { useRef, useState, useEffect, useMemo, Suspense } from 'react';

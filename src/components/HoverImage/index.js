@@ -37,7 +37,7 @@ function FadingImage() {
   })
   return (
     <mesh onPointerOver={(e) => setHover(true)} onPointerOut={(e) => setHover(false)}>
-      <planeGeometry />
+      <planeGeometry args={[1, 1, 1, 1]}/>
       <imageFadeMaterial ref={ref} tex={texture1} tex2={texture2} disp={dispTexture} toneMapped={false} />
     </mesh>
   )

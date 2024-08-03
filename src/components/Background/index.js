@@ -4,10 +4,10 @@ import { useTexture, shaderMaterial, Plane } from '@react-three/drei';
 import * as THREE from 'three';
 // import vertex from './vertex.glsl';
 // import fragment from './fragment.glsl';
-import vertex from './vertex2.glsl';
-import fragment from './fragment2.glsl';
+import vertex from './vertex.glsl';
+import fragment from './fragment.glsl';
 
-// export const NoiseMaterial = shaderMaterial(
+// const NoiseMaterial = shaderMaterial(
 //   {
 //     time: 0,
 //     // color: new THREE.Color(0x00ff00)
@@ -26,10 +26,7 @@ function Background() {
   const meshRef = useRef();
   const { width, height } = useThree((state) => state.viewport);
   // const mousePosition = useRef({ x: 0, y: 0 });
-  const texture = useLoader(THREE.TextureLoader, '/joel-filipe-k8apfKm-Md4-unsplash.jpg');
   
-  const timeRef = useRef(0);
-
   // const updateMousePosition = useCallback((e) => {
   //   mousePosition.current = { x: e.pageX, y: e.pageY};
   // }, []);
@@ -39,21 +36,19 @@ function Background() {
       uTime: {
         value: 0.0
       },
-      uTexture: {
-        value: texture
-      },
       // uMouse: {
       //   value: new THREE.Vector2(0, 0)
       // },
-      // uBg: {
-      //   // value: new THREE.Color("#A1A3F7")
-      //   value: new THREE.Color("#00BFFF")
-      // },
-      // uColorA: { value: new THREE.Color("#B22222") },
-      // uColorB: { value: new THREE.Color("DC143C")},
-      uResolution: { value: new THREE.Vector4() },
-      uvRate1: {value: new THREE.Vector2(1, 1)}
-    }), [texture]
+      uBg: {
+        // value: new THREE.Color("#A1A3F7")
+        // value: new THREE.Color("#00BFFF")
+        value: new THREE.Color("#121212")
+      },
+      uColorA: { value: new THREE.Color("#00BFFF") },
+      uColorB: { value: new THREE.Color("#03a9f4")},
+      // uResolution: { value: new THREE.Vector4() },
+      // uvRate1: {value: new THREE.Vector2(1, 1)}
+    }), []
   );
 
   // useEffect(() => {
@@ -62,24 +57,10 @@ function Background() {
   // }, [updateMousePosition]);
 
   // THIS normal clock works
-  // useFrame((state) => {
-  //   const { clock } = state;
-  //   if (meshRef.current) {
-  //     meshRef.current.material.uniforms.uTime.value = clock.getElapsedTime();
-
-  //  NEW TEST CLOCK
-  useFrame((state, delta) => {
-    // const { clock } = state;
-    if (meshRef.current) {
-      // timeRef.current += delta * 0.05;
-      timeRef.current += 0.05;
-      console.log(timeRef.current, "time")
-      meshRef.current.material.uniforms.uTime.value = timeRef.current;
-    
-      // meshRef.current.material.uniforms.uMouse.value = new THREE.Vector2(
-      //   mousePosition.current.x,
-      //   mousePosition.current.y
-      // )
+  useFrame((state) => {
+    const { clock } = state;
+    if (materialRef.current) {
+      materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
     }
   });
 

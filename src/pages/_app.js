@@ -98,12 +98,14 @@ const App = ({ Component, pageProps}) => {
         <motion.div key={router.pathname}>
         {/* kind of working */}
         <div className="backgroundCanvas">
-        <Canvas 
+        <Canvas key={Canvas}
           gl={{ 
             physicallyCorrectLights: true, 
             outputEncoding: THREE.sRGBEncoding 
         }}>
-        <PerspectiveCamera makeDefault position={[0, 0, 1.4]} fov={70} near={0.001} far={1000} />
+        <ambientLight intensity={0.03} />
+        
+        {/* <PerspectiveCamera makeDefault position={[0, 0, 1.4]} fov={70} near={0.001} far={1000} /> */}
         <Background />
         </Canvas>
         </div>
