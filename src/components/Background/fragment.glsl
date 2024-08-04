@@ -87,6 +87,7 @@ float snoise(vec2 v)
     
     void main() {
       vec3 color = uBg;
+      // FIX THIS below with sin to make tighter waves and remove mouse or slow mouse
       float noise1 = snoise(vUv + uTime / 10. * (sin(uMouse.x * .001) + 0.2));
       float noise2 = snoise(vUv + uTime / 10. * (sin(uMouse.y * .001) + 0.2));
 
