@@ -36,7 +36,7 @@ export default function Home({isCanvasVisible}) {
           
           <motion.div>
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>
-            <ambientLight />
+            <ambientLight intensity={1.0}/>
             <pointLight position={[10, 10, 10]} />
             
             <FadingImage />
