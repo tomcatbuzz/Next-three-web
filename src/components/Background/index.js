@@ -93,9 +93,11 @@ function Background() {
             x: x - smoothX * dampingFactor,
             y: -1 * (y - smoothY) * dampingFactor
         }
+        // console.log(materialRef.current.uniforms.uMouse.value, 'mouse')
     }
     // if (materialRef.current) {
       materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
+      // console.log(materialRef.current.uniforms.uTime.value, 'time')
 
     }
   });

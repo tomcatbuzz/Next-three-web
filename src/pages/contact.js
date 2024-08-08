@@ -1,156 +1,160 @@
 import styles from "@/styles/contact.module.scss";
 import Page from "@/components/page";
 import { motion } from "framer-motion";
-import { Suspense, useEffect, useState, useRef } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from '@react-three/drei';
-import Cube from '@/components/Cube';
-// import CubeScene from "@/components/CubeScene";
-import CubeScene from "@/components/CubeScene2";
+import { Suspense, useEffect, useState, useCallback } from "react";
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
-export default function Contact({isCanvasVisible}) {
-  const safePositions = [
-    { top: 10, left: 20 },
-    { top: 30, left: 50 },
-    { top: 50, left: 80 },
-    { top: 70, left: 30 },
-    { top: 20, left: 70 },
-    { top: 60, left: 10 },
-    // Add more positions as needed
-  ];
+const ContactFormContent = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  
-  const Line = () => {
-    const [style, setStyle] = useState({});
-    const lineRef = useRef(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
-    // useEffect(() => {
-      const updateLinePositions = () => {
-      if (lineRef.current) {
-      // const timer = setInterval(() => {
-        // const top = Math.random() * 100;
-        // const left = Math.random() * 100;
+  const validateForm = useCallback(() => {
+    let errors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?[\d\s-]{10,14}$/;
+
+    if (!formData.name.trim()) errors.name = 'Name is required';
+    if (!emailRegex.test(formData.email)) errors.email = 'Invalid email address';
+    if (!phoneRegex.test(formData.phone)) errors.phone = 'Invalid phone number';
+    if (!formData.message.trim()) errors.message = 'Message is required';
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  }, [formData]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      if (!executeRecaptcha) {
+        console.log('Execute recaptcha not yet available');
+        return;
+      }
+
+      setIsSubmitting(true);
+      try {
+        // Execute reCAPTCHA
+        const token = await executeRecaptcha('contact_form');
+
+        // Verify reCAPTCHA token
+        const verifyRecaptcha = httpsCallable(functions, 'verifyRecaptcha');
+        const result = await verifyRecaptcha({ token });
         
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
-      const lineHeight = lineRef.current.offsetHeight;
-      const lineWidth = lineRef.current.offsetWidth;
-      const position = safePositions[Math.floor(Math.random() * safePositions.length)];
-      // console.log(position, 'position')
-      // const top = (position.top / 100) * (viewportHeight / lineHeight);
-      const top = (position.top / viewportHeight) * lineHeight * 5;
-      // working below, but resize issue
-      let left;
-      // const left= (position.left / viewportWidth) * lineHeight * 30
-      // const left= calculateLeftPosition(position, viewportWidth, lineHeight)
-
-      // console.log(viewportWidth, 'width')
-
-      if (viewportWidth <= 1600) {
-        left = (position.left / viewportWidth) * lineHeight * 20
-        // console.log(left, "left")
-        
-      } else if(viewportWidth <= 768) {
-        left = (position.left / viewportWidth) * lineHeight * 10
-      }
-      else {
-        left = (position.left / viewportWidth) * lineHeight * 30
-      } 
-
-      // const top = Math.min(Math.max(Math.random() * 70, 0), 70);
-      // const left = Math.min(Math.max(Math.random() * 90, 0), 90);
-        setStyle({
-          top: `${top}vh`,
-          right: `${left}vw`
-        });
-      }
-      // }, Math.random() * 10000);
-      
-      // return () => clearInterval(timer);
-    }
-
-    // }, []);
-
-    useEffect(() => {
-      const timer = setInterval(updateLinePositions, Math.random() * 10000);
-      window.addEventListener('resize', updateLinePositions);
-
-      return () => {
-        clearInterval(timer);
-        window.removeEventListener('resize', updateLinePositions);
-      }
-    }, []);
-
-    return <div className={styles.line} style={style} ref={lineRef}></div>;
-  }
-
-    const cubes = [];
-    const cubeSize = 0.5;
-    const gap = 0.5;
-
-    for (let x = -4; x < 4; x++) {
-      for (let y = -4; y < 4; y++) {
-        for (let z = -4; z < 4; z++) {
-          const position = [
-            x * (cubeSize + gap),
-            y * (cubeSize + gap),
-            z * (cubeSize + gap)
-          ];
-          cubes.push(
-            <Cube
-              key={`${x}-${y}-${z}`}
-              position={position}
-              cubeSize={cubeSize}
-              gap={gap}
-            />
-          );
+        if (result.data.success) {
+          // reCAPTCHA verification successful, proceed with form submission
+          await addDoc(collection(db, 'contacts'), {
+            ...formData,
+            timestamp: new Date(),
+          });
+          alert('Message sent successfully!');
+          setFormData({ name: '', email: '', phone: '', message: '' });
+        } else {
+          alert('reCAPTCHA verification failed. Please try again.');
         }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
       }
+      setIsSubmitting(false);
     }
-  
+  }, [executeRecaptcha, formData, validateForm]);
+
+  return (
+    <div className={styles.content}>
+    <h1>Contact Us</h1>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      {/* Form fields remain the same */}
+      <div className={styles.formGroup}>
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          className={errors.name ? styles.inputError : ''}
+        />
+        {errors.name && <span className={styles.error}>{errors.name}</span>}
+      </div>
+
+      <div className={styles.formGroup}>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          className={errors.email ? styles.inputError : ''}
+        />
+        {errors.email && <span className={styles.error}>{errors.email}</span>}
+      </div>
+
+      <div className={styles.formGroup}>
+        <label htmlFor="phone">Phone</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          className={errors.phone ? styles.inputError : ''}
+        />
+        {errors.phone && <span className={styles.error}>{errors.phone}</span>}
+      </div>
+
+      <div className={styles.formGroup}>
+        <label htmlFor="message">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          className={errors.message ? styles.inputError : ''}
+        ></textarea>
+        {errors.message && <span className={styles.error}>{errors.message}</span>}
+      </div>
+
+      <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+        {isSubmitting ? 'Sending...' : 'Submit'}
+      </button>
+    </form>
+    </div>
+  );
+};
+
+// const ContactForm = () => {
+//   return (
+//     <GoogleReCaptchaProvider reCaptchaKey="YOUR_RECAPTCHA_SITE_KEY">
+//       <ContactFormContent />
+//     </GoogleReCaptchaProvider>
+//   );
+// };
+
+// export default ContactForm;
+
+export default function Contact() {
+
   return (
     <Page>
-      {/* <motion.div
-        whileHover={{color: 'red', cursor: 'pointer'}}>
-      <h1 className={styles.contactTag}>Contact page</h1>
-      </motion.div> */}
       <>
-      <div className={styles.backGroundWrapper}>
-      <div className={styles.backGround}>
-      <div className={styles.myDiv7}>
-      <div style={{
-        backgroundImage: 'url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 32 32\' width=\'32\' height=\'32\' fill=\'none\' stroke-width=\'2\' stroke=\'rgb(30 58 138 / 0.5)\' preserveAspectRatio=\'none\'%3e%3cpath d=\'M0 .5H31.5V32\'/%3e%3c/svg%3e")'
-      }} className={styles.svg}></div>
-      <div className={styles.myDiv8}></div>
-      </div>
-      <div className={styles.content}>
-        <h1>Contact Me</h1>
-        <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi voluptatum corrupti itaque, fugiat animi mollitia, placeat veniam inventore nihil assumenda, unde sit neque labore nesciunt.</p>
-      </div>
-      </div>
-      <div>
-        {[...Array(6)].map((_, i) => (
-          <Line key={i} />
-        ))}
-      </div>
-      
-      <Suspense fallback={null}>
-      {/* <CubeScene /> */}
-      {isCanvasVisible && 
-        <Canvas
-          camera={{ position: [0, 0, 20] }}
-          style={{ width: '100vw', height: '100vh', zIndex: 11, cursor: 'pointer' }}>
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-          
-          {cubes}
-          <OrbitControls />
-        </Canvas>
-      }
-      </Suspense>
-      </div>
+        <GoogleReCaptchaProvider reCaptchaKey="YOUR_RECAPTCHA_SITE_KEY">
+          <ContactFormContent />
+        </GoogleReCaptchaProvider>
       </>
     </Page>
-  )
+  );
 }

@@ -97,57 +97,18 @@ float snoise(vec2 v)
       // float noise2 = snoise(vec2(angle * frequency - uTime * speed, radius * frequency));
 
       // mouse effects
-      // float mouseEffect = 0.0001;
-      // float waveFrequency = 5.0;
-      // float noise1 = snoise(vUv * waveFrequency + uTime / 10. * (sin(uMouse.x * mouseEffect) + 0.2));
-      // float noise2 = snoise(vUv * waveFrequency + uTime / 10. * (sin(uMouse.y * mouseEffect) + 0.2));
-
-      // // original mouse code for reference
-      float noise1 = snoise(vUv + uTime / 10. * (sin(uMouse.x * .001) + 0.2));
-      float noise2 = snoise(vUv + uTime / 10. * (sin(uMouse.y * .001) + 0.2));
-
-      // color = mix(color, uColorA, noise1);
-      // color = mix(color, uColorB, noise2);
-
-      // Slow down overall movement and reduce mouse influence
-    float slowTime = uTime * 0.5;
-    vec2 mousePos = uMouse.xy / uResolution.xy;
-    // float mouseDist = length(vUv - mousePos);
-    float mouseInfluence = 0.02;
-    // float mouseInfluence = smoothstep(0.5, 0.0, mouseDist) * 0.1;
-
-    
-    // Create softer, slower waves
-    // float waveFrequency = 2.0; // Reduce this for larger, softer waves
-    // float waveSpeed = 1.5; // Reduce this for slower wave movement
-    
-    // Combine time, mouse, and UV for wave effect
-    // vec2 waveOffset = vec2(
-    //     sin(slowTime * waveSpeed + uMouse.x * mouseInfluence) * 0.1,
-    //     cos(slowTime * waveSpeed + uMouse.y * mouseInfluence) * 0.1
-    // );
-
-    // vec2 distortedUV = vUv + vec2(
-    //     sin(slowTime + vUv.x * 2.0) * 0.02,
-    //     cos(slowTime + vUv.y * 2.0) * 0.02
-    // ) + (mousePos - 0.5) * mouseInfluence;
-
-    // vec2 totalOffset = waveOffset += (vUv - mousePos) * mouseInfluence;
-    // Generate noise for color mixing
-    // float noise1 = snoise(distortedUV * waveFrequency + slowTime);
-    // float noise2 = snoise(distortedUV * waveFrequency - slowTime + vec2(0.5));
-
-    // Soften the color mixing
-    // float mixFactor1 = smoothstep(0.0, 1.0, noise1 * 0.5 + 0.5);
-    // float mixFactor2 = smoothstep(0.0, 1.0, noise2 * 0.5 + 0.5);
-
-    // color = mix(color, uColorA, mixFactor1);
-    // color = mix(color, uColorB, mixFactor2);
-
-
-    // original running color mix
-    color = mix(color, uColorA, noise1);
-    color = mix(color, uColorB, noise2);
-      gl_FragColor = vec4(color, 1.0);
+      float mouseEffect = 0.001;
+      float waveFrequency = 2.0;
+      float noise1 = snoise(vUv * waveFrequency + uTime / 10. * sin(vUv.xy) *uResolution.xy);
+      float noise2 = snoise(vUv * waveFrequency + uTime / 10. * sin(vUv.xy));
+      
+      // original mouse code for reference
+      // float noise1 = snoise(vUv + uTime / 10. * (sin(uMouse.x * .001) + 0.2));
+      // float noise2 = snoise(vUv + uTime / 10. * (sin(uMouse.y * .001) + 0.2));
+      
+      // original running color mix
+      color = mix(color, uColorA, noise1);
+      color = mix(color, uColorB, noise2);
+        gl_FragColor = vec4(color, 1.0);
     }
     

@@ -12,6 +12,7 @@ import SmokeTransition from "@/components/SmokeTransition/smoke2"
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera } from "@react-three/drei";
 import Background from "@/components/Background/index";
+import BackgroundSvg from '@/components/BackgroundSvg'
 import * as THREE from 'three';
 
 const App = ({ Component, pageProps}) => {
@@ -96,23 +97,17 @@ const App = ({ Component, pageProps}) => {
       
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={router.pathname}>
-        {/* kind of working */}
-        <div className="backgroundCanvas">
-        <Canvas key={Canvas}
-          gl={{ 
-            physicallyCorrectLights: true, 
-            outputEncoding: THREE.sRGBEncoding 
-        }}>
-        <ambientLight intensity={0.03} />
         
-        {/* <PerspectiveCamera makeDefault position={[0, 0, 1.4]} fov={70} near={0.001} far={1000} /> */}
+        {/* <div className="backgroundCanvas">
+        <Canvas>
         <Background />
         </Canvas>
-        </div>
+        </div> */}
           <Component {...pageProps} isCanvasVisible={isCanvasVisible} isNavExiting={isNavExiting} />
           {/* <Component {...pageProps} isCanvasVisible={isCanvasVisible} /> */}
-        
-          {/* {isNavExiting && ( */}
+          {/* <div className="backgroundWrapper"> */}
+            <BackgroundSvg />
+          {/* </div> */}
           <div className="grid">           
             <motion.div {...anim(opacity)} className="transition-background" />
             <div className="transition-container">
@@ -123,7 +118,7 @@ const App = ({ Component, pageProps}) => {
               })}
             </div>
           </div>
-          {/* )} */}
+          
           </motion.div>
         
       </AnimatePresence>

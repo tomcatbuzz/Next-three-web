@@ -12,6 +12,7 @@
     "@gsap/react": "^2.1.1",
     "@react-three/drei": "^9.106.0",
     "@react-three/fiber": "^8.16.8",
+    "firebase": "^10.12.5",
     "framer-motion": "^11.2.10",
     "framer-motion-3d": "^11.2.10",
     "glsl-fractal-brownian-noise": "^1.1.0",
@@ -22,6 +23,8 @@
     "raw-loader": "^4.0.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-google-recaptcha-v3": "^1.10.1",
+    "react-hot-toast": "^2.4.1",
     "sass": "^1.77.4",
     "sharp": "^0.33.4",
     "three": "^0.165.0"
