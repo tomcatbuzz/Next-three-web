@@ -40,6 +40,7 @@
   --card-border-rgb: 131, 134, 135;
 }
 
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -76,6 +77,23 @@
 // @import '../components/Layout/Inner/style.scss';
 // @import '../components/Grid/style.scss';
 // @import '../components/Layout/Curve/style.scss';
+
+
+// COLOR SCHEME LIGHT DARK test
+// Dark
+// --text: #e8e8e8;
+// --background: #09090b;
+// --primary: #86f4b4;
+// --secondary: #93CBF1;
+// --accent: #1E3A8A;
+
+
+// Light
+// --text: #171717;
+// --background: #f4f4f6;
+// --primary: #0b7939;
+// --secondary: #0e476c;
+// --accent: #7592e1;
 
 * {
   box-sizing: border-box;
@@ -164,23 +182,24 @@ html, body {
   }
 }
 
-.backgroundCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
+// .backgroundCanvas {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   width: 100%;
+//   z-index: 1;
+// }
 
-.backgroundWrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
+// .backgroundWrapper {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   width: 100%;
+//   z-index: 1;
+// }
+
 // @media (min-width: 600px) {
 //   .transition-containers {
 //     display: block;

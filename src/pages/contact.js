@@ -2,10 +2,14 @@ import styles from "@/styles/contact.module.scss";
 import Page from "@/components/page";
 import { motion } from "framer-motion";
 import { Suspense, useEffect, useState, useCallback } from "react";
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { database } from '../lib/firebase';
+import { getDatabase, ref, set } from 'firebase/database';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
+const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptcha';
+
 const ContactFormContent = () => {
+  const database = getDatabase()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -20,11 +24,12 @@ const ContactFormContent = () => {
   const validateForm = useCallback(() => {
     let errors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\+?[\d\s-]{10,14}$/;
+    // const phoneRegex = /^\+?[\d\s-]{10,14}$/;
 
     if (!formData.name.trim()) errors.name = 'Name is required';
     if (!emailRegex.test(formData.email)) errors.email = 'Invalid email address';
-    if (!phoneRegex.test(formData.phone)) errors.phone = 'Invalid phone number';
+    // if (!phoneRegex.test(formData.phone)) errors.phone = 'Invalid phone number';
+    if (!formData.subject.trim()) errors.subject = 'Subject is required';
     if (!formData.message.trim()) errors.message = 'Message is required';
 
     setErrors(errors);
@@ -49,18 +54,27 @@ const ContactFormContent = () => {
         // Execute reCAPTCHA
         const token = await executeRecaptcha('contact_form');
 
-        // Verify reCAPTCHA token
-        const verifyRecaptcha = httpsCallable(functions, 'verifyRecaptcha');
-        const result = await verifyRecaptcha({ token });
-        
-        if (result.data.success) {
+        // Verify reCAPTCHA token before function url
+        // const verifyRecaptcha = httpsCallable(functions, 'verifyRecaptcha');
+        // const result = await verifyRecaptcha({ token });
+
+        // Verify recaptcha token
+        const response = await fetch(RECAPTCHA_VERIFY_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token }),
+        });
+        const { score } = await response.json
+        if (response.ok && score >= 0.5) {
           // reCAPTCHA verification successful, proceed with form submission
-          await addDoc(collection(db, 'contacts'), {
+          await set(ref(database, 'contacts'), {
             ...formData,
             timestamp: new Date(),
           });
           alert('Message sent successfully!');
-          setFormData({ name: '', email: '', phone: '', message: '' });
+          setFormData({ name: '', email: '', subject: '', message: '' });
         } else {
           alert('reCAPTCHA verification failed. Please try again.');
         }
@@ -70,7 +84,7 @@ const ContactFormContent = () => {
       }
       setIsSubmitting(false);
     }
-  }, [executeRecaptcha, formData, validateForm]);
+  }, [database, executeRecaptcha, formData, validateForm]);
 
   return (
     <div className={styles.content}>
@@ -104,16 +118,16 @@ const ContactFormContent = () => {
       </div>
 
       <div className={styles.formGroup}>
-        <label htmlFor="phone">Phone</label>
+        <label htmlFor="subject">Subject</label>
         <input
-          type="tel"
-          id="phone"
-          name="phone"
-          value={formData.phone}
+          type="text"
+          id="subject"
+          name="subject"
+          value={formData.subject}
           onChange={handleChange}
-          className={errors.phone ? styles.inputError : ''}
+          className={errors.subject ? styles.inputError : ''}
         />
-        {errors.phone && <span className={styles.error}>{errors.phone}</span>}
+        {errors.subject && <span className={styles.error}>{errors.subject}</span>}
       </div>
 
       <div className={styles.formGroup}>
@@ -151,7 +165,7 @@ export default function Contact() {
   return (
     <Page>
       <>
-        <GoogleReCaptchaProvider reCaptchaKey="YOUR_RECAPTCHA_SITE_KEY">
+        <GoogleReCaptchaProvider reCaptchaKey="6Lc5l8gpAAAAAFQXvzUkcbYTXVvj4UZKkJB_NwV-">
           <ContactFormContent />
         </GoogleReCaptchaProvider>
       </>
