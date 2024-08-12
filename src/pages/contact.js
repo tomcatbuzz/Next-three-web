@@ -6,7 +6,7 @@ import { database } from '../lib/firebase';
 import { getDatabase, ref, set } from 'firebase/database';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
-const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptcha';
+const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV2';
 
 const ContactFormContent = () => {
   const database = getDatabase()
