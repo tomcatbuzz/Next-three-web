@@ -165,7 +165,7 @@ export default function Contact() {
   return (
     <Page>
       <>
-        <GoogleReCaptchaProvider reCaptchaKey="6Lc5l8gpAAAAAFQXvzUkcbYTXVvj4UZKkJB_NwV-">
+        <GoogleReCaptchaProvider reCaptchaKey="6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB">
           <ContactFormContent />
         </GoogleReCaptchaProvider>
       </>

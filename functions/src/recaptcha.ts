@@ -5,10 +5,10 @@ const corsHandler = cors({origin: true});
 const USER_ERROR_CODES = ['missing-input-response', 'invalid-input-response'];
 const SECRET_KEY = process.env.SECRET_KEY;
 
-export const checkRecaptcha = onRequest((req, res) => {
+export const checkRecaptchaV2 = onRequest((req, res) => {
   corsHandler(req, res, async () => {
     // 'http://localhost:8080'
-    res.set('Access-Control-Allow-Origin', 'https://anthonybuzzelli.dev');
+    res.set('Access-Control-Allow-Origin', 'https://reactweb-b9752.web.app/');
     res.setHeader('Content-Type', 'application/json');
     const token = req.body.token;
     // recommended from Claude const token = req.body.token
