@@ -66,15 +66,21 @@ const ContactFormContent = () => {
           },
           body: JSON.stringify({ token }),
         });
-        const { score } = await response.json
-        if (response.ok && score >= 0.5) {
+        
+        if (response.ok) {
+          const { score } = await response.json
+
+          if (score >= 0.5) {
           // reCAPTCHA verification successful, proceed with form submission
-          await set(ref(database, 'contacts'), {
+          await set(ref(database, '/contacts'), {
             ...formData,
             timestamp: new Date(),
           });
           alert('Message sent successfully!');
           setFormData({ name: '', email: '', subject: '', message: '' });
+          } else {
+            console.log('your score is to low')
+          }
         } else {
           alert('reCAPTCHA verification failed. Please try again.');
         }
