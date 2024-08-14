@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/styles/contact.module.scss";
 import Page from "@/components/page";
 import { motion } from "framer-motion";
@@ -13,7 +14,7 @@ const ContactFormContent = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    subject: '',
     message: '',
   });
   const [errors, setErrors] = useState({});
@@ -65,10 +66,12 @@ const ContactFormContent = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ token }),
+          
         });
         
         if (response.ok) {
           const { score } = await response.json
+          console.log(response, 'response')
 
           if (score >= 0.5) {
           // reCAPTCHA verification successful, proceed with form submission
