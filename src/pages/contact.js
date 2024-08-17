@@ -5,11 +5,29 @@ import { motion } from "framer-motion";
 import { Suspense, useEffect, useState, useCallback } from "react";
 import { database } from '../lib/firebase';
 import { getDatabase, ref, set } from 'firebase/database';
-import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import Recaptcha from '@/components/Recaptcha';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
-const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV2';
+// const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV2';
 
 const ContactFormContent = () => {
+  const [recaptchaVerified, setRecaptchaVerified] = useState(false)
+  const handleRecaptchaVerify = (result) => {
+    if (result.score) {
+      console.log('recaptcha score', result.score)
+      if (result.score >= 0.5) {
+        setRecaptchaVerified(true);
+        console.log('recaptcha verified');
+      } else {
+        setRecaptchaVerified(false);
+        console.log('recaptcha score to low');
+      }
+    } else if (result.error) {
+      console.log('recaptcha error', result.error)
+      setRecaptchaVerified(false);
+    }
+  };
+
   const database = getDatabase()
   const [formData, setFormData] = useState({
     name: '',
@@ -20,7 +38,7 @@ const ContactFormContent = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
+  // const { executeRecaptcha } = useGoogleReCaptcha();
 
   const validateForm = useCallback(() => {
     let errors = {};
@@ -45,55 +63,27 @@ const ContactFormContent = () => {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      if (!executeRecaptcha) {
-        console.log('Execute recaptcha not yet available');
-        return;
-      }
-
-      setIsSubmitting(true);
-      try {
-        // Execute reCAPTCHA
-        const token = await executeRecaptcha('contact_form');
-
-        // Verify reCAPTCHA token before function url
-        // const verifyRecaptcha = httpsCallable(functions, 'verifyRecaptcha');
-        // const result = await verifyRecaptcha({ token });
-
-        // Verify recaptcha token
-        const response = await fetch(RECAPTCHA_VERIFY_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ token }),
-          
-        });
-        
-        if (response.ok) {
-          const { score } = await response.json
-          console.log(response, 'response')
-
-          if (score >= 0.5) {
-          // reCAPTCHA verification successful, proceed with form submission
+      if (recaptchaVerified) {
+        setIsSubmitting(true);
+        try {
           await set(ref(database, '/contacts'), {
             ...formData,
             timestamp: new Date(),
           });
           alert('Message sent successfully!');
           setFormData({ name: '', email: '', subject: '', message: '' });
-          } else {
-            console.log('your score is to low')
-          }
-        } else {
-          alert('reCAPTCHA verification failed. Please try again.');
+          console.log('form submitted successfully')
+        } catch {
+          console.error('Error submitting form', error)
+          // alert('An error occured')
+        } finally {
+          setIsSubmitting(false);
         }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+      } else if (!recaptchaVerified) {
+        console.log('recaptchaVerified failed here')
       }
-      setIsSubmitting(false);
     }
-  }, [database, executeRecaptcha, formData, validateForm]);
+  }, [database, formData, validateForm, recaptchaVerified]);
 
   return (
     <div className={styles.content}>
@@ -150,8 +140,8 @@ const ContactFormContent = () => {
         ></textarea>
         {errors.message && <span className={styles.error}>{errors.message}</span>}
       </div>
-
-      <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+      <Recaptcha onVerify={handleRecaptchaVerify} />
+      <button type="submit" className={styles.submitButton} disabled={isSubmitting || !recaptchaVerified}>
         {isSubmitting ? 'Sending...' : 'Submit'}
       </button>
     </form>
