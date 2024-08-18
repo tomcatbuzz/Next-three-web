@@ -12,15 +12,23 @@ const Recaptcha = ({ onVerify }) => {
       if (executeRecaptcha) {
         try {
           const token = await executeRecaptcha();
-          const response = await axios.post(
-            RECAPTCHA_VERIFY_URL, 
-            { token }, 
-            { 
-              headers: { 
-                'Content-Type': 'application/json' 
-              } 
+          // const response = await axios.post(
+          //   RECAPTCHA_VERIFY_URL, 
+          //   { token }, 
+          //   { 
+          //     headers: { 
+          //       'Content-Type': 'application/json' 
+          //     } 
+          //   }
+          // );
+          const response = await axios({
+            method: 'post',
+            url: RECAPTCHA_VERIFY_URL,
+            data: JSON.stringify({ token }),
+            headers: {
+              'Content-Type': 'application/json'
             }
-          );
+          });
           onVerify(response.data); 
         } catch (error) {
           console.error('recaptcha verification failed:', error);
