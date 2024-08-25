@@ -1,17 +1,20 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
-const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV2';
+const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV4';
 
 const Recaptcha = ({ onVerify }) => {
   const { executeRecaptcha } = useGoogleReCaptcha();
 
-  useEffect(() => {
-    const verifyCallback = async () => {
+  // useEffect(() => {
+  //   const verifyCallback = async () => {
+    const verifyCallback = useCallback(async () => {
       if (executeRecaptcha) {
         try {
+          console.log('Executing Recaptcha...')
           const token = await executeRecaptcha();
+          console.log('Received token', token)
           // const response = await axios.post(
           //   RECAPTCHA_VERIFY_URL, 
           //   { token }, 
@@ -49,9 +52,16 @@ const Recaptcha = ({ onVerify }) => {
         }
         
       }
-    };
-    verifyCallback();
+    // });
+    // verifyCallback();
+    // testing the empty array below
   }, [executeRecaptcha, onVerify]);
+
+  // adding this to test at GPT
+  useEffect(() => {
+    verifyCallback();
+  }, [verifyCallback]);
+
 
   return null; 
 };

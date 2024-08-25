@@ -3,32 +3,35 @@ import styles from "@/styles/contact.module.scss";
 import Page from "@/components/page";
 import { motion } from "framer-motion";
 import { Suspense, useEffect, useState, useCallback } from "react";
-import { database } from '../lib/firebase';
-import { getDatabase, ref, set } from 'firebase/database';
+import  database from '../lib/firebase';
+import { getDatabase, ref, set, push } from 'firebase/database';
 import Recaptcha from '@/components/Recaptcha';
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import axios from "axios";
 
 // const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV2';
 
 const ContactFormContent = () => {
+  const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV6';
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
-  const handleRecaptchaVerify = (result) => {
-    if (result.score) {
-      console.log('recaptcha score', result.score)
-      if (result.score >= 0.5) {
-        setRecaptchaVerified(true);
-        console.log('recaptcha verified');
-      } else {
-        setRecaptchaVerified(false);
-        console.log('recaptcha score to low');
-      }
-    } else if (result.error) {
-      console.log('recaptcha error', result.error)
-      setRecaptchaVerified(false);
-    }
-  };
+  // const handleRecaptchaVerify = (result) => {
+  //   if (result.score) {
+  //     console.log('recaptcha score', result.score)
+  //     if (result.score >= 0.5) {
+  //       setRecaptchaVerified(true);
+  //       console.log('recaptcha verified');
+  //     } else {
+  //       setRecaptchaVerified(false);
+  //       console.log('recaptcha score to low');
+  //     }
+  //   } else if (result.error) {
+  //     console.log('recaptcha error', result.error)
+  //     setRecaptchaVerified(false);
+  //   }
+  // };
 
-  const database = getDatabase()
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,8 +40,6 @@ const ContactFormContent = () => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // const { executeRecaptcha } = useGoogleReCaptcha();
 
   const validateForm = useCallback(() => {
     let errors = {};
@@ -63,32 +64,68 @@ const ContactFormContent = () => {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      if (recaptchaVerified) {
+      try {
         setIsSubmitting(true);
-        try {
-          await set(ref(database, '/contacts'), {
-            ...formData,
-            timestamp: new Date(),
-          });
-          alert('Message sent successfully!');
-          setFormData({ name: '', email: '', subject: '', message: '' });
-          console.log('form submitted successfully')
+        const token = await executeRecaptcha()
+        console.log('received token', token)
+
+        const response = await axios({
+          method: 'POST',
+          url: RECAPTCHA_VERIFY_URL,
+          data:  token,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+          
+        });
+        const score = response.score;
+        console.log(score, 'score')
+        if (score >= 0.5) {
+          setRecaptchaVerified(true);
+          console.log('recaptcha verified');
+          try {
+            const db = getDatabase();
+            const contactRef = ref(db, '/contacts');
+            const newContactRef = push(contactRef)
+            await set(newContactRef, {
+              ...formData,
+              timestamp: new Date(),
+            });
+            // await set(ref(database, '/contacts'), {
+            //   ...formData,
+            //   timestamp: new Date(),
+            // });
+            
+            setFormData({ name: '', email: '', subject: '', message: '' });
+            console.log('form submitted successfully')
+          } catch (error) {
+            console.error('Error submitting form', error)
+          }
+        } else {
+          setRecaptchaVerified(false);
+          console.log('recaptcha score to low');
+        }
+        //   // await set(ref(database, '/contacts'), {
+        //   //   ...formData,
+        //   //   timestamp: new Date(),
+        //   // });
+          
+        //   // setFormData({ name: '', email: '', subject: '', message: '' });
+        //   // console.log('form submitted successfully')
         } catch {
-          console.error('Error submitting form', error)
-          // alert('An error occured')
+          console.error('Error submitting form')
+        //   // alert('An error occured')
         } finally {
           setIsSubmitting(false);
         }
-      } else if (!recaptchaVerified) {
-        console.log('recaptchaVerified failed here')
-      }
     }
-  }, [database, formData, validateForm, recaptchaVerified]);
+  }, [validateForm, executeRecaptcha, formData]);
 
   return (
     <div className={styles.content}>
     <h1>Contact Us</h1>
     <form className={styles.form} onSubmit={handleSubmit}>
+    {/* <form className={styles.form}> */}
       {/* Form fields remain the same */}
       <div className={styles.formGroup}>
         <label htmlFor="name">Name</label>
@@ -140,8 +177,8 @@ const ContactFormContent = () => {
         ></textarea>
         {errors.message && <span className={styles.error}>{errors.message}</span>}
       </div>
-      <Recaptcha onVerify={handleRecaptchaVerify} />
-      <button type="submit" className={styles.submitButton} disabled={isSubmitting || !recaptchaVerified}>
+      {/* <Recaptcha onVerify={handleRecaptchaVerify} /> */}
+      <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
         {isSubmitting ? 'Sending...' : 'Submit'}
       </button>
     </form>

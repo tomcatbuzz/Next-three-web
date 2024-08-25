@@ -54,22 +54,35 @@ const PreLoader = ({ onComplete }) => {
   useEffect(() => {
     const digit3 = digit3Ref.current;
     if (digit3) {
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 10; j++) {
           const div = document.createElement("div");
           div.className = styles.num;
           div.textContent = j;
           digit3.appendChild(div);
-          numRefs.current.push(div)
+          // numRefs.current.push(div)
         }
       }
       const finalDigit = document.createElement("div");
       finalDigit.className = styles.num;
       finalDigit.textContent = "0";
       digit3.appendChild(finalDigit);
-      numRefs.current.push(finalDigit)
+      // numRefs.current.push(finalDigit)
     }
   }, []);
+
+  // useEffect(() => {
+  //   const digit3 = digit3Ref.current;
+  //   if (digit3) {
+  //     for (let i = 0; i < 21; i++) {  // Changed from 2 to 21
+  //       const div = document.createElement("div");
+  //       div.className = styles.num;
+  //       div.textContent = i % 10;  // This will cycle 0-9 twice, ending with 0
+  //       digit3.appendChild(div);
+  //       numRefs.current.push(div);
+  //     }
+  //   }
+  // }, []);
 
   return (
     <div className={styles.preLoader} ref={preLoaderRef}>

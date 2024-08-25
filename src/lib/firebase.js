@@ -26,7 +26,7 @@ function createFirebaseApp(config) {
 // const firebaseApp = initializeApp(firebaseConfig);
 const firebaseApp = createFirebaseApp(firebaseConfig);
 
-// Databae exports
+// Database exports
 export const database = getDatabase(firebaseApp);
 
 // Firestore exports
