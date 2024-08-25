@@ -5,23 +5,22 @@ const corsHandler = cors({origin: true});
 const USER_ERROR_CODES = ['missing-input-response', 'invalid-input-response'];
 const SECRET_KEY = process.env.SECRET_KEY;
 
-export const checkRecaptchaV6 = onRequest((req, res) => {
+export const checkRecaptchaV8 = onRequest((req, res) => {
   corsHandler(req, res, async () => {
-    // 'http://localhost:8080'
     // original url deployed
     // res.set('Access-Control-Allow-Origin', 'https://reactweb-b9752.web.app');
     // res.setHeader('Content-Type', 'application/json');
     // suggested Claude
-    res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.set('Access-Control-Allow-Headers', 'Content-type');
-    if (req.method === 'OPTIONS') {
-      return res.status(204).send('');
-    }
-
+    // res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Content-Type', 'application/json');
+    // res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    // res.set('Access-Control-Allow-Headers', 'Content-type');
+    // if (req.method === 'OPTIONS') {
+    //   return res.status(204).send('');
+    // }
+
     const token = req.body.token;
-    // recommended from Claude const token = req.body.token
     console.log(token, 'what is here');
 
     if (!token) {
@@ -43,7 +42,7 @@ export const checkRecaptchaV6 = onRequest((req, res) => {
       }
       return res.status(500).send('Internal Error');
     } catch (error) {
-      console.log('error: ', error);
+      console.error('error: ', error);
       return res.status(500).send('Internal Error');
     }
   });

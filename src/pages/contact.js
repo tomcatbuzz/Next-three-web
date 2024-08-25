@@ -12,7 +12,7 @@ import axios from "axios";
 // const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV2';
 
 const ContactFormContent = () => {
-  const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV6';
+  const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV8';
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
   // const handleRecaptchaVerify = (result) => {
@@ -72,13 +72,16 @@ const ContactFormContent = () => {
         const response = await axios({
           method: 'POST',
           url: RECAPTCHA_VERIFY_URL,
+          // data:  {token},
           data:  token,
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*',
           }
           
         });
-        const score = response.score;
+        console.log('Response data:', response.data);
+        const score = response.data.score;
         console.log(score, 'score')
         if (score >= 0.5) {
           setRecaptchaVerified(true);
@@ -201,7 +204,7 @@ export default function Contact() {
   return (
     <Page>
       <>
-        <GoogleReCaptchaProvider reCaptchaKey="6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB">
+        <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
           <ContactFormContent />
         </GoogleReCaptchaProvider>
       </>
