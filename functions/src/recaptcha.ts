@@ -5,14 +5,22 @@ const corsHandler = cors({origin: true});
 const USER_ERROR_CODES = ['missing-input-response', 'invalid-input-response'];
 const SECRET_KEY = process.env.SECRET_KEY;
 
-export const checkRecaptchaV9 = onRequest((req, res) => {
+const allowedOrigins = ['http://localhost:3000, https://reactweb-b9752.web.app'];
+
+export const checkRecaptchaV10 = onRequest((req, res) => {
   corsHandler(req, res, async () => {
+    // const origin = req.headers.origin;
+    const origin: string = req.headers.origin || '';
+    if (origin && allowedOrigins.includes(origin)) {
+      res.set('Access-Control-Allow-Origin', origin);
+    } else {
+      res.set('Access-Control-Allow-Origin', '*');
+    }
     // original url deployed
     // res.set('Access-Control-Allow-Origin', 'https://reactweb-b9752.web.app');
     // res.setHeader('Content-Type', 'application/json');
     // suggested Claude
     // res.set('Access-Control-Allow-Origin', '*');
-    res.set('Access-Control-Allow-Origin', ['http://localhost:3000, https://reactweb-b9752.web.app']);
     res.setHeader('Content-Type', 'application/json');
     // res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
     // res.set('Access-Control-Allow-Headers', 'Content-type');
