@@ -9,10 +9,8 @@ import Recaptcha from '@/components/Recaptcha';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from "axios";
 
-// const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV2';
-
 const ContactFormContent = () => {
-  const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV8';
+  const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV9';
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
   // const handleRecaptchaVerify = (result) => {
@@ -73,7 +71,7 @@ const ContactFormContent = () => {
           method: 'POST',
           url: RECAPTCHA_VERIFY_URL,
           // data:  {token},
-          data:  token,
+          data:  {token},
           headers: {
             'Content-Type': 'application/json',
             // 'Access-Control-Allow-Origin': '*',
