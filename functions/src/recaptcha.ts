@@ -7,7 +7,7 @@ const SECRET_KEY = process.env.SECRET_KEY;
 
 const allowedOrigins = ['http://localhost:3000, https://reactweb-b9752.web.app'];
 
-export const checkRecaptchaV10 = onRequest((req, res) => {
+export const checkRecaptchaV11 = onRequest((req, res) => {
   corsHandler(req, res, async () => {
     // const origin = req.headers.origin;
     const origin: string = req.headers.origin || '';

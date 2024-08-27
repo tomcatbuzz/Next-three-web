@@ -10,7 +10,7 @@ import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recapt
 import axios from "axios";
 
 const ContactFormContent = () => {
-  const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV10';
+  const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV11';
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
   // const handleRecaptchaVerify = (result) => {
