@@ -11,6 +11,7 @@ import axios from "axios";
 
 const ContactFormContent = () => {
   const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV11';
+  
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
   // const handleRecaptchaVerify = (result) => {
@@ -198,7 +199,7 @@ const ContactFormContent = () => {
 // export default ContactForm;
 
 export default function Contact() {
-
+  console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, "KEYS")
   return (
     <Page>
       <>

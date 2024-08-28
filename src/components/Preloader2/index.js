@@ -57,17 +57,21 @@ const PreLoader = ({ onComplete }) => {
       for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 10; j++) {
           const div = document.createElement("div");
-          div.className = styles.num;
+          // div.className = styles.num;
+          div.className = 'nums';
           div.textContent = j;
           digit3.appendChild(div);
-          // numRefs.current.push(div)
+          // console.log(div.className, "what is here")
         }
+        // console.log(digit3, "digit3.current?")
       }
       const finalDigit = document.createElement("div");
-      finalDigit.className = styles.num;
+      // finalDigit.className = styles.num;
+      finalDigit.className = 'nums';
       finalDigit.textContent = "0";
       digit3.appendChild(finalDigit);
-      // numRefs.current.push(finalDigit)
+      // console.log(finalDigit, "Final digit?")
+      // console.log(finalDigit.className, 'Styles.num')
     }
   }, []);
 
