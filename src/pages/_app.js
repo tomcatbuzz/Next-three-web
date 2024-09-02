@@ -14,6 +14,7 @@ import { PerspectiveCamera } from "@react-three/drei";
 import Background from "@/components/Background/index";
 import BackgroundSvg from '@/components/BackgroundSvg'
 import * as THREE from 'three';
+// import FirebaseAnalytics from "@/components/Analytics";
 
 const App = ({ Component, pageProps}) => {
   const router = useRouter();
@@ -104,6 +105,7 @@ const App = ({ Component, pageProps}) => {
         <Background />
         </Canvas>
         </div> */}
+          {/* <FirebaseAnalytics /> */}
           <Component {...pageProps} isCanvasVisible={isCanvasVisible} isNavExiting={isNavExiting} />
           {/* <Component {...pageProps} isCanvasVisible={isCanvasVisible} /> */}
           {/* <div className="backgroundWrapper"> */}
