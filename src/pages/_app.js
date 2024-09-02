@@ -63,6 +63,7 @@ const App = ({ Component, pageProps}) => {
 
     router.events.on('routeChangeStart', handleRouteChangeStart);
     router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    console.log(router.events.on, "router event??")
 
     return () => {
       router.events.off('routeChangeStart', handleRouteChangeStart);

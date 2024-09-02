@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY: '6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB'
+  },
   reactStrictMode: true,
   webpack: (config, options) => {
     config.module.rules.push({

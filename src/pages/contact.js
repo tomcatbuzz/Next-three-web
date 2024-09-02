@@ -29,7 +29,14 @@ const ContactFormContent = () => {
   //     setRecaptchaVerified(false);
   //   }
   // };
-
+  
+  useEffect(() => {
+    const script = document.querySelector('script[src^="https://www.gstatic.com/recaptcha/releases/"]');
+    if (script) {
+      script.onload = () => console.log('reCAPTCHA script loaded');
+      script.onerror = (error) => console.error('reCAPTCHA script error', error);
+    }
+  }, []);
   
   const [formData, setFormData] = useState({
     name: '',
@@ -87,7 +94,7 @@ const ContactFormContent = () => {
           console.log('recaptcha verified');
           try {
             const db = getDatabase();
-            const contactRef = ref(db, '/contacts');
+            const contactRef = ref(db, '/messages');
             const newContactRef = push(contactRef)
             await set(newContactRef, {
               ...formData,
@@ -203,7 +210,13 @@ export default function Contact() {
   return (
     <Page>
       <>
-        <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
+        <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+        scriptProps={{
+        async: true,
+        defer: true,
+        appendTo: "head",
+        nonce: undefined,
+      }}>
           <ContactFormContent />
         </GoogleReCaptchaProvider>
       </>
