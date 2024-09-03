@@ -61,9 +61,9 @@ const PreLoader = ({ onComplete }) => {
           div.className = 'nums';
           div.textContent = j;
           digit3.appendChild(div);
-          // console.log(div.className, "what is here")
+          console.log(div.className, "what is here")
         }
-        // console.log(digit3, "digit3.current?")
+        console.log(digit3, "digit3.current?")
       }
       const finalDigit = document.createElement("div");
       // finalDigit.className = styles.num;
@@ -71,7 +71,7 @@ const PreLoader = ({ onComplete }) => {
       finalDigit.textContent = "0";
       digit3.appendChild(finalDigit);
       // console.log(finalDigit, "Final digit?")
-      // console.log(finalDigit.className, 'Styles.num')
+      console.log(finalDigit.className, 'Styles.num')
     }
   }, []);
 

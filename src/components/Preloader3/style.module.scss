@@ -1,9 +1,4 @@
-.wrapper {
-  width: 100vw;
-  height: 100vh;
-  padding: 3em;
-}
-.pre-loader {
+.preLoader {
   width: 200%;
   height: 100%;
   padding: 2em;
@@ -15,41 +10,37 @@
   align-items: flex-end;
   gap: 0.5em;
   overflow: hidden;
-  z-index: 5;
-  background-color: #000;
+  // z-index: 2;
+  z-index: 99;
+  background: #09090B;
 }
 
-.pre-loader p {
+.preLoader p {
   width: max-content;
   text-transform: uppercase;
-  font-family: "Timmons NY", sans-serif;
-  font-size: 60px;
+  // font-family: "Timmons NY";
+  font-size: 3.75rem;
   line-height: 60px;
-  color: white;
+  color: #fff;
 }
 
-.counterWrapper {
-  margin-bottom: 20px;
+.counter {
+  height: 100px;
+  display: flex;
+  // font-family: "Timmons NY";
+  font-size: 100px;
+  font-weight: 400;
+  line-height: 150px;
+  clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
+  color: #fff;
 }
-// .counter {
-//   height: 100px;
-//   display: flex;
-//   font-family: "Timmons NY", sans-serif;
-//   font-size: 100px;
-//   font-weight: 400;
-//   line-height: 150px;
-//   clip-path: polygon(0 0, 100% 0, 100% 100px, 0 100px);
-//   color: white;
-// }
 
-.digit-1,
-.digit-2,
-.digit-3,
-.digit-4 {
+.digit1,
+.digit2,
+.digit3,
+.digit4 {
   position: relative;
   top: -15px;
-  height: 100px;
-  overflow: hidden;
 }
 
 .offset {
@@ -57,35 +48,33 @@
   right: -7.5px;
 }
 
-.progress-bar {
+.progressBar {
   position: relative;
   top: -15px;
+  width: 0%;
   height: 4px;
   // background: #000;
-  background: white;
+  background: #fff;
 }
 
-.num {
-  height: 100px;
-}
 
 @media (max-width: 900px) {
-  .pre-loader {
+  .preLoader {
     padding: 1em;
     gap: 0.5em;
   }
 
-  // .counter {
-  //   font-size: 70px;
-  // }
+  .counter {
+    font-size: 3.3rem;
+  }
 
-  .pre-loader p {
-    font-size: 40px;
+  .preLoader p {
+    font-size: 1.8rem;
     line-height: 64px;
   }
 
-  // .offset {
-  //   position: relative;
-  //   right: -5px;
-  // }
+  .offset {
+    position: relative;
+    right: -5px;
+  }
 }

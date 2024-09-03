@@ -1,110 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import styles from './style.module.scss'
-import Counter from '../Counter';
-import { opacity, barStyles } from './anim';
+import styles from './style.module.scss';
+import React, { useRef, useEffect } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
-const Preloader = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [animationState, setAnimationState] = useState('initial');
-  const [progress, setProgress] = useState(0);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const animateProgress = async () => {
-      controls.set({ width: '10%', transition: { duration: 4 } });
-      await controls.start({ width: '50%', transition: { duration: 2}})
-      controls.stop({ width: '80%', transition: { duration: 4 } });
-    };
-
-    animateProgress();
-  }, [controls]);
+const PreLoader = ({ onComplete }) => {
+  const preLoaderRef = useRef(null);
+  const digit1Ref = useRef(null);
+  const digit2Ref = useRef(null);
+  const digit3Ref = useRef(null);
+  const progressBarRef = useRef(null);
 
   useEffect(() => {
-    // const timer1 = setTimeout(() => setAnimationState('digits'), 100);
-    // const timer2 = setTimeout(() => setAnimationState('progress30'), 7000);
-    // const timer2 = setTimeout(() => setAnimationState('progress30'), 2500);
-    // const timer3 = setTimeout(() => setAnimationState('progress100'), 5500);
-    // const timer4 = setTimeout(() => setIsVisible(false), 6700);
-
-    return () => {
-      // clearTimeout(timer1);
-      // clearTimeout(timer2);
-      // clearTimeout(timer3);
-      // clearTimeout(timer4);
+    const createDigits = (digitRef, count, offset = false) => {
+      if (digitRef.current) {
+        digitRef.current.innerHTML = ''; // Clear existing content
+        for (let i = 0; i <= count; i++) {
+          const div = document.createElement("div");
+          div.className = `${offset && i === 1 ? styles.offset : ''}`;
+          div.textContent = i % 10;
+          digitRef.current.appendChild(div);
+        }
+      }
     };
+
+    createDigits(digit1Ref, 1);
+    createDigits(digit2Ref, 10, true);
+    createDigits(digit3Ref, 90);
   }, []);
 
-  const containerVariants = {
-    visible: { opacity: 1, display: 'flex' },
-    hidden: { opacity: 0, display: 'none', transition: { duration: 2.5 } },
-  };
+  useGSAP(() => {
+    const animate = (digit, duration, distance, delay = 0) => {
+      if (digit.current && digit.current.children.length > 0) {
+        gsap.to(digit.current, {
+          y: -distance,
+          duration: duration,
+          delay: delay,
+          ease: "power2.inOut",
+        });
+      }
+    };
 
-  // const progressVariants = {
-  //   initial: { width: 0 },
-  //   progress30: { width: '30%', transition: { duration: 2 } },
-  //   progress100: { width: '100%', opacity: 0, transition: { duration: 2 } },
-  // };
+    const getDigitHeight = (ref) => {
+      return ref.current && ref.current.children.length > 0
+        ? ref.current.children[0].clientHeight
+        : 100; // Fallback height
+    };
+
+    const digit1Height = getDigitHeight(digit1Ref);
+    const digit2Height = getDigitHeight(digit2Ref);
+    const digit3Height = getDigitHeight(digit3Ref);
+
+    // animate(digit3Ref, 5, 89 * digit3Height);
+    animate(digit3Ref, 5, 90 * digit3Height, 0.5);
+    animate(digit2Ref, 6, 10 * digit2Height);
+    // animate(digit1Ref, 2, digit1Height, 5);
+    animate(digit1Ref, 5, digit1Height);
+
+    gsap.to(progressBarRef.current, {
+      width: "30%",
+      duration: 2,
+      ease: "power4.inOut",
+      delay: 7,
+    });
+
+    gsap.to(progressBarRef.current, {
+      width: "100%",
+      opacity: 0,
+      duration: 2,
+      delay: 8.5,
+      ease: "power3.out",
+      onComplete: () => {
+        if (preLoaderRef.current) {
+          gsap.set(preLoaderRef.current, {
+            display: "none",
+          });
+        }
+        onComplete();
+      },
+    });
+  }, [onComplete]);
 
   return (
-    <>
-    <div className={styles.wrapper}>
-    <motion.div 
-      className={styles['pre-loader']}
-      variants={containerVariants}
-      initial="visible"
-      animate={isVisible ? "visible" : "hidden"}
-    >
+    <div className={styles.preLoader} ref={preLoaderRef}>
       <p>Loading</p>
-      <div className={styles.counterWrapper}>
-      <Counter />
-        {/* <Digit numbers={[0, 1]} duration={2} delay={5} animate={animationState === 'digits'} />
-        <Digit numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]} duration={6} animate={animationState === 'digits'} />
-        <Digit numbers={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]} duration={5} animate={animationState === 'digits'} />
-        <div className={styles['digit-4']}>%</div> */}
+      <div className={styles.counter}>
+        <div className={styles.digit1} ref={digit1Ref}></div>
+        <div className={styles.digit2} ref={digit2Ref}></div>
+        <div className={styles.digit3} ref={digit3Ref}></div>
+        <div className={styles.digit4}>%</div>
       </div>
-      <motion.div 
-        className={styles['progress-bar']}
-        // variants={progressVariants}
-        // variants={opacity}
-        variants={barStyles}
-        initial="initial"
-        exit="exit"
-        animate={controls}
-        // transition={{ duration: 2 }}
-        // animate={["start", "middle", "end"]}
-      />
-    </motion.div>
+      <div className={styles.progressBar} ref={progressBarRef}></div>
     </div>
-    </>
   );
 };
 
-// const Digit = ({ numbers, duration, delay = 1, animate }) => {
-//   const totalDistance = -(numbers.length - 1) * 100;
-
-//   const digitVariants = {
-//     initial: { y: 0 },
-//     animate: {
-//       y: totalDistance,
-//       transition: { duration, delay, ease: 'easeInOut' }
-//     }
-//   };
-
-//   return (
-//     <motion.div 
-//       className={styles[`digit-${numbers.length <= 2 ? '1' : '2'}`]}
-//       variants={digitVariants}
-//       initial="initial"
-//       animate={animate ? "animate" : "initial"}
-//     >
-//       {numbers.map((num, index) => (
-//         <div key={index} className={`${styles.num} ${index === 1 ? styles.offset : ''}`}>
-//           {num}
-//         </div>
-//       ))}
-//     </motion.div>
-//   );
-// };
-
-export default Preloader;
+export default PreLoader;

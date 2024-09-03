@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import '@/styles/styles.scss'
 import { motion, AnimatePresence } from "framer-motion";
 // import Preloader from "@/components/Preloader";
-import Preloader from "@/components/Preloader2";
-// import Preloader from "@/components/Preloader3";
+// import Preloader from "@/components/Preloader2";
+import Preloader from "@/components/Preloader3";
 import { useState, useEffect } from "react";
 // import Grid from "@/components/Grid";
 import { opacity, expand } from "@/components/Grid/anim";
@@ -15,6 +15,7 @@ import Background from "@/components/Background/index";
 import BackgroundSvg from '@/components/BackgroundSvg'
 import * as THREE from 'three';
 // import FirebaseAnalytics from "@/components/Analytics";
+import Head from 'next/head';
 
 const App = ({ Component, pageProps}) => {
   const router = useRouter();
@@ -94,6 +95,11 @@ const App = ({ Component, pageProps}) => {
 
   return (
     <>
+      <Head>
+        <title>Anthony Buzzelli</title>
+        <meta name="description" content="My Portfolio" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {/* <AnimatePresence>{isLoading && <Preloader />}</AnimatePresence> */}
       {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
       
