@@ -14,21 +14,6 @@ const ContactFormContent = () => {
   
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
-  // const handleRecaptchaVerify = (result) => {
-  //   if (result.score) {
-  //     console.log('recaptcha score', result.score)
-  //     if (result.score >= 0.5) {
-  //       setRecaptchaVerified(true);
-  //       console.log('recaptcha verified');
-  //     } else {
-  //       setRecaptchaVerified(false);
-  //       console.log('recaptcha score to low');
-  //     }
-  //   } else if (result.error) {
-  //     console.log('recaptcha error', result.error)
-  //     setRecaptchaVerified(false);
-  //   }
-  // };
   
   useEffect(() => {
     const script = document.querySelector('script[src^="https://www.gstatic.com/recaptcha/releases/"]');
@@ -100,10 +85,6 @@ const ContactFormContent = () => {
               ...formData,
               timestamp: new Date(),
             });
-            // await set(ref(database, '/contacts'), {
-            //   ...formData,
-            //   timestamp: new Date(),
-            // });
             
             setFormData({ name: '', email: '', subject: '', message: '' });
             console.log('form submitted successfully')
@@ -114,13 +95,7 @@ const ContactFormContent = () => {
           setRecaptchaVerified(false);
           console.log('recaptcha score to low');
         }
-        //   // await set(ref(database, '/contacts'), {
-        //   //   ...formData,
-        //   //   timestamp: new Date(),
-        //   // });
-          
-        //   // setFormData({ name: '', email: '', subject: '', message: '' });
-        //   // console.log('form submitted successfully')
+
         } catch {
           console.error('Error submitting form')
         //   // alert('An error occured')
@@ -134,8 +109,6 @@ const ContactFormContent = () => {
     <div className={styles.content}>
     <h1>Contact Us</h1>
     <form className={styles.form} onSubmit={handleSubmit}>
-    {/* <form className={styles.form}> */}
-      {/* Form fields remain the same */}
       <div className={styles.formGroup}>
         <label htmlFor="name">Name</label>
         <input
@@ -194,16 +167,6 @@ const ContactFormContent = () => {
     </div>
   );
 };
-
-// const ContactForm = () => {
-//   return (
-//     <GoogleReCaptchaProvider reCaptchaKey="YOUR_RECAPTCHA_SITE_KEY">
-//       <ContactFormContent />
-//     </GoogleReCaptchaProvider>
-//   );
-// };
-
-// export default ContactForm;
 
 export default function Contact() {
   console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, "KEYS")

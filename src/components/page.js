@@ -1,6 +1,6 @@
 import Header from "./Header";
 import FirebaseAnalytics from "@/components/Analytics";
-import { Abril_Fatface } from '@next/font/google';
+import { Abril_Fatface } from 'next/font/google';
 // import Footer from "./Footer";
 const abril = Abril_Fatface({
   subsets: ['latin'],

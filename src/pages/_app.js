@@ -16,6 +16,7 @@ import BackgroundSvg from '@/components/BackgroundSvg'
 import * as THREE from 'three';
 // import FirebaseAnalytics from "@/components/Analytics";
 import Head from 'next/head';
+import Script from 'next/script'
 
 const App = ({ Component, pageProps}) => {
   const router = useRouter();
@@ -99,6 +100,7 @@ const App = ({ Component, pageProps}) => {
         <title>Anthony Buzzelli</title>
         <meta name="description" content="My Portfolio" />
         <link rel="icon" href="/favicon.ico" />
+        
       </Head>
       {/* <AnimatePresence>{isLoading && <Preloader />}</AnimatePresence> */}
       {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
@@ -113,6 +115,7 @@ const App = ({ Component, pageProps}) => {
         </div> */}
           {/* <FirebaseAnalytics /> */}
           <Component {...pageProps} isCanvasVisible={isCanvasVisible} isNavExiting={isNavExiting} />
+          <Script src="https://www.google.com/recaptcha/api.js" strategy="lazyOnload" />
           {/* <Component {...pageProps} isCanvasVisible={isCanvasVisible} /> */}
           {/* <div className="backgroundWrapper"> */}
             <BackgroundSvg />
