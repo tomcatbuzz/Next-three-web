@@ -5,14 +5,16 @@ import { motion } from "framer-motion";
 import { Suspense, useEffect, useState, useCallback } from "react";
 import  database from '../lib/firebase';
 import { getDatabase, ref, set, push } from 'firebase/database';
-import Recaptcha from '@/components/Recaptcha';
-import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+// import Recaptcha from '@/components/Recaptcha';
+// import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from "axios";
+import useRecaptchaV3 from '../hooks/recaptchaV3';
 
 const ContactFormContent = () => {
   const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV11';
   
-  const { executeRecaptcha } = useGoogleReCaptcha();
+  // const { executeRecaptcha } = useGoogleReCaptcha();
+  const executeRecaptcha = useRecaptchaV3('6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB')
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
   
   useEffect(() => {
@@ -57,7 +59,7 @@ const ContactFormContent = () => {
     if (validateForm()) {
       try {
         setIsSubmitting(true);
-        const token = await executeRecaptcha()
+        const token = await executeRecaptcha('submit')
         console.log('received token', token)
 
         const response = await axios({
@@ -173,15 +175,15 @@ export default function Contact() {
   return (
     <Page>
       <>
-        <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+        {/* <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
         scriptProps={{
         async: true,
         defer: true,
         appendTo: "head",
         nonce: undefined,
-      }}>
+      }}> */}
           <ContactFormContent />
-        </GoogleReCaptchaProvider>
+        {/* </GoogleReCaptchaProvider> */}
       </>
     </Page>
   );
