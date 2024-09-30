@@ -8,22 +8,26 @@ import { getDatabase, ref, set, push } from 'firebase/database';
 // import Recaptcha from '@/components/Recaptcha';
 // import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from "axios";
-import useRecaptchaV3 from '../hooks/recaptchaV3';
-
+// import useRecaptchaV3 from '../hooks/recaptchaV3';
+// import { useRecaptchaV3 } from '@/hooks/recaptchaV3';
+import { useRecaptchaV3 } from '../hooks/recaptchaHook'
 const ContactFormContent = () => {
   const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV11';
+  const RECAPTCHA_SITE_KEY = '6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB'; 
+  console.log(RECAPTCHA_SITE_KEY, 'this key')
   
   // const { executeRecaptcha } = useGoogleReCaptcha();
-  const executeRecaptcha = useRecaptchaV3('6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB')
+  const executeRecaptcha = useRecaptchaV3(RECAPTCHA_SITE_KEY, 'submit')
+  
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
   
-  useEffect(() => {
-    const script = document.querySelector('script[src^="https://www.gstatic.com/recaptcha/releases/"]');
-    if (script) {
-      script.onload = () => console.log('reCAPTCHA script loaded');
-      script.onerror = (error) => console.error('reCAPTCHA script error', error);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const script = document.querySelector('script[src^="https://www.gstatic.com/recaptcha/releases/"]');
+  //   if (script) {
+  //     script.onload = () => console.log('reCAPTCHA script loaded');
+  //     script.onerror = (error) => console.error('reCAPTCHA script error', error);
+  //   }
+  // }, []);
   
   const [formData, setFormData] = useState({
     name: '',

@@ -27,7 +27,8 @@
 .counter {
   height: 100px;
   display: flex;
-  font-family: "Timmons NY";
+  // font-family: "Timmons NY";
+  font-family: var(--font-poppins);
   font-size: 100px;
   font-weight: 400;
   line-height: 150px;

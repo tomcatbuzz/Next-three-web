@@ -1,5 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // async headers() {
+  //   return [
+  //     {
+  //       source: '/(.*)',
+  //       headers: [
+  //         {
+  //           key: 'Content-Security-Policy',
+  //           value: "script-src \"self\" https://www.google.com https://www.gstatic.com;",
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
   env: {
     NEXT_PUBLIC_RECAPTCHA_SITE_KEY: '6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB',
     NEXT_PUBLIC_ANALYTICS_ID: 'G-YVHKYD2P2Y'
