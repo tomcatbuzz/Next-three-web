@@ -15,11 +15,11 @@ import toast, { Toaster } from 'react-hot-toast';
 const ContactFormContent = () => {
   const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV11';
   const RECAPTCHA_SITE_KEY = '6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB'; 
-  console.log(RECAPTCHA_SITE_KEY, 'this key')
+  // console.log(RECAPTCHA_SITE_KEY, 'this key')
   
   // const { executeRecaptcha } = useGoogleReCaptcha();
   const executeRecaptcha = useRecaptchaV3(RECAPTCHA_SITE_KEY, 'submit')
-  console.log(executeRecaptcha, "FUNCTION")
+  // console.log(executeRecaptcha, "FUNCTION")
   
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
   
@@ -173,6 +173,30 @@ const ContactFormContent = () => {
         {isSubmitting ? 'Sending...' : 'Submit'}
       </button>
     </form>
+    <Toaster
+        position="top-center"
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: "green",
+              secondary: "black",
+            },
+          },
+        }}
+      />
     </div>
   );
 };

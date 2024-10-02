@@ -83,21 +83,21 @@
   cursor: not-allowed;
 }
 
-// .grecaptcha-badge {
-//   position: absolute;
-//   width: 70px !important;
-//   height: 60px;
-//   // position: static !important;
-//   float: right !important;
-//   transform: translateY(12px);  
-//   z-index: 1000;
-//   cursor: pointer;
-//   opacity: 1;
-// }
+.grecaptcha-badge {
+  position: absolute;
+  width: 70px !important;
+  height: 60px;
+  // position: static !important;
+  float: right !important;
+  transform: translateY(12px);  
+  z-index: 4000;
+  cursor: pointer;
+  opacity: 1;
+}
 
-// .grecaptcha-badge:hover {
-//     width: 256px !important;
-// }
+.grecaptcha-badge:hover {
+  width: 256px;
+}
 
 @media (max-width: 600px) {
   .form {
