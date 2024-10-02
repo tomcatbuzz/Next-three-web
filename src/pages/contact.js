@@ -8,9 +8,10 @@ import { getDatabase, ref, set, push } from 'firebase/database';
 // import Recaptcha from '@/components/Recaptcha';
 // import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from "axios";
-// import useRecaptchaV3 from '../hooks/recaptchaV3';
-// import { useRecaptchaV3 } from '@/hooks/recaptchaV3';
-import { useRecaptchaV3 } from '../hooks/recaptchaHook'
+import useRecaptchaV3 from '../hooks/recaptchaHook';
+import toast, { Toaster } from 'react-hot-toast';
+
+
 const ContactFormContent = () => {
   const RECAPTCHA_VERIFY_URL = 'https://us-central1-reactweb-b9752.cloudfunctions.net/checkRecaptchaV11';
   const RECAPTCHA_SITE_KEY = '6LeNmCQqAAAAANCH3o7witl1TPcrwcVXcNKaWhoB'; 
@@ -18,6 +19,7 @@ const ContactFormContent = () => {
   
   // const { executeRecaptcha } = useGoogleReCaptcha();
   const executeRecaptcha = useRecaptchaV3(RECAPTCHA_SITE_KEY, 'submit')
+  console.log(executeRecaptcha, "FUNCTION")
   
   const [recaptchaVerified, setRecaptchaVerified] = useState(false)
   
@@ -93,7 +95,8 @@ const ContactFormContent = () => {
             });
             
             setFormData({ name: '', email: '', subject: '', message: '' });
-            console.log('form submitted successfully')
+            console.log('form submitted successfully');
+            toast.success('Your message was sent');
           } catch (error) {
             console.error('Error submitting form', error)
           }
