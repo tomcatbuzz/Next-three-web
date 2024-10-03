@@ -66,7 +66,10 @@ const ContactFormContent = () => {
       try {
         setIsSubmitting(true);
         const token = await executeRecaptcha('submit')
-        console.log('received token', token)
+        
+        if (token) {
+          console.log('received token', token)
+        
 
         const response = await axios({
           method: 'POST',
@@ -104,6 +107,10 @@ const ContactFormContent = () => {
           setRecaptchaVerified(false);
           console.log('recaptcha score to low');
         }
+
+      } else {
+        console.error('reCAPTCHA verification failed');
+      }
 
         } catch {
           console.error('Error submitting form')
@@ -202,7 +209,6 @@ const ContactFormContent = () => {
 };
 
 export default function Contact() {
-  console.log(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY, "KEYS")
   return (
     <Page>
       <>
