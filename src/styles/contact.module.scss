@@ -84,19 +84,20 @@
 }
 
 .grecaptcha-badge {
-  position: absolute;
-  width: 70px !important;
-  height: 60px;
+  // position: absolute;
+  // width: 70px !important;
+  // height: 60px;
   // position: static !important;
-  float: right !important;
-  transform: translateY(12px);  
+  // right: 0;
+  // transform: translateY(12px);  
   z-index: 4000;
-  cursor: pointer;
+  cursor: pointer !important;
   opacity: 1;
+  transition: right 0.3s ease;
 }
 
 .grecaptcha-badge:hover {
-  width: 256px;
+  right: 0;
 }
 
 @media (max-width: 600px) {
