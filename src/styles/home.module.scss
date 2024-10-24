@@ -79,11 +79,49 @@
   font-weight: 300;
 }
 
+.textParagraph {
+  display: inline;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.imageSpan {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: solid 3px white;
+  overflow: hidden;
+  padding: 0 5px;
+  height: 3.5em;
+  width: 8.5em;
+}
+
+.spanImage {
+  // object-fit: contain;
+  height: 3.5em;
+  width: 8.5em;
+}
+
 .canvas {
   cursor: pointer;
   // top: 40%;
   width: 500px;
   height: 500px;
+}
+
+.bottomImageContainer {
+  position: absolute;
+  bottom: -30%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footerImage {
+  width: 80%;
+  max-width: 600px;
+  height: 100%;
 }
 
 .footer {

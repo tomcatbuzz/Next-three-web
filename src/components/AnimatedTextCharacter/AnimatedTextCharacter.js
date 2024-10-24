@@ -23,7 +23,8 @@ const AnimatedTextCharacter = ({ text }) => {
   // Letter variants
   const child = {
     visible: {
-      delay: 2,
+      // delay: 2,
+      delay: 5,
       opacity: 1,
       x: 0,
       y: 0,

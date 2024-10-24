@@ -60,7 +60,7 @@ const App = ({ Component, pageProps}) => {
     const handleRouteChangeComplete = () => {
       setTimeout(() => {
         setCanvasVisible(true);
-      }, 500); // Adjust delay as needed
+      }, 1000); // Adjust delay as needed
       setIsNavExiting(false);
     };
 

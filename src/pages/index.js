@@ -1,8 +1,10 @@
 import styles from '@/styles/home.module.scss'
 import Page from "@/components/page";
 import { motion } from "framer-motion";
-import Image from 'next/image'
-import testImage from '../../public/next.svg'
+import Image from 'next/image';
+import testImage from '../../public/next.svg';
+import capsule from '../../public/lady.jpg';
+import footerImage from '../../public/joel-filipe-k8apfKm-Md4-unsplash.jpg';
 import AnimatedTextCharacter from "@/components/AnimatedTextCharacter/AnimatedTextCharacter";
 import ScrambleText from "@/components/ScrambleText";
 import { Canvas } from '@react-three/fiber';
@@ -18,8 +20,8 @@ export default function Home({isCanvasVisible}) {
         
           
         <AnimatedTextCharacter text="Tomcatbuzz" />
-        <p>From Concept to Deployment: Full Stack Solutions for Tomorrow’s Web
-          Innovating Web Development: Where Functionality Meets Creativity.
+        <p className={styles.textParagraph}>From Concept to Deployment: Full Stack Solutions for Tomorrow’s Web
+          <span className={styles.imageSpan}><Image className={styles.spanImage} src={capsule} alt="test image" /></span></p><p>Innovating Web Development: Where Functionality Meets Creativity.
           Transforming Ideas into Reality with Full Stack Expertise</p>
         <div>
         <ScrambleText text="Hello" />
@@ -30,6 +32,9 @@ export default function Home({isCanvasVisible}) {
           whileTap={{ scale: 0.8 }}
         >Home</motion.h1>
         <ScrambleText text="Big words right" />
+        </div>
+        <div className={styles.imageContainer}>
+          <Image className={styles.image} src={testImage} alt="test image" />
         </div>
         <Suspense fallback={<div>...Loading</div>}>
         {isCanvasVisible && (
@@ -47,6 +52,9 @@ export default function Home({isCanvasVisible}) {
         </Suspense>
       
       <div className={styles.backgroundText}><ScrambleText text="creative developer" /></div>
+      <div className={styles.bottomImageContainer}>
+        <Image className={styles.footerImage} src={footerImage} alt="test image" />
+      </div>
       <div className={styles.footer}>
       {/* <Footer /> */}
       </div>
