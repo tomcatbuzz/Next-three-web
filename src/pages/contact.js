@@ -8,7 +8,8 @@ import { getDatabase, ref, set, push } from 'firebase/database';
 // import Recaptcha from '@/components/Recaptcha';
 // import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import axios from "axios";
-import useRecaptchaV3 from '../hooks/recaptchaHook';
+// import useRecaptchaV3 from '../hooks/recaptchaHook';
+import useRecaptchaV3 from '../hooks/recaptchaHook2';
 import toast, { Toaster } from 'react-hot-toast';
 
 
@@ -121,6 +122,30 @@ const ContactFormContent = () => {
     }
   }, [validateForm, executeRecaptcha, formData]);
 
+  const RecaptchaHoverEffect = () => {
+    useEffect(() => {
+      // Add only necessary CSS for the hover effect
+      const style = document.createElement('style');
+      style.innerHTML = `
+        .grecaptcha-badge {
+          transition: right 0.3s ease; 
+          z-index: 10000;
+        }
+  
+        .grecaptcha-badge:hover {
+          right: 0 !important; 
+        }
+      `;
+      document.head.appendChild(style);
+  
+      return () => {
+        document.head.removeChild(style);
+      };
+    }, []);
+  
+    return null; // No rendering needed
+  };
+
   return (
     <div className={styles.content}>
     <h1>Contact Us</h1>
@@ -180,6 +205,7 @@ const ContactFormContent = () => {
         {isSubmitting ? 'Sending...' : 'Submit'}
       </button>
     </form>
+    <RecaptchaHoverEffect />
     <Toaster
         position="top-center"
         gutter={8}
@@ -220,6 +246,7 @@ export default function Contact() {
         nonce: undefined,
       }}> */}
           <ContactFormContent />
+          
         {/* </GoogleReCaptchaProvider> */}
       </>
     </Page>

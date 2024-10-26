@@ -89,8 +89,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  border: solid 3px white;
+  // border-radius: 999px;
+  // border: solid 3px white;
   overflow: hidden;
   padding: 0 5px;
   height: 3.5em;
@@ -101,6 +101,7 @@
   // object-fit: contain;
   height: 3.5em;
   width: 8.5em;
+  border-radius: 999px;
 }
 
 .canvas {

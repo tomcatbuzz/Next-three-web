@@ -31,10 +31,6 @@ export default function Page({ children }) {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        {/* <meta
-          httpEquiv="Content-Security-Policy" 
-          content="script-src 'self' 'unsafe-eval' https://www.google.com https://www.gstatic.com;"
-          /> */}
       </Head>
       <div className={`${abril.variable} ${poppins.variable}`}>
       <Header />

@@ -34,7 +34,11 @@ export default function Home({isCanvasVisible}) {
         <ScrambleText text="Big words right" />
         </div>
         <div className={styles.imageContainer}>
-          <Image className={styles.image} src={testImage} alt="test image" />
+          <Image 
+            className={styles.image} 
+            src={testImage} 
+            alt="test image"
+            fetchpriority="high" />
         </div>
         <Suspense fallback={<div>...Loading</div>}>
         {isCanvasVisible && (
@@ -53,7 +57,11 @@ export default function Home({isCanvasVisible}) {
       
       <div className={styles.backgroundText}><ScrambleText text="creative developer" /></div>
       <div className={styles.bottomImageContainer}>
-        <Image className={styles.footerImage} src={footerImage} alt="test image" />
+        <Image 
+          className={styles.footerImage} 
+          src={footerImage} 
+          alt="test image"
+          fetchpriority="high" />
       </div>
       <div className={styles.footer}>
       {/* <Footer /> */}
