@@ -10,6 +10,7 @@ const AnimatedTextCharacter = ({ text }) => {
     visible: (i = 1) => ({
       opacity: 1,
       transition: {
+        duration: 1,
         ease: cubicBezier(0.190, 1.000, 0.220, 1.000),
         // staggerChildren: 0.03,
         // delayChildren: 0.04 * i

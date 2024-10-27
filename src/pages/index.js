@@ -43,7 +43,13 @@ export default function Home({isCanvasVisible}) {
         <Suspense fallback={<div>...Loading</div>}>
         {isCanvasVisible && (
           
-          <motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ 
+              duration: 1.5,
+              ease: 'easeInOut'}}>
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>
             <ambientLight intensity={1.0}/>
             <pointLight position={[10, 10, 10]} />
