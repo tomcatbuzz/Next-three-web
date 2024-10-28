@@ -38,7 +38,9 @@ export default function Home({isCanvasVisible}) {
             className={styles.image} 
             src={testImage} 
             alt="test image"
-            fetchpriority="high" />
+            fetchpriority="high" 
+            priority={true}
+          />
         </div>
         <Suspense fallback={<div>...Loading</div>}>
         {isCanvasVisible && (
@@ -53,9 +55,7 @@ export default function Home({isCanvasVisible}) {
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>
             <ambientLight intensity={1.0}/>
             <pointLight position={[10, 10, 10]} />
-            
             <FadingImage />
-            
           </Canvas>
           </motion.div>
         )}
@@ -67,7 +67,9 @@ export default function Home({isCanvasVisible}) {
           className={styles.footerImage} 
           src={footerImage} 
           alt="test image"
-          fetchpriority="high" />
+          fetchpriority="high" 
+          priority={true}
+        />
       </div>
       <div className={styles.footer}>
       {/* <Footer /> */}

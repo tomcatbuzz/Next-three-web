@@ -1,4 +1,4 @@
-.projectContainer {
+.projectsContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,18 +7,41 @@
   margin-top: 10%;
   position: absolute;
   z-index: 1;
+  perspective: 1000px;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
 
-.project {
-  color: white;
-}
-
-.paragraphText {
+.carousel {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 80%;
-  color: white;
-  font-size: 1.5em;
-  line-height: 1.3em;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+
+}
+
+.card {
+  width: 300px;
+  height: 600px;
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transform-origin: center;
+  position: relative;
+}
+
+.cardImage {
+  position: relative; /* Required for next/image fill to work */
+  width: 100%; /* Define width in the parent container */
+  height: 300px; /* Example height, adjust as needed */
+  border-radius: 8px;
+  object-fit: cover; /* To cover the area while maintaining the aspect ratio */
+}
+
+.cardTitle {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
 }

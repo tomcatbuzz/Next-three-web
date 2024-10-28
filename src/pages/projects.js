@@ -1,87 +1,67 @@
 import styles from '@/styles/projects.module.scss'
 import Page from "@/components/page";
-// import gsap from 'gsap';
-// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-// import { React, useEffect, useRef } from 'react';
+import { motion } from "framer-motion";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import lady from '../../public/lady.jpg'
+import lady from '../../public/lady.jpg';
+import lady2 from '../../public/image01.jpg';
+import lady3 from '../../public/img3.jpg';
 
-// gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
+
+const projects = [
+  { id: 1, title: "Project 1", image: lady },
+  { id: 2, title: "Project 2", image: lady2 },
+  { id: 3, title: "Project 3", image: lady3 },
+]
 
 export default function Projects() {
-  // const imageRef = useRef(null)
+  const carouselRef = useRef(null);
+  // const imageRef = useRef(null);
 
-  // useEffect(() => {
-  //   const imageElement = imageRef.current
+  useGSAP(() => {
+    gsap.to(carouselRef.current, {
+      rotateY: 360, // Rotate carousel on Y-axis
+      ease: "none",
+      scrollTrigger: {
+        trigger: carouselRef.current,
+        start: "top center",
+        end: "bottom top",
+        scrub: true, // Smooth scroll effect
+      },
+    });
+  }, [])
 
-  // const tl = gsap.timeline({
-  //   scrollTrigger: {
-  //     trigger: imageElement,
-  //     start: 'bottom bottom',
-  //     end: 'top top',
-  //     scrub: true,
-  //     pin: true,
-  //     anticipatePin: 1
-  //   }
-  // });
-  // tl.fromTo(
-  //   imageElement,
-  //   {
-  //     height: 0,
-  //     y: '100%'
-  //   },
-  //   {
-  //     height: '80vh',
-  //     y: 0,
-  //     duration: 1
-  //   },
-  // )
-  // }, [])
-
-  // const imageStyle = {
-  //   width: '500px',
-  //   height: '800px',
-  //   // objectFit: 'cover'
-  //   display: 'block'
-  // }
-
-  const imageLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`
-  }
   
   return (
     <Page>
-      <div className={styles.projectContainer}>
-        <h1 className={styles.project}>Projects Page</h1>
-        <p className={styles.paragraphText}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the standard dummy text ever since the
-          1500s, when an unknown printer took a galley of type and scrambled it
-          to make a type specimen book. It has survived not only five centuries,
-          but also the leap into electronic typesetting, remaining essentially
-          unchanged. It was popularised in the 1960s with the release of
-          Letraset sheets containing Lorem Ipsum passages, and more recently
-          with desktop publishing software like Aldus PageMaker including
-          versions of Lorem Ipsum.
-        </p>
-        <div style={{ width: "80%", margin: "0 auto", height: "1000px" }}>
-          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-            {/* <Image
-              loader={imageLoader}
-              priority
-              // ref={imageRef}
-              src={lady}
-              alt="Curved Image"
-              width={800}
-              height={800}
-              style={{
-                objectFit: 'cover', 
-                marginTop: '1em',
-                borderRadius: '10px'}}
-            /> */}
-          </div>
-        </div>
+      <div className={styles.projectsContainer}>
+      <div className={styles.carousel} ref={carouselRef}>
+        {projects.map((project) => (
+          <motion.div
+            key={project.id}
+            className={styles.card}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+              delay: project.id * 0.1, // Staggers cards for smoother effect
+            }}
+          >
+            <Image className={styles.cardImage}
+              src={project.image} 
+              alt={project.title}
+              fill // Makes the image fill the parent container
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  />
+            <h3 className={styles.cardTitle}>{project.title}</h3>
+          </motion.div>
+        ))}
       </div>
+    </div>
     </Page>
   );
 }
