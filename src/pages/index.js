@@ -12,6 +12,20 @@ import { useRef, useState, useEffect, useMemo, Suspense } from 'react';
 import FadingImage from "@/components/HoverImage";
 import Footer from '@/components/Footer';
 
+export const opacity = {
+  initial: {
+    opacity: 0,
+  },
+
+  enter: {
+    opacity: 1,
+  },
+
+  exit: {
+    opacity: 0.5,
+  },
+};
+
 export default function Home({isCanvasVisible}) {
   return (
     <Page>
@@ -21,7 +35,11 @@ export default function Home({isCanvasVisible}) {
           
         <AnimatedTextCharacter text="Tomcatbuzz" />
         <p className={styles.textParagraph}>From Concept to Deployment: Full Stack Solutions for Tomorrow’s Web
-          <span className={styles.imageSpan}><Image className={styles.spanImage} src={capsule} alt="test image" /></span></p><p>Innovating Web Development: Where Functionality Meets Creativity.
+          <span className={styles.imageSpan}>
+          <Image className={styles.spanImage} src={capsule} alt="test image" />
+          </span>
+          </p>
+          <p>Innovating Web Development: Where Functionality Meets Creativity.
           Transforming Ideas into Reality with Full Stack Expertise</p>
         <div>
         <ScrambleText text="Hello" />
@@ -46,6 +64,7 @@ export default function Home({isCanvasVisible}) {
         {isCanvasVisible && (
           
           <motion.div
+            key="canvas-animation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

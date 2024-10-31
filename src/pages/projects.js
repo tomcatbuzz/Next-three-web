@@ -28,9 +28,11 @@ export default function Projects() {
       ease: "none",
       scrollTrigger: {
         trigger: carouselRef.current,
+      
         start: "top center",
-        end: "bottom top",
+        end: "+=2000",
         scrub: true, // Smooth scroll effect
+        pin: true
       },
     });
   }, [])
@@ -38,7 +40,7 @@ export default function Projects() {
   
   return (
     <Page>
-      <div className={styles.projectsContainer}>
+    <div className={styles.projectsContainer}>
       <div className={styles.carousel} ref={carouselRef}>
         {projects.map((project) => (
           <motion.div
@@ -61,6 +63,12 @@ export default function Projects() {
           </motion.div>
         ))}
       </div>
+      {/* <div className={styles.projectContent}>
+        <h2>Some more content here</h2>
+      </div> */}
+    </div>
+    <div className={styles.projectContent}>
+        <h2>Some more content here</h2>
     </div>
     </Page>
   );
