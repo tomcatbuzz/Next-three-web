@@ -79,6 +79,12 @@ export default function Header() {
           <Link href="/about">About</Link>
         </div>
         <div
+          className={`${router.pathname == "/demo" ? styles.active : ""} ${
+            styles.headerItem} ${styles.hover}`}
+        >
+          <Link href="/demo">Demo</Link>
+        </div>
+        <div
           className={`${router.pathname == "/projects" ? styles.active : ""} ${
             styles.headerItem} ${styles.hover}`}
         >

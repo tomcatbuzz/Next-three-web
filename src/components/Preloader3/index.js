@@ -1,5 +1,5 @@
 import styles from './style.module.scss';
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect, useEffect } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
@@ -9,6 +9,13 @@ const PreLoader = ({ onComplete }) => {
   const digit2Ref = useRef(null);
   const digit3Ref = useRef(null);
   const progressBarRef = useRef(null);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "scroll"
+    };
+}, []);
 
   useLayoutEffect(() => {
     const createDigits = (digitRef, count, offset = false) => {

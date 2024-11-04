@@ -9,6 +9,7 @@ import Image from 'next/image';
 import lady from '../../public/lady.jpg';
 import lady2 from '../../public/image01.jpg';
 import lady3 from '../../public/img3.jpg';
+import lady4 from '../../public/img1.jpg';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,6 +17,7 @@ const projects = [
   { id: 1, title: "Project 1", image: lady },
   { id: 2, title: "Project 2", image: lady2 },
   { id: 3, title: "Project 3", image: lady3 },
+  { id: 4, title: "Project 4", image: lady4 }
 ]
 
 export default function Projects() {
