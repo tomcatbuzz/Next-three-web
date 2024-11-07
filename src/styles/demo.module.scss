@@ -56,6 +56,14 @@
   will-change: transform;
 }
 
+.cardLeft {
+  transform: translateX(0);
+}
+
+.cardRight {
+  transform: translateX(0);
+}
+
 .mainContent {
   position: absolute;
   top: 45%;
@@ -91,14 +99,14 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
-.line p {
+.lineText {
   position: relative;
   font-size: 24px;
   transform: translateY(30px);
   color: white;
 }
 
-.button {
+.btn button {
   position: relative;
   padding: 1em 2em;
   font-size: 18px;
