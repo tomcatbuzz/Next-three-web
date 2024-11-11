@@ -1,6 +1,6 @@
 import styles from '@/styles/home.module.scss'
 import Page from "@/components/page";
-import { motion } from "framer-motion";
+import { AnimatePresence, delay, motion } from "framer-motion";
 import Image from 'next/image';
 import testImage from '../../public/next.svg';
 import capsule from '../../public/lady.jpg';
@@ -19,6 +19,7 @@ export const opacity = {
 
   enter: {
     opacity: 1,
+    transition: {duration: 1.5, ease: 'easeInOut', delay: 1}, 
   },
 
   exit: {
@@ -36,7 +37,13 @@ export default function Home({isCanvasVisible}) {
         <AnimatedTextCharacter text="Tomcatbuzz" />
         <p className={styles.textParagraph}>From Concept to Deployment: Full Stack Solutions for Tomorrow’s Web
           <span className={styles.imageSpan}>
-          <Image className={styles.spanImage} src={capsule} alt="test image" />
+          <Image 
+            className={styles.spanImage} 
+            src={capsule} 
+            alt="test image"
+            fetchpriority="high" 
+            priority={true} 
+          />
           </span>
           </p>
           <p>Innovating Web Development: Where Functionality Meets Creativity.
@@ -61,16 +68,10 @@ export default function Home({isCanvasVisible}) {
           />
         </div>
         <Suspense fallback={<div>...Loading</div>}>
+        <AnimatePresence>
         {isCanvasVisible && (
           
-          <motion.div
-            key="canvas-animation"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ 
-              duration: 1.5,
-              ease: 'easeInOut'}}>
+          <motion.div variants={opacity} initial="initial" animate="enter">
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>
             <ambientLight intensity={1.0}/>
             <pointLight position={[10, 10, 10]} />
@@ -78,6 +79,8 @@ export default function Home({isCanvasVisible}) {
           </Canvas>
           </motion.div>
         )}
+        </AnimatePresence>
+
         </Suspense>
       
       <div className={styles.backgroundText}><ScrambleText text="creative developer" /></div>

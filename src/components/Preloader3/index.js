@@ -10,12 +10,17 @@ const PreLoader = ({ onComplete }) => {
   const digit3Ref = useRef(null);
   const progressBarRef = useRef(null);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "scroll"
-    };
-}, []);
+//   useLayoutEffect(() => {
+//    document.documentElement.style.setProperty('overflow', 'hidden');
+//    document.documentElement.style.setProperty('padding-right', '0px');
+   
+//    // Cleanup function
+//    return () => {
+//      // Remove styles when loading is complete
+//      document.documentElement.style.removeProperty('overflow');
+//      document.documentElement.style.removeProperty('padding-right');
+//    }
+// }, []);
 
   useLayoutEffect(() => {
     const createDigits = (digitRef, count, offset = false) => {

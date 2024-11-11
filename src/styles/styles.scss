@@ -108,9 +108,11 @@ html, body {
   // background: linear-gradient(135deg, #003366 0%, #336699 100%);
   background: #09090B;
   overflow-x: hidden;
-  
 }
 
+body.no-scroll {
+  overflow-x: hidden;
+}
 /* Light White Grid */
 // main {
 //   position: absolute;

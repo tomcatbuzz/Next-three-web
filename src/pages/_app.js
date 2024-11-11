@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // import Preloader from "@/components/Preloader";
 // import Preloader from "@/components/Preloader2";
 import Preloader from "@/components/Preloader3";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 // import Grid from "@/components/Grid";
 import { opacity, expand } from "@/components/Grid/anim";
 // import SmokeTransition from "@/components/SmokeTransition/SmokeTransition";
@@ -43,13 +43,78 @@ const App = ({ Component, pageProps}) => {
   // }, [])
 
   // useEffect(() => {
-    const handlePreloaderComplete = () => {
-        setIsLoading(false);
-        setCanvasVisible(true)
-        document.body.style.cursor = 'default'
-        window.scrollTo(0,0);
+  //   if (isLoading) {
+  //     // Apply styles when loading
+  //     document.documentElement.style.setProperty('overflow', 'hidden');
+  //     document.documentElement.style.setProperty('padding-right', '0px');
+      
+  //     // Cleanup function
+  //     return () => {
+  //       // Remove styles when loading is complete
+  //       document.documentElement.style.removeProperty('overflow');
+  //       document.documentElement.style.removeProperty('padding-right');
+  //     };
+  //   }
+  // }, [isLoading]);
+
+  // useLayoutEffect(() => {
+  //   if (isLoading) {
+  //     // Apply styles when loading
+  //     document.documentElement.style.setProperty('overflow', 'hidden');
+  //     // document.documentElement.style.setProperty('padding-right', '0px');
+      
+  //     // Cleanup function
+  //     return () => {
+  //       // Remove styles when loading is complete
+  //       document.documentElement.style.removeProperty('overflow');
+  //       // document.documentElement.style.removeProperty('padding-right');
+  //     };
+  //   }
+  // }, [isLoading]);
+
+  useLayoutEffect(() => {
+    // Create a style element
+    const style = document.createElement('style');
+    style.innerHTML = `
+      html, body {
+        overflow: hidden !important;
+        padding-right: 0px !important;
+        margin-right: 0px !important;
       }
-  // }, [])
+    `;
+    
+    if (isLoading) {
+      // Add style element to head
+      document.head.appendChild(style);
+    }
+    
+    return () => {
+      // Smooth transition for scroll bar
+      const transition = document.createElement('style');
+      transition.innerHTML = `
+        html, body {
+          transition: padding-right 0.2s ease;
+        }
+      `;
+      document.head.appendChild(transition);
+      
+      // Remove the no-scroll styles
+      style.remove();
+      
+      // Remove transition after it completes
+      setTimeout(() => {
+        transition.remove();
+      }, 200);
+    };
+  }, [isLoading]);
+
+  const handlePreloaderComplete = () => {
+    setIsLoading(false);
+    setCanvasVisible(true)
+    document.body.style.cursor = 'default'
+    window.scrollTo(0,0);
+  }
+  
 
   useEffect(() => {
     const handleRouteChangeStart = () => {
@@ -74,15 +139,7 @@ const App = ({ Component, pageProps}) => {
     };
   }, [router.events]);
 
-  // const handleEnterComplete = () => {
-  //   setLoading(false);
-  // };
-
-  // const handleLeaveComplete = () => {
-  //   setIsLeaving(false);
-  // };
-
-  // const router = useRouter();
+  
   const nbOfSquares = 5
   const anim = (variants, custom=null) => {
     return {

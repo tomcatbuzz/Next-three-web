@@ -1,6 +1,10 @@
+body.no-scroll {
+  overflow-x: hidden;
+}
+
 .preLoader {
   width: 200%;
-  height: 100%;
+  height: 100vh;
   padding: 2em;
   position: fixed;
   top: 0;
@@ -9,8 +13,7 @@
   justify-content: flex-end;
   align-items: flex-end;
   gap: 0.5em;
-  overflow: hidden;
-  // z-index: 2;
+  // overflow-x: hidden !important;
   z-index: 99;
   background: #09090B;
 }
