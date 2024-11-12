@@ -42,21 +42,6 @@ const App = ({ Component, pageProps}) => {
   //   )()
   // }, [])
 
-  // useEffect(() => {
-  //   if (isLoading) {
-  //     // Apply styles when loading
-  //     document.documentElement.style.setProperty('overflow', 'hidden');
-  //     document.documentElement.style.setProperty('padding-right', '0px');
-      
-  //     // Cleanup function
-  //     return () => {
-  //       // Remove styles when loading is complete
-  //       document.documentElement.style.removeProperty('overflow');
-  //       document.documentElement.style.removeProperty('padding-right');
-  //     };
-  //   }
-  // }, [isLoading]);
-
   // useLayoutEffect(() => {
   //   if (isLoading) {
   //     // Apply styles when loading
@@ -72,6 +57,7 @@ const App = ({ Component, pageProps}) => {
   //   }
   // }, [isLoading]);
 
+  // Remove scroll bar on preloader component hack
   useLayoutEffect(() => {
     // Create a style element
     const style = document.createElement('style');

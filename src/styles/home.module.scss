@@ -105,11 +105,20 @@
   border-radius: 999px;
 }
 
+// .canvasDiv {
+//   border-radius: 10px;
+//   border: 1px solid white;
+//   rotate: 45deg;
+// }
+
 .canvas {
   cursor: pointer;
   // top: 40%;
   width: 500px;
   height: 500px;
+  border: 1px solid white;
+  border-radius: 10px;
+  // rotate: 45deg;
 }
 
 .bottomImageContainer {

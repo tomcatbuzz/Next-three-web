@@ -133,7 +133,7 @@ export default function Home() {
               ))}
             </div>
             <div className={styles.btn}>
-              <button ref={buttonRef}>Get PRO</button>
+              <button className={styles.demoButton} ref={buttonRef}>Get PRO</button>
             </div>
           </div>
 

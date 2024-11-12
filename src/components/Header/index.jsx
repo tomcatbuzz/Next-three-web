@@ -60,7 +60,7 @@ export default function Header() {
         <>
         <div className={styles.logo}>
         {/* <Link href="/">Tomcatbuzz</Link> */}
-        <button type="button" onClick={() => router.push('/')}>
+        <button className={styles.logoButton} type="button" onClick={() => router.push('/')}>
           Tomcatbuzz
         </button>
       </div>

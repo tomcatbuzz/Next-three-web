@@ -110,9 +110,6 @@ html, body {
   overflow-x: hidden;
 }
 
-body.no-scroll {
-  overflow-x: hidden;
-}
 /* Light White Grid */
 // main {
 //   position: absolute;
@@ -317,7 +314,7 @@ section {
   color: white;
 }
 
-button {
+.demoButton {
   position: relative;
   padding: 1em 2em;
   font-size: 18px;

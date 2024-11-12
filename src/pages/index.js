@@ -68,10 +68,10 @@ export default function Home({isCanvasVisible}) {
           />
         </div>
         <Suspense fallback={<div>...Loading</div>}>
-        <AnimatePresence>
+        {/* <AnimatePresence> */}
         {isCanvasVisible && (
           
-          <motion.div variants={opacity} initial="initial" animate="enter">
+          <motion.div key="canvas" variants={opacity} initial="initial" animate="enter">
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>
             <ambientLight intensity={1.0}/>
             <pointLight position={[10, 10, 10]} />
@@ -79,7 +79,7 @@ export default function Home({isCanvasVisible}) {
           </Canvas>
           </motion.div>
         )}
-        </AnimatePresence>
+        {/* </AnimatePresence> */}
 
         </Suspense>
       
