@@ -7,16 +7,8 @@ import Preloader from "@/components/Preloader3";
 import { useState, useEffect, useLayoutEffect } from "react";
 // import Grid from "@/components/Grid";
 import { opacity, expand } from "@/components/Grid/anim";
-// import SmokeTransition from "@/components/SmokeTransition/SmokeTransition";
-import SmokeTransition from "@/components/SmokeTransition/smoke2"
-import { Canvas } from "@react-three/fiber";
-import { PerspectiveCamera } from "@react-three/drei";
-import Background from "@/components/Background/index";
 import BackgroundSvg from '@/components/BackgroundSvg'
-import * as THREE from 'three';
-// import FirebaseAnalytics from "@/components/Analytics";
 import Head from 'next/head';
-// import Script from 'next/script'
 
 const App = ({ Component, pageProps}) => {
   const router = useRouter();
@@ -42,20 +34,7 @@ const App = ({ Component, pageProps}) => {
   //   )()
   // }, [])
 
-  // useLayoutEffect(() => {
-  //   if (isLoading) {
-  //     // Apply styles when loading
-  //     document.documentElement.style.setProperty('overflow', 'hidden');
-  //     // document.documentElement.style.setProperty('padding-right', '0px');
-      
-  //     // Cleanup function
-  //     return () => {
-  //       // Remove styles when loading is complete
-  //       document.documentElement.style.removeProperty('overflow');
-  //       // document.documentElement.style.removeProperty('padding-right');
-  //     };
-  //   }
-  // }, [isLoading]);
+  
 
   // Remove scroll bar on preloader component hack
   useLayoutEffect(() => {

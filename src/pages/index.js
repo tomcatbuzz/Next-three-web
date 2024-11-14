@@ -24,6 +24,7 @@ export const opacity = {
 
   exit: {
     opacity: 0.5,
+    transition: {duration: 0.5, ease: 'easeInOut', delay: 1},
   },
 };
 
@@ -68,10 +69,15 @@ export default function Home({isCanvasVisible}) {
           />
         </div>
         <Suspense fallback={<div>...Loading</div>}>
-        {/* <AnimatePresence> */}
+        <AnimatePresence mode="sync">
         {isCanvasVisible && (
-          
-          <motion.div key="canvas" variants={opacity} initial="initial" animate="enter">
+          <motion.div 
+            key="canvas" 
+            variants={opacity} 
+            initial="initial" 
+            animate="enter"
+            exit="exit"
+            transition={{ duration: 0.5 }}>
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>
             <ambientLight intensity={1.0}/>
             <pointLight position={[10, 10, 10]} />
@@ -79,7 +85,7 @@ export default function Home({isCanvasVisible}) {
           </Canvas>
           </motion.div>
         )}
-        {/* </AnimatePresence> */}
+        </AnimatePresence>
 
         </Suspense>
       
