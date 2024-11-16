@@ -68,8 +68,8 @@ export default function Home({isCanvasVisible}) {
             priority={true}
           />
         </div>
-        <Suspense fallback={<div>...Loading</div>}>
-        <AnimatePresence mode="sync">
+        {/* <Suspense fallback={<div>...Loading</div>}> */}
+        {/* <AnimatePresence mode="sync"> */}
         {isCanvasVisible && (
           <motion.div 
             key="canvas" 
@@ -77,17 +77,19 @@ export default function Home({isCanvasVisible}) {
             initial="initial" 
             animate="enter"
             exit="exit"
-            transition={{ duration: 0.5 }}>
+            transition={{ duration: 0.8 }}>
+            <Suspense fallback={<div>...Loading</div>}>
           <Canvas className={styles.canvas} camera={{ position: [0, 0, 2], fov: 20 }}>
             <ambientLight intensity={1.0}/>
             <pointLight position={[10, 10, 10]} />
             <FadingImage />
           </Canvas>
+          </Suspense>
           </motion.div>
         )}
-        </AnimatePresence>
+        {/* </AnimatePresence> */}
 
-        </Suspense>
+        {/* </Suspense> */}
       
       <div className={styles.backgroundText}><ScrambleText text="creative developer" /></div>
       <div className={styles.bottomImageContainer}>

@@ -8,15 +8,26 @@
   margin-top: 10px;
   z-index: 12;
 
+  .logoImage {
+    display: flex;
+    align-items: flex-start;
+    border-radius: 10px;
+    width: 64px !important;
+    height: 64px !important;
+    margin: 20px;
+    position: absolute;
+  }
+
   .logoButton {
     padding: 1em 2em;
     background: none;
     border: none;
-    margin: 0;
+    margin: 5px 40px;
     cursor: pointer;
     text-transform: uppercase;
-    // font-family: 'Neue Montreal';
-    font-size: inherit;
+    font-family: var(--font-poppins);
+    font-size: 1.2rem;
+    letter-spacing: .2rem;
     color: white
   }
 

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Button from "../Button";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from 'next/image';
 import Nav from '../Nav';
 import useMediaQuery from '../../hooks/mediaQuery'
 
@@ -60,6 +61,12 @@ export default function Header() {
         <>
         <div className={styles.logo}>
         {/* <Link href="/">Tomcatbuzz</Link> */}
+        <Image
+          className={styles.logoImage}
+          src="/Group 1.svg"
+          width={50}
+          height={50}
+          alt="logo" />
         <button className={styles.logoButton} type="button" onClick={() => router.push('/')}>
           Tomcatbuzz
         </button>

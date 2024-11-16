@@ -22,8 +22,9 @@ extend({ ImageFadeMaterial })
 
 function FadingImage() {
   const ref = useRef()
-  // testing so I commented this
-  const [texture1, texture2, dispTexture] = useTexture(["/img1.jpg", "/img2.jpg", "/disp1.jpg"])
+  // original images 
+  // const [texture1, texture2, dispTexture] = useTexture(["/img1.jpg", "/img2.jpg", "/disp1.jpg"])
+  const [texture1, texture2, dispTexture] = useTexture(["/Me2.jpg", "/Me1.jpeg", "/disp1.jpg"])
 
   // this is broken, can't use useTexture in callback, but useMemo for performance if needed
   // const textures = useMemo(() => {
