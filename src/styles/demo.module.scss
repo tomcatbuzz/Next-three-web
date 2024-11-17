@@ -102,11 +102,12 @@
 .lineText {
   position: relative;
   font-size: 24px;
-  transform: translateY(30px);
+  // transform: translateY(30px);
   color: white;
 }
 
-.btn button {
+// .btn button {
+  .demoButton {
   position: relative;
   padding: 1em 2em;
   font-size: 18px;

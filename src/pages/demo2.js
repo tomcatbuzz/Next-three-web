@@ -35,20 +35,28 @@ export default function Home() {
   const buttonRef = useRef(null);
 
   // debug
-  useEffect(() => {
-    linesRef.current.forEach((line) => {
-      if (line) {
-        console.log("Line Element:", line); // Debug: Log element to verify it's correctly referenced
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   linesRef.current.forEach((line) => {
+  //     if (line) {
+  //       console.log("Line Element:", line); // Debug: Log element to verify it's correctly referenced
+  //     }
+  //   });
+  // }, []);
+
+  // if (!linesRef.current) { linesRef.current = []; }
+
+  // useEffect(() => { linesRef.current = linesRef.current.slice(0, 3);
 
   useEffect(() => {
+    linesRef.current = linesRef.current.slice(0, 3);
+    console.log("Lines Ref:", linesRef.current);
     const leftXValues = [-800, -900, -400];
     const rightXValues = [800, 900, 400];
     const leftRotationValues = [-30, -20, -35];
     const rightRotationValues = [30, 20, 35];
     const yValues = [100, -150, -400];
+
+    
 
     rowsRef.current.forEach((row, index) => {
       const cardLeft = row.querySelector(`.${styles.cardLeft}`);
@@ -81,6 +89,7 @@ export default function Home() {
       },
     });
 
+    linesRef.current.forEach((line) => { gsap.set(line, { y: 30 }); });
     gsap.to(linesRef.current, {
       y: 0,
       duration: 0.5,
@@ -132,6 +141,17 @@ export default function Home() {
                 </div>
               ))}
             </div>
+            {/* <div className={styles.copy}>
+                <div className={styles.line} >
+                  <p className={styles.lineText} ref={linesRef}>Delve into coding without clutter.</p>
+                </div>
+                <div className={styles.line} >
+                  <p className={styles.lineText} ref={linesRef}>One subscription. Endless web design.</p>
+                </div>
+                <div className={styles.line} >
+                  <p className={styles.lineText} ref={linesRef}>Take the fast lane to mastery.</p>
+                </div>
+            </div> */}
             <div className={styles.btn}>
               <button className={styles.demoButton} ref={buttonRef}>Get PRO</button>
             </div>
