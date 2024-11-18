@@ -1,7 +1,28 @@
-.footerWrap {
-  font-size: 2em;
-  color: white;
-  position: absolute;
-  bottom: 0;
-  margin-top: auto;
+// .footerWrap {
+//   font-size: 2em;
+//   color: white;
+//   position: absolute;
+//   bottom: 0;
+//   margin-top: auto;
+// }
+
+.footer {
+  position: relative;
+  height: 800px;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
+  // margin-top: auto;
 }
+
+.innerFooter {
+  position: relative;
+  height: calc(100vh + 800px);
+  top: -100vh;
+}
+
+.stickyContent {
+  height: 800px;
+  position: sticky;
+  top: calc(100vh - 800px);
+  width: 100%;
+}
+

@@ -1,0 +1,42 @@
+.content {
+  background-color: #4E4E5A;
+  padding: 8px 12px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.section2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.heading {
+  font-size: 14vw;
+  line-height: 0.8;
+  margin-top: 10px;
+}
+
+.headParagraph {
+  color: white;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navHeading {
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}

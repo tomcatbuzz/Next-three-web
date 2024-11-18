@@ -110,6 +110,12 @@ html, body {
   overflow-x: hidden;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 /* Light White Grid */
 // main {
 //   position: absolute;
@@ -204,6 +210,10 @@ html, body {
 //   .transition-containers {
 //     display: block;
 //   }
+// }
+
+// footer {
+//   margin-top: auto;
 // }
 
 @media (prefers-color-scheme: dark) {
