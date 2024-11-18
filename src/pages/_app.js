@@ -9,7 +9,7 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import { opacity, expand } from "@/components/Grid/anim";
 import BackgroundSvg from '@/components/BackgroundSvg'
 import Head from 'next/head';
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 
 const App = ({ Component, pageProps}) => {
   const router = useRouter();
@@ -138,7 +138,7 @@ const App = ({ Component, pageProps}) => {
         </div> */}
           {/* <FirebaseAnalytics /> */}
           <Component {...pageProps} isCanvasVisible={isCanvasVisible} isNavExiting={isNavExiting} />
-          <Footer />
+          {/* <Footer /> */}
           {/* <Script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`} strategy="lazyOnload" /> */}
           {/* <Component {...pageProps} isCanvasVisible={isCanvasVisible} /> */}
           {/* <div className="backgroundWrapper"> */}

@@ -2,7 +2,7 @@ import Header from "./Header";
 import Head from "next/head";
 import FirebaseAnalytics from "@/components/Analytics";
 import { Abril_Fatface, Poppins } from 'next/font/google';
-// import Footer from "./Footer";
+import Footer from "./Footer";
 const abril = Abril_Fatface({
   subsets: ['latin'],
   weight: ['400'],
@@ -36,7 +36,7 @@ export default function Page({ children }) {
       <Header />
       <FirebaseAnalytics />
       <main>{children}</main>
-      {/* <Footer /> */}
+      <Footer />
       </div>
     </>
   )

@@ -13,16 +13,19 @@
   // margin-top: auto;
 }
 
-.innerFooter {
-  position: relative;
-  height: calc(100vh + 800px);
-  top: -100vh;
-}
+// .innerFooter {
+//   position: relative;
+//   height: calc(100vh + 800px);
+//   top: -100vh;
+// }
 
 .stickyContent {
   height: 800px;
-  position: sticky;
-  top: calc(100vh - 800px);
+  // position: sticky;
+  position: fixed;
+  bottom: 0;
+
+  // top: calc(100vh - 800px);
   width: 100%;
 }
 
