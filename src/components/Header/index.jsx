@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from 'next/image';
 import Nav from '../Nav';
-import useMediaQuery from '../../hooks/mediaQuery'
+import useMediaQuery from '../../hooks/mediaQuery';
+import AnimatedLogo from '../LogoButton';
 
 const menu = {
   open: {
@@ -59,9 +60,9 @@ export default function Header() {
     <div className={styles.header}>
       {isDesktop && 
         <>
-        <div className={styles.logo}>
+      <div className={styles.logo}>
         {/* <Link href="/">Tomcatbuzz</Link> */}
-        <Image
+        {/* <Image
           className={styles.logoImage}
           src="/Group 1.svg"
           width={50}
@@ -69,7 +70,8 @@ export default function Header() {
           alt="logo" />
         <button className={styles.logoButton} type="button" onClick={() => router.push('/')}>
           Tomcatbuzz
-        </button>
+        </button> */}
+        <AnimatedLogo />
       </div>
       <div className={styles.headerItems}>
       

@@ -1,0 +1,40 @@
+.logoWrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+  // overflow: hidden;
+}
+
+.logoInner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  // width: 100%;
+}
+
+.logoName {
+  display: flex;
+  // align-items: center;
+}
+
+.initialLetter {
+  // display: inline-block;
+  opacity: 1;
+  // transform: translateX(0);
+}
