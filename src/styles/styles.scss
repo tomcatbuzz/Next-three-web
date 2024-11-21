@@ -116,6 +116,13 @@ main {
   min-height: 100vh;
 }
 
+// page.js 
+.pageLayout {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+}
+
 /* Light White Grid */
 // main {
 //   position: absolute;

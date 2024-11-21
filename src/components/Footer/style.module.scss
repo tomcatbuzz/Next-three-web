@@ -8,7 +8,7 @@
 
 .footer {
   position: relative;
-  height: 800px;
+  // height: 800px;
   clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
   // margin-top: auto;
 }
@@ -19,13 +19,13 @@
 //   top: -100vh;
 // }
 
-.stickyContent {
-  height: 800px;
-  // position: sticky;
-  position: fixed;
-  bottom: 0;
+// .stickyContent {
+//   height: 800px;
+//   // position: sticky;
+//   position: fixed;
+//   bottom: 0;
 
-  // top: calc(100vh - 800px);
-  width: 100%;
-}
+//   // top: calc(100vh - 800px);
+//   width: 100%;
+// }
 

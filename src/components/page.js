@@ -16,11 +16,6 @@ const poppins = Poppins({
   variable: '--font-poppins',
   display: 'swap'
 });
-// AWS code help suggested
-// export const fontClasses = {
-//   abril: abril.className,
-//   poppins: poppins.className
-// };
 
 export default function Page({ children }) {
   return (
@@ -32,7 +27,7 @@ export default function Page({ children }) {
           crossOrigin="anonymous"
         />
       </Head>
-      <div className={`${abril.variable} ${poppins.variable}`}>
+      <div className={`${abril.variable} ${poppins.variable} pageLayout`}>
       <Header />
       <FirebaseAnalytics />
       <main>{children}</main>

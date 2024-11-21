@@ -125,25 +125,11 @@ const App = ({ Component, pageProps}) => {
         <link rel="icon" href="/favicon.ico" />
         
       </Head>
-      {/* <AnimatePresence>{isLoading && <Preloader />}</AnimatePresence> */}
       {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
-      
       <AnimatePresence mode="wait" initial={false}>
         <motion.div key={router.pathname}>
-        
-        {/* <div className="backgroundCanvas">
-        <Canvas>
-        <Background />
-        </Canvas>
-        </div> */}
-          {/* <FirebaseAnalytics /> */}
           <Component {...pageProps} isCanvasVisible={isCanvasVisible} isNavExiting={isNavExiting} />
-          {/* <Footer /> */}
-          {/* <Script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`} strategy="lazyOnload" /> */}
-          {/* <Component {...pageProps} isCanvasVisible={isCanvasVisible} /> */}
-          {/* <div className="backgroundWrapper"> */}
             <BackgroundSvg />
-          {/* </div> */}
           <div className="grid">           
             <motion.div {...anim(opacity)} className="transition-background" />
             <div className="transition-container">
@@ -154,11 +140,8 @@ const App = ({ Component, pageProps}) => {
               })}
             </div>
           </div>
-          
-          </motion.div>
-        
+        </motion.div>
       </AnimatePresence>
-      
     </>
   );
 };

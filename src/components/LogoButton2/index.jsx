@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import styles from './style.module.scss';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
+import { SplitText } from 'gsap/dist/SplitText';
 
 gsap.registerPlugin(SplitText);
 
