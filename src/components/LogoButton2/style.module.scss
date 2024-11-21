@@ -1,0 +1,103 @@
+// First attempt styling seems good
+// .logo {
+//   background-color: #007bff; /* Blue circle */
+//   color: white;
+//   font-size: 20px;
+//   font-weight: bold;
+//   height: 64px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 32px; /* Makes the circle */
+//   overflow: hidden; /* Ensures no overflow during expansion */
+//   white-space: nowrap; /* Prevents text wrapping */
+//   padding: 0 16px; /* Padding for expanded text */
+//   cursor: pointer;
+//   position: relative;
+// }
+
+// .text {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   pointer-events: none;
+// }
+
+// .expandedText {
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   opacity: 0;
+//   padding-left: 16px; /* Space between "AB" and expanded text */
+// }
+
+// .logo {
+//   background-color: #007bff; /* Blue circle */
+//   color: white;
+//   font-size: 20px;
+//   font-weight: bold;
+//   height: 64px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   border-radius: 32px; /* Rounded ends */
+//   overflow: hidden;
+//   padding: 0 16px;
+//   cursor: pointer;
+//   position: relative;
+//   white-space: nowrap; /* Prevents text wrapping */
+// }
+
+// .name {
+//   display: flex;
+//   align-items: center;
+//   gap: 12px; /* Spacing between first and last names */
+// }
+
+// .firstName,
+// .lastName {
+//   display: flex;
+//   align-items: center;
+//   gap: 4px; /* Spacing between initial and rest of the name */
+// }
+
+// .initial {
+//   font-weight: bold;
+// }
+
+// .text {
+//   opacity: 0; /* Initially hidden */
+//   display: inline-block;
+//   transform: translateX(10px); /* Start offset for animation */
+// }
+
+.logo {
+  background-color: #007bff; /* Blue circle */
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 32px; /* Rounded ends */
+  overflow: hidden; /* Clip overflowing animations */
+  padding: 0 16px;
+  cursor: pointer;
+  position: relative;
+  
+}
+
+.wrapper {
+	perspective:800px;
+	height:100%;
+	display:flex;
+	align-items:center;
+	visibility:hidden;
+}
+
+.name {
+  color: white
+}
+

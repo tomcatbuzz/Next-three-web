@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 const AnimatedLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const logoVariants = {
+    initial: {width: "4rem", height: "4rem", borderRadius: "50%"}
+  }
   const firstNameVariants = {
     initial: { width: 'auto' },
     hover: {
@@ -41,7 +44,8 @@ const AnimatedLogo = () => {
       <motion.div
         className={styles.logo}
         // initial={{ width: "4rem", height: "4rem", borderRadius: "50%" }}
-        initial={{ width: "4rem", height: "4rem", borderRadius: "50%" }}
+        initial="initial"
+        variants={logoVariants}
         whileHover={{
           width: "16rem",
           borderRadius: "9999px",
@@ -52,7 +56,7 @@ const AnimatedLogo = () => {
       >
         <div className={styles.logoInner}>
           <motion.div
-            className={styles.logoName}
+            className={`${styles.logoName} ${styles.letterA}`}
             variants={firstNameVariants}
             initial="initial"
             animate={isHovered ? "hover" : "initial"}
@@ -74,7 +78,7 @@ const AnimatedLogo = () => {
             animate={isHovered ? "hover" : "initial"}
           >
             {/* <span style={{ opacity: 1 }}>B</span> */}
-            <span className={styles.initialLetter}>B</span>
+            <span className={`${styles.initialLetter} ${styles.letterB}`}>B</span>
             <motion.span variants={letterVariants}>u</motion.span>
             <motion.span variants={letterVariants}>z</motion.span>
             <motion.span variants={letterVariants}>z</motion.span>

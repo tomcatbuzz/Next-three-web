@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Nav from '../Nav';
 import useMediaQuery from '../../hooks/mediaQuery';
 import AnimatedLogo from '../LogoButton';
+import Logo from '../LogoButton2';
 
 const menu = {
   open: {
@@ -71,7 +72,8 @@ export default function Header() {
         <button className={styles.logoButton} type="button" onClick={() => router.push('/')}>
           Tomcatbuzz
         </button> */}
-        <AnimatedLogo />
+        {/* <AnimatedLogo /> */}
+        <Logo />
       </div>
       <div className={styles.headerItems}>
       
