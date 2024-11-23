@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Button from "../Button";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import Image from 'next/image';
 import Nav from '../Nav';
 import useMediaQuery from '../../hooks/mediaQuery';
@@ -54,11 +54,38 @@ export default function Header() {
     };
   },[router.events, isActive]);
 
-  
+  const controls = useAnimation();
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // User is scrolling down: move the header out of view
+        controls.start({ y: '-100%', transition: { duration: 0.3 } });
+      } else {
+        // User is scrolling up: move the header back into view
+        controls.start({ y: '0%', transition: { duration: 0.3 } });
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [controls]);
 
   return (
     
-    <div className={styles.header}>
+    <motion.div 
+      initial={{ y: 0 }}
+      animate={controls}
+      className={styles.header}>
       {isDesktop && 
         <>
       <div className={styles.logo}>
@@ -140,7 +167,7 @@ export default function Header() {
       />
       </div>
     }
-    </div>
+    </motion.div>
     
   );
 }
