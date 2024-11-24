@@ -2,8 +2,8 @@ import { extend, useFrame, useThree, useLoader} from '@react-three/fiber';
 import { useRef, useState, useEffect, useMemo, useCallback } from 'react';
 import { useTexture, shaderMaterial, Plane } from '@react-three/drei';
 import { useMotionValue, useTransform } from 'framer-motion'
-import useMouse from '@/components/useMouse';
-import useDimension from '@/components/useDimension';
+import useMouse from '@/hooks/useMouse';
+import useDimension from '@/hooks/useDimension';
 import * as THREE from 'three';
 import vertex from './vertex.glsl';
 import fragment from './fragment.glsl';

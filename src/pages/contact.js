@@ -148,7 +148,8 @@ const ContactFormContent = () => {
 
   return (
     <div className={styles.content}>
-    <h1>Contact Us</h1>
+    
+    <div className={styles.formCard}>
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.formGroup}>
         <label htmlFor="name">Name</label>
@@ -205,6 +206,14 @@ const ContactFormContent = () => {
         {isSubmitting ? 'Sending...' : 'Submit'}
       </button>
     </form>
+    </div>
+    <div className={styles.contactInfo}>
+      <h2>Contact Me</h2>
+      <p>Are you in need of a website? Lets Talk!</p>
+      <div className={styles.contactItem}>
+        
+      </div>
+    </div>
     <RecaptchaHoverEffect />
     <Toaster
         position="top-center"
