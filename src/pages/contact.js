@@ -203,7 +203,7 @@ const ContactFormContent = () => {
       </div>
       {/* <Recaptcha onVerify={handleRecaptchaVerify} /> */}
       <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
-        {isSubmitting ? 'Sending...' : 'Submit'}
+        {isSubmitting ? 'Sending...' : 'Send'}
       </button>
     </form>
     </div>
